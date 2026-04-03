@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Black Swan Causal Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:       #050608;
+    --deep:        #090c10;
+    --surface:     #0d1117;
+    --ink:         #111620;
+    --border:      rgba(255,255,255,0.06);
+    --silver:      #c8cdd4;
+    --white:       #eef0f3;
+    --teal:        #3d7a7a;
+    --teal-light:  #5aadad;
+    --accent:      #8bbfbf;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 64px;
+    background: linear-gradient(to bottom, rgba(5,6,8,0.95) 0%, transparent 100%);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--silver);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--teal-light); }
+  .nav-back {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(200,205,212,0.45);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-back:hover { color: var(--teal-light); }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 160px 24px 100px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate { animation: fadeUp 0.8s ease forwards; }
+  .animate-d1 { animation-delay: 0.1s; opacity: 0; }
+  .animate-d2 { animation-delay: 0.25s; opacity: 0; }
+
+  /* ── HEADER ── */
+  .page-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 20px;
+  }
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .page-updated {
+    font-size: 12px;
+    color: rgba(200,205,212,0.35);
+    letter-spacing: 0.06em;
+    margin-bottom: 36px;
+  }
+  .page-rule {
+    width: 48px; height: 1px;
+    background: var(--teal);
+    margin-bottom: 48px;
+  }
+
+  /* ── CONTENT ── */
+  .legal-intro {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(200,205,212,0.55);
+    margin-bottom: 48px;
+    padding: 24px;
+    border-left: 2px solid rgba(61,122,122,0.25);
+    background: rgba(17,22,32,0.4);
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--white);
+    margin-bottom: 20px;
+    margin-top: 56px;
+  }
+  .section-heading:first-of-type { margin-top: 0; }
+
+  .legal-text {
+    font-size: 14px;
+    line-height: 1.85;
+    color: rgba(200,205,212,0.6);
+    margin-bottom: 16px;
+    letter-spacing: 0.01em;
+  }
+  .legal-text strong {
+    color: rgba(238,240,243,0.8);
+    font-weight: 400;
+  }
+  .legal-text a {
+    color: var(--teal-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .legal-text a:hover { color: var(--accent); }
+
+  .legal-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 20px;
+  }
+  .legal-list li {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(200,205,212,0.6);
+    padding: 4px 0 4px 20px;
+    position: relative;
+  }
+  .legal-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 6px; height: 6px;
+    border: 1px solid var(--teal);
+    border-radius: 50%;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 56px 0 0;
+  }
+  .section-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .page-footer p {
+    font-size: 12px;
+    color: rgba(200,205,212,0.3);
+    line-height: 1.8;
+  }
+  .page-footer a {
+    color: var(--teal-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .page-footer a:hover { color: var(--accent); }
+
+  /* grain */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.022;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 24px 28px; }
+    .page-wrap { padding: 110px 24px 60px; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 18px 16px; }
+    .nav-logo { font-size: 10px; }
+    .nav-back { font-size: 9px; }
+    .page-wrap { padding: 90px 14px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="blackswan_v3.html" class="nav-logo">Black Swan <span>Causal Labs</span></a>
+  <a href="blackswan_v3.html" class="nav-back">&larr; Back to Site</a>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="page-eyebrow animate animate-d1">Legal</p>
+  <h1 class="page-title animate animate-d1">Terms of Service</h1>
+  <p class="page-updated animate animate-d2">Last updated: April 2026</p>
+  <div class="page-rule animate animate-d2"></div>
+
+  <div class="legal-intro">
+    These terms are provided for informational purposes only and do not constitute legal advice. If you have questions about your legal rights or obligations, please consult a qualified attorney.
+  </div>
+
+  <h2 class="section-heading">Acceptance of Terms</h2>
+  <p class="legal-text">By accessing or using the Black Swan Causal Labs website (the "Site"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the Site. We reserve the right to update or modify these Terms at any time, and your continued use of the Site constitutes acceptance of any changes.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Description of Services</h2>
+  <p class="legal-text">Black Swan Causal Labs ("we," "us," or "our") is a technology consulting company based in Los Angeles, California. Through this Site, we provide:</p>
+  <ul class="legal-list">
+    <li><strong>Informational content</strong> about our consulting services, expertise in real-world evidence, pharmacoepidemiology, and artificial intelligence</li>
+    <li><strong>AI Fluency Assessment tool</strong> — an interactive quiz designed for educational and informational purposes to help users evaluate their familiarity with AI concepts</li>
+    <li><strong>Contact form</strong> — a means to reach us with inquiries about our services</li>
+  </ul>
+  <p class="legal-text">These services are provided on an "as is" and "as available" basis.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Intellectual Property</h2>
+  <p class="legal-text">All content on this Site — including but not limited to text, graphics, logos, design elements, software, quiz content, and the overall look and feel — is the property of Black Swan Causal Labs or its content suppliers and is protected by applicable intellectual property laws.</p>
+  <p class="legal-text">You may not reproduce, distribute, modify, create derivative works from, publicly display, or otherwise exploit any content from this Site without our prior written consent, except for personal, non-commercial use such as printing a single copy for your reference.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Disclaimer</h2>
+  <p class="legal-text">The information provided on this Site is for general informational and educational purposes only. Nothing on this Site constitutes or is intended to constitute:</p>
+  <ul class="legal-list">
+    <li>Medical advice, diagnosis, or treatment</li>
+    <li>Legal advice or legal representation</li>
+    <li>Financial or investment advice</li>
+    <li>A professional recommendation or endorsement</li>
+  </ul>
+  <p class="legal-text">Black Swan Causal Labs is a consulting and technology company, not a healthcare provider, law firm, or financial advisor. You should always seek the advice of qualified professionals for matters relating to your health, legal affairs, or finances.</p>
+  <p class="legal-text">Results from the AI Fluency Assessment are provided for informational and educational purposes only and should not be interpreted as a professional evaluation, certification, or qualification of any kind.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Limitation of Liability</h2>
+  <p class="legal-text">To the fullest extent permitted by applicable law, Black Swan Causal Labs and its founder, employees, contractors, and affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of, or inability to use, the Site or its content.</p>
+  <p class="legal-text">This includes, without limitation, damages for loss of profits, data, goodwill, or other intangible losses, even if we have been advised of the possibility of such damages. Our total liability for any claim arising from or relating to these Terms or the Site shall not exceed the amount you paid us, if any, in the twelve months preceding the claim.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Acceptable Use</h2>
+  <p class="legal-text">You agree not to use the Site in any manner that:</p>
+  <ul class="legal-list">
+    <li>Violates any applicable local, state, national, or international law or regulation</li>
+    <li>Infringes on the intellectual property rights of others</li>
+    <li>Attempts to interfere with or disrupt the Site's infrastructure or security</li>
+    <li>Involves the transmission of unsolicited communications, spam, or malicious code</li>
+    <li>Attempts to gain unauthorized access to any portion of the Site or its systems</li>
+    <li>Uses automated tools to scrape, crawl, or extract content from the Site without permission</li>
+  </ul>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Third-Party Links</h2>
+  <p class="legal-text">The Site may contain links to third-party websites or services that are not owned or controlled by Black Swan Causal Labs. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party sites. Your use of third-party websites is at your own risk.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Governing Law</h2>
+  <p class="legal-text">These Terms shall be governed by and construed in accordance with the laws of the State of California, United States, without regard to its conflict of law provisions. Any disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts located in Los Angeles County, California.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Changes to These Terms</h2>
+  <p class="legal-text">We reserve the right to modify these Terms at any time. Changes will be effective when posted on this page with an updated revision date. We encourage you to review these Terms periodically. Your continued use of the Site after changes are posted constitutes your acceptance of the revised Terms.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Contact</h2>
+  <p class="legal-text">If you have any questions about these Terms of Service, please reach out through our <a href="blackswan_v3.html#contact">contact page</a>.</p>
+  <p class="legal-text">Black Swan Causal Labs<br>Los Angeles, California</p>
+
+  <div class="page-footer">
+    <p><a href="terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+    <p style="margin-top: 12px;">&copy; 2026 Black Swan Causal Labs. All rights reserved.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

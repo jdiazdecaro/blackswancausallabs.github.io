@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Black Swan Causal Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:       #050608;
+    --deep:        #090c10;
+    --surface:     #0d1117;
+    --ink:         #111620;
+    --border:      rgba(255,255,255,0.06);
+    --silver:      #c8cdd4;
+    --white:       #eef0f3;
+    --teal:        #3d7a7a;
+    --teal-light:  #5aadad;
+    --accent:      #8bbfbf;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 64px;
+    background: linear-gradient(to bottom, rgba(5,6,8,0.95) 0%, transparent 100%);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--silver);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--teal-light); }
+  .nav-back {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(200,205,212,0.45);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-back:hover { color: var(--teal-light); }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 160px 24px 100px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate { animation: fadeUp 0.8s ease forwards; }
+  .animate-d1 { animation-delay: 0.1s; opacity: 0; }
+  .animate-d2 { animation-delay: 0.25s; opacity: 0; }
+
+  /* ── HEADER ── */
+  .page-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 20px;
+  }
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .page-updated {
+    font-size: 12px;
+    color: rgba(200,205,212,0.35);
+    letter-spacing: 0.06em;
+    margin-bottom: 36px;
+  }
+  .page-rule {
+    width: 48px; height: 1px;
+    background: var(--teal);
+    margin-bottom: 48px;
+  }
+
+  /* ── CONTENT ── */
+  .legal-intro {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(200,205,212,0.55);
+    margin-bottom: 48px;
+    padding: 24px;
+    border-left: 2px solid rgba(61,122,122,0.25);
+    background: rgba(17,22,32,0.4);
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--white);
+    margin-bottom: 20px;
+    margin-top: 56px;
+  }
+  .section-heading:first-of-type { margin-top: 0; }
+
+  .legal-text {
+    font-size: 14px;
+    line-height: 1.85;
+    color: rgba(200,205,212,0.6);
+    margin-bottom: 16px;
+    letter-spacing: 0.01em;
+  }
+  .legal-text strong {
+    color: rgba(238,240,243,0.8);
+    font-weight: 400;
+  }
+  .legal-text a {
+    color: var(--teal-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .legal-text a:hover { color: var(--accent); }
+
+  .legal-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 20px;
+  }
+  .legal-list li {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(200,205,212,0.6);
+    padding: 4px 0 4px 20px;
+    position: relative;
+  }
+  .legal-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 6px; height: 6px;
+    border: 1px solid var(--teal);
+    border-radius: 50%;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 56px 0 0;
+  }
+  .section-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .page-footer p {
+    font-size: 12px;
+    color: rgba(200,205,212,0.3);
+    line-height: 1.8;
+  }
+  .page-footer a {
+    color: var(--teal-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .page-footer a:hover { color: var(--accent); }
+
+  /* grain */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.022;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 24px 28px; }
+    .page-wrap { padding: 110px 24px 60px; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 18px 16px; }
+    .nav-logo { font-size: 10px; }
+    .nav-back { font-size: 9px; }
+    .page-wrap { padding: 90px 14px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="blackswan_v3.html" class="nav-logo">Black Swan <span>Causal Labs</span></a>
+  <a href="blackswan_v3.html" class="nav-back">&larr; Back to Site</a>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="page-eyebrow animate animate-d1">Legal</p>
+  <h1 class="page-title animate animate-d1">Privacy Policy</h1>
+  <p class="page-updated animate animate-d2">Last updated: April 2026</p>
+  <div class="page-rule animate animate-d2"></div>
+
+  <div class="legal-intro">
+    This privacy policy is provided for informational purposes only and does not constitute legal advice. If you have questions about your legal rights or obligations, please consult a qualified attorney.
+  </div>
+
+  <h2 class="section-heading">Introduction</h2>
+  <p class="legal-text">Black Swan Causal Labs ("we," "us," or "our") is a technology consulting company based in Los Angeles, California. We are committed to protecting the privacy of individuals who visit our website and use our services. This Privacy Policy describes how we collect, use, and safeguard your information when you interact with our website.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Information We Collect</h2>
+  <p class="legal-text">We collect information that you voluntarily provide to us through the following channels:</p>
+
+  <p class="legal-text"><strong>Contact Form</strong></p>
+  <p class="legal-text">When you submit an inquiry through the contact form on our website, we collect:</p>
+  <ul class="legal-list">
+    <li>Your name</li>
+    <li>Your email address</li>
+    <li>Your organization or affiliation</li>
+    <li>The content of your message</li>
+  </ul>
+
+  <p class="legal-text"><strong>AI Fluency Quiz</strong></p>
+  <p class="legal-text">When you participate in our AI Fluency Assessment, we collect:</p>
+  <ul class="legal-list">
+    <li>Your name</li>
+    <li>Your email address</li>
+    <li>Your quiz responses and resulting score</li>
+  </ul>
+
+  <p class="legal-text"><strong>Information We Do Not Collect</strong></p>
+  <p class="legal-text">We do not currently use cookies, web beacons, or third-party analytics tools. We do not automatically collect browsing data, IP addresses, or device information beyond what is inherently transmitted as part of standard web server operations.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">How We Use Your Information</h2>
+  <p class="legal-text">We use the information you provide for the following purposes:</p>
+  <ul class="legal-list">
+    <li>To respond to your inquiries and communicate with you about our services</li>
+    <li>To deliver your AI Fluency Assessment results</li>
+    <li>To improve our website and the services we offer</li>
+    <li>To comply with applicable legal obligations</li>
+  </ul>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Data Storage and Security</h2>
+  <p class="legal-text">We take reasonable measures to protect the information you provide from unauthorized access, use, or disclosure. However, no method of electronic storage or transmission over the internet is completely secure, and we cannot guarantee absolute security.</p>
+  <p class="legal-text">Data submitted through our forms is stored using standard security practices appropriate for a small technology consulting company. We limit access to your personal information to individuals who need it to perform their duties.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Third-Party Sharing</h2>
+  <p class="legal-text">We do not sell, trade, rent, or otherwise share your personal information with third parties for marketing or any other purpose. We may disclose your information only if required to do so by law or in response to valid legal process.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Data Retention</h2>
+  <p class="legal-text">We retain your personal information only for as long as necessary to fulfill the purposes described in this policy, or as required by law. Contact form submissions and quiz data are retained for a reasonable period to allow us to respond to your inquiries and improve our services. You may request deletion of your data at any time (see "Your Rights" below).</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Your Rights</h2>
+  <p class="legal-text">You have the right to:</p>
+  <ul class="legal-list">
+    <li><strong>Access</strong> the personal information we hold about you</li>
+    <li><strong>Request correction</strong> of any inaccurate information</li>
+    <li><strong>Request deletion</strong> of your personal information from our records</li>
+    <li><strong>Withdraw consent</strong> for any future communications</li>
+  </ul>
+  <p class="legal-text">To exercise any of these rights, please contact us through our <a href="blackswan_v3.html#contact">contact page</a>. We will respond to your request within a reasonable timeframe.</p>
+  <p class="legal-text">If you are a California resident, you may have additional rights under the California Consumer Privacy Act (CCPA). Please contact us for more information about exercising those rights.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Children's Privacy</h2>
+  <p class="legal-text">Our website and services are not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have inadvertently collected information from a child under 13, we will take steps to delete that information promptly.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Changes to This Policy</h2>
+  <p class="legal-text">We may update this Privacy Policy from time to time to reflect changes in our practices or applicable law. Any changes will be posted on this page with an updated revision date. We encourage you to review this policy periodically.</p>
+
+  <div class="section-divider"><span class="section-divider-line"></span></div>
+
+  <h2 class="section-heading">Contact Us</h2>
+  <p class="legal-text">If you have any questions or concerns about this Privacy Policy or our data practices, please reach out through our <a href="blackswan_v3.html#contact">contact page</a>.</p>
+  <p class="legal-text">Black Swan Causal Labs<br>Los Angeles, California</p>
+
+  <div class="page-footer">
+    <p><a href="terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+    <p style="margin-top: 12px;">&copy; 2026 Black Swan Causal Labs. All rights reserved.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

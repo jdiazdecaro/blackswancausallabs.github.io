@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Fluency Quiz — Black Swan Causal Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:       #050608;
+    --deep:        #090c10;
+    --surface:     #0d1117;
+    --ink:         #111620;
+    --border:      rgba(255,255,255,0.06);
+    --silver:      #c8cdd4;
+    --white:       #eef0f3;
+    --teal:        #3d7a7a;
+    --teal-light:  #5aadad;
+    --accent:      #8bbfbf;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 64px;
+    background: linear-gradient(to bottom, rgba(5,6,8,0.95) 0%, transparent 100%);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--silver);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--teal-light); }
+  .nav-back {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(200,205,212,0.45);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-back:hover { color: var(--teal-light); }
+
+  /* ── QUIZ CONTAINER ── */
+  .quiz-wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 24px 80px;
+  }
+
+  .quiz-panel {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  /* ── SCREENS (only one visible at a time) ── */
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeUp 0.6s ease forwards; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── INTRO / GATE ── */
+  .intro-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 22px;
+  }
+  .intro-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(40px, 5.5vw, 64px);
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .intro-title em { font-style: italic; color: var(--accent); }
+  .intro-rule {
+    width: 48px; height: 1px;
+    background: var(--teal);
+    margin-bottom: 24px;
+  }
+  .intro-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    color: rgba(200,205,212,0.6);
+    margin-bottom: 14px;
+    max-width: 580px;
+  }
+  .intro-meta {
+    font-size: 14px;
+    color: rgba(200,205,212,0.3);
+    margin-bottom: 48px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FORM FIELDS ── */
+  .gate-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-row { display: flex; gap: 14px; }
+  .gate-form input {
+    background: var(--ink);
+    border: 1px solid var(--border);
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 17px 22px;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+    letter-spacing: 0.05em;
+  }
+  .gate-form input:focus { border-color: var(--teal); }
+  .gate-form input::placeholder {
+    color: rgba(200,205,212,0.22);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  .gate-form input.error { border-color: #a04040; }
+
+  .btn-primary {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--teal-light);
+    border: none;
+    padding: 19px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 8px;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* ── QUESTION SCREEN ── */
+  .dim-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .dim-num {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--teal);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .dim-line { flex: 1; height: 1px; background: var(--border); }
+  .dim-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .dim-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(200,205,212,0.4);
+    margin-bottom: 40px;
+    max-width: 580px;
+  }
+
+  /* progress bar */
+  .progress-track {
+    width: 100%;
+    height: 2px;
+    background: var(--border);
+    margin-bottom: 48px;
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--teal-light);
+    transition: width 0.5s ease;
+  }
+
+  /* question card */
+  .q-card {
+    background: var(--ink);
+    border: 1px solid var(--border);
+    padding: 36px 40px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+  }
+  .q-card.answered { border-color: rgba(90,173,173,0.25); }
+  .q-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--teal);
+    opacity: 0.6;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .q-tag-pill {
+    border: 1px solid rgba(61,122,122,0.25);
+    padding: 3px 10px;
+    font-size: 10px;
+  }
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--white);
+    margin-bottom: 26px;
+  }
+
+  /* options */
+  .q-options { display: flex; flex-direction: column; gap: 8px; }
+  .q-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.25s;
+    background: transparent;
+  }
+  .q-option:hover { border-color: rgba(90,173,173,0.3); background: rgba(90,173,173,0.04); }
+  .q-option.selected { border-color: var(--teal-light); background: rgba(90,173,173,0.08); }
+  .q-option-letter {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .q-option.selected .q-option-letter { color: var(--teal-light); }
+  .q-option-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(200,205,212,0.7);
+    font-weight: 300;
+  }
+  .q-option.selected .q-option-text { color: var(--white); }
+
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    gap: 16px;
+  }
+  .btn-ghost {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200,205,212,0.45);
+    border: 1px solid rgba(200,205,212,0.15);
+    padding: 14px 30px;
+    cursor: pointer;
+    background: transparent;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .btn-ghost:hover { color: var(--teal-light); border-color: var(--teal); }
+  .btn-next {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--teal-light);
+    border: none;
+    padding: 14px 36px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-left: auto;
+  }
+  .btn-next:hover { background: var(--accent); }
+  .btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* ── PROCESSING SCREEN ── */
+  .processing-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    text-align: center;
+  }
+
+  .gears-scene {
+    width: 100%;
+    max-width: 640px;
+    margin-bottom: 36px;
+    filter: drop-shadow(0 0 28px rgba(90,173,173,0.18));
+  }
+
+  @keyframes spin        { to { transform: rotate( 360deg); } }
+  @keyframes spinReverse { to { transform: rotate(-360deg); } }
+
+  .processing-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: rgba(200,205,212,0.6);
+    margin-bottom: 12px;
+  }
+  .processing-sub {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200,205,212,0.25);
+  }
+
+  /* dots animation */
+  .dot-pulse::after {
+    content: '';
+    animation: dots 1.5s steps(4, end) infinite;
+  }
+  @keyframes dots {
+    0%   { content: ''; }
+    25%  { content: '.'; }
+    50%  { content: '..'; }
+    75%  { content: '...'; }
+    100% { content: ''; }
+  }
+
+  /* ── RESULTS SCREEN ── */
+  .results-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 12px;
+  }
+  .results-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(200,205,212,0.5);
+    margin-bottom: 32px;
+  }
+
+  .tier-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 64px 40px;
+    border: 1px solid rgba(90,173,173,0.35);
+    background: linear-gradient(160deg, rgba(61,122,122,0.18) 0%, rgba(9,12,16,0.6) 60%, rgba(5,6,8,0.4) 100%);
+    box-shadow: 0 0 48px rgba(90,173,173,0.07), inset 0 1px 0 rgba(90,173,173,0.12);
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .tier-badge::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(90,173,173,0.5) 50%, transparent 100%);
+  }
+  .tier-score {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 96px;
+    font-weight: 300;
+    color: var(--teal-light);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .tier-of {
+    font-size: 12px;
+    color: rgba(200,205,212,0.35);
+    margin-bottom: 20px;
+    letter-spacing: 0.15em;
+    line-height: 1;
+  }
+  .tier-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(90,173,173,0.3);
+    margin: 0 auto 20px;
+  }
+  .tier-label {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .tier-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(200,205,212,0.45);
+    margin-top: 0;
+  }
+
+  /* dimension breakdown */
+  .dim-results {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+  .dim-result-card {
+    background: var(--ink);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+  }
+  .dim-result-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .dim-result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--white);
+  }
+  .dim-result-score {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--teal-light);
+  }
+  .dim-bar-track {
+    width: 100%;
+    height: 3px;
+    background: var(--border);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .dim-bar-fill {
+    height: 100%;
+    background: var(--teal-light);
+    transition: width 1s ease 0.3s;
+    width: 0;
+  }
+  .dim-bar-fill.animate { /* width set via JS */ }
+  .dim-feedback {
+    font-size: 13px;
+    line-height: 1.75;
+    color: rgba(200,205,212,0.55);
+    font-weight: 300;
+  }
+  .dim-feedback strong {
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  /* CTA section */
+  .results-cta {
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    margin-top: 16px;
+  }
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .cta-title em { font-style: italic; color: var(--accent); }
+  .cta-text {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(200,205,212,0.45);
+    margin-bottom: 28px;
+    max-width: 520px;
+  }
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-connect {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--teal-light);
+    border: none;
+    padding: 15px 36px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-connect:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-retake {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200,205,212,0.45);
+    border: 1px solid rgba(200,205,212,0.15);
+    padding: 14px 30px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    background: transparent;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .btn-retake:hover { color: var(--teal-light); border-color: var(--teal); }
+
+  /* ── RESOURCES SECTION ── */
+  .resources-section {
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    margin-bottom: 48px;
+  }
+  .resources-header {
+    margin-bottom: 32px;
+  }
+  .resources-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 10px;
+  }
+  .resources-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.3;
+  }
+  .resources-title em { font-style: italic; color: var(--accent); }
+  .resources-subtitle {
+    font-size: 13px;
+    color: rgba(200,205,212,0.4);
+    margin-top: 8px;
+    line-height: 1.7;
+  }
+  .resource-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .resource-cat {
+    border-left: 2px solid rgba(90,173,173,0.25);
+    padding-left: 20px;
+  }
+  .resource-cat-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(90,173,173,0.6);
+    margin-bottom: 16px;
+  }
+  .resource-items {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .resource-item {}
+  .resource-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+  .resource-desc {
+    font-size: 12px;
+    line-height: 1.65;
+    color: rgba(200,205,212,0.45);
+    margin-bottom: 5px;
+    font-weight: 300;
+  }
+  .resource-link {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(90,173,173,0.25);
+    padding-bottom: 1px;
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .resource-link:hover { color: var(--accent); border-color: rgba(139,191,191,0.4); }
+  .resource-note {
+    font-size: 11px;
+    color: rgba(200,205,212,0.3);
+    font-style: italic;
+    margin-top: 3px;
+  }
+
+  /* grain overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.022;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── TABLET ── */
+  @media (max-width: 900px) {
+    nav { padding: 24px 28px; }
+    .quiz-wrap { padding: 110px 20px 60px; }
+    .quiz-panel { max-width: 100%; }
+    .intro-title { font-size: clamp(32px, 5vw, 48px); }
+    .intro-quote { font-size: 20px; }
+    .dim-title { font-size: 32px; }
+    .q-text { font-size: 22px; }
+    .tier-score { font-size: 72px; }
+    .cta-title { font-size: 24px; }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 640px) {
+    nav { padding: 18px 16px; }
+    .nav-logo { font-size: 10px; }
+    .nav-back { font-size: 9px; }
+    .quiz-wrap { padding: 90px 14px 48px; }
+    .intro-eyebrow { font-size: 10px; }
+    .intro-title { font-size: clamp(28px, 7vw, 38px); }
+    .intro-quote { font-size: 17px; }
+    .intro-meta { font-size: 12px; }
+    .form-row { flex-direction: column; }
+    .gate-form input { font-size: 14px; padding: 15px 18px; }
+    .gate-form input::placeholder { font-size: 10px; }
+    .btn-primary { font-size: 12px; padding: 16px; }
+    .dim-title { font-size: 26px; }
+    .dim-desc { font-size: 13px; }
+    .q-card { padding: 24px 20px; }
+    .q-text { font-size: 20px; }
+    .q-option { padding: 12px 14px; }
+    .q-option-text { font-size: 13px; }
+    .nav-buttons { flex-direction: column; }
+    .btn-next, .btn-ghost { width: 100%; text-align: center; }
+    .btn-next { margin-left: 0; }
+    .tier-badge { padding: 28px 24px; }
+    .tier-score { font-size: 64px; }
+    .tier-label { font-size: 14px; }
+    .cta-title { font-size: 22px; }
+    .cta-text { font-size: 12px; }
+    .cta-buttons { flex-direction: column; }
+    .btn-connect, .btn-retake { width: 100%; text-align: center; }
+    .dim-result-card { padding: 22px 20px; }
+    .resources-title { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="blackswan_v3.html" class="nav-logo">Black Swan <span>Causal Labs</span></a>
+  <a href="blackswan_v3.html" class="nav-back">&larr; Back to Site</a>
+</nav>
+
+<div class="quiz-wrap">
+<div class="quiz-panel">
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SCREEN 0: INTRO / CONTACT GATE         -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="screen active" id="screen-intro">
+    <p class="intro-eyebrow">AI Fluency Assessment</p>
+    <h1 class="intro-title">Where Do You<br>Stand with <em>AI?</em></h1>
+    <div class="intro-rule"></div>
+    <p class="intro-quote">"This isn't a test. Just 10 minutes to understand where you and your team actually stand with AI, and where the real gaps are."</p>
+    <p class="intro-meta">15 questions &middot; 4 dimensions &middot; Personalized results</p>
+    <button class="btn-primary" style="max-width:320px" onclick="startQuiz()">Begin Assessment</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SCREEN 1-4: QUIZ DIMENSIONS             -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="screen" id="screen-quiz">
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <div id="quiz-content"></div>
+    <div class="nav-buttons">
+      <button class="btn-ghost" id="btn-prev" onclick="prevDimension()" style="visibility:hidden">&larr; Previous</button>
+      <button class="btn-next" id="btn-next" onclick="nextDimension()">Next Dimension &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SCREEN: PROCESSING                      -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="screen" id="screen-processing">
+    <div class="processing-wrap">
+      <svg class="gears-scene" id="gears-svg" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="sceneGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#3d7a7a" stop-opacity="0.14"/>
+            <stop offset="100%" stop-color="#050608" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="600" height="340" fill="url(#sceneGlow)"/>
+        <!-- gears injected by JS -->
+      </svg>
+      <p class="processing-text">Analyzing your responses<span class="dot-pulse"></span></p>
+      <p class="processing-sub">Scoring across four dimensions</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SCREEN: RESULTS                         -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="screen" id="screen-results">
+    <p class="results-eyebrow">Your Results</p>
+
+    <div class="tier-badge">
+      <span class="tier-score" id="tier-score">0</span>
+      <span class="tier-of">of 15</span>
+      <div class="tier-divider"></div>
+      <span class="tier-label" id="tier-label"></span>
+      <span class="tier-name" id="tier-name"></span>
+    </div>
+
+    <div class="dim-results" id="dim-results"></div>
+
+    <div class="resources-section" id="resources-section" style="display:none;"></div>
+
+    <div class="results-cta">
+      <h3 class="cta-title">Interested in going <em>deeper?</em></h3>
+      <p class="cta-text">Whether you're looking to close gaps in your team's AI fluency, explore how AI fits into your RWE workflows, or simply want a thought partner on responsible AI adoption — I'm available for a conversation. No pitch, just perspective.</p>
+
+      <div class="connect-form" id="connect-form">
+        <div class="gate-form">
+          <div class="form-row">
+            <input type="text" id="inp-name" placeholder="Your Name">
+            <input type="text" id="inp-org" placeholder="Organization">
+          </div>
+          <input type="email" id="inp-email" placeholder="Email">
+          <button class="btn-primary" onclick="submitConnect()">Let's Connect</button>
+        </div>
+      </div>
+
+      <div class="connect-confirmation" id="connect-confirmation" style="display:none;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--accent); margin-bottom:8px;">Thank you.</p>
+        <p style="font-size:13px; color:rgba(200,205,212,0.5); line-height:1.7;">We'll be in touch soon.</p>
+      </div>
+
+      <div style="margin-top:24px;">
+        <a class="btn-retake" href="quiz.html">Retake Quiz</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// GEAR SCENE
+// ═══════════════════════════════════════════════
+function makeGearPath(cx, cy, teeth, outerR, innerR, hubR) {
+  const step = (Math.PI * 2) / teeth;
+  let d = '';
+  for (let i = 0; i < teeth; i++) {
+    const base = i * step - Math.PI / 2;
+    const a0 = base - step * 0.05;
+    const a1 = base + step * 0.15;
+    const a2 = base + step * 0.35;
+    const a3 = base + step * 0.55;
+    const p = (r, a) => [(cx + r * Math.cos(a)).toFixed(2), (cy + r * Math.sin(a)).toFixed(2)];
+    const [x0,y0] = p(innerR, a0), [x1,y1] = p(outerR, a1);
+    const [x2,y2] = p(outerR, a2), [x3,y3] = p(innerR, a3);
+    d += `${i===0?'M':'L'}${x0},${y0} L${x1},${y1} L${x2},${y2} L${x3},${y3} `;
+  }
+  d += 'Z';
+  // punch hub hole with evenodd
+  const hr = hubR.toFixed(2);
+  d += ` M${(cx+hubR).toFixed(2)},${cy} A${hr},${hr} 0 1,0 ${(cx-hubR).toFixed(2)},${cy} A${hr},${hr} 0 1,0 ${(cx+hubR).toFixed(2)},${cy} Z`;
+  return d;
+}
+
+function buildGears() {
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('gears-svg');
+  if (!svg) return;
+
+  // Remove any previously injected gear elements (keep defs + rect)
+  [...svg.querySelectorAll('.g-gear')].forEach(el => el.remove());
+
+  const GEARS = [
+    { cx:300, cy:170, teeth:18, oR:82, iR:67, hub:20, spokes:6, speed:9,   cw:true,  op:1.0  },
+    { cx:152, cy: 88, teeth:12, oR:56, iR:45, hub:13, spokes:4, speed:5.5, cw:false, op:0.85 },
+    { cx:168, cy:272, teeth:10, oR:46, iR:37, hub:11, spokes:4, speed:4.2, cw:false, op:0.78 },
+    { cx:430, cy:106, teeth:11, oR:52, iR:42, hub:12, spokes:4, speed:5.2, cw:false, op:0.82 },
+    { cx:448, cy:262, teeth: 9, oR:40, iR:32, hub: 9, spokes:3, speed:4.6, cw:true,  op:0.70 },
+    { cx: 58, cy:178, teeth: 7, oR:30, iR:24, hub: 7, spokes:3, speed:3.2, cw:false, op:0.60 },
+    { cx:544, cy:182, teeth: 7, oR:28, iR:22, hub: 6, spokes:3, speed:3.0, cw:true,  op:0.55 },
+  ];
+
+  GEARS.forEach(g => {
+    const anim = `${g.cw ? 'spin' : 'spinReverse'} ${g.speed}s linear infinite`;
+    const origin = `${g.cx}px ${g.cy}px`;
+
+    // Gear body
+    const path = document.createElementNS(NS, 'path');
+    path.setAttribute('class', 'g-gear');
+    path.setAttribute('d', makeGearPath(g.cx, g.cy, g.teeth, g.oR, g.iR, g.hub));
+    path.setAttribute('fill-rule', 'evenodd');
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', '#5aadad');
+    path.setAttribute('stroke-width', '1.5');
+    path.setAttribute('opacity', g.op);
+    path.style.transformOrigin = origin;
+    path.style.animation = anim;
+    svg.appendChild(path);
+
+    // Inner detail ring
+    const ring = document.createElementNS(NS, 'circle');
+    ring.setAttribute('class', 'g-gear');
+    ring.setAttribute('cx', g.cx); ring.setAttribute('cy', g.cy);
+    ring.setAttribute('r', g.hub + 5);
+    ring.setAttribute('fill', 'none');
+    ring.setAttribute('stroke', '#5aadad');
+    ring.setAttribute('stroke-width', '0.75');
+    ring.setAttribute('opacity', g.op * 0.45);
+    ring.style.transformOrigin = origin;
+    ring.style.animation = anim;
+    svg.appendChild(ring);
+
+    // Spokes
+    for (let s = 0; s < g.spokes; s++) {
+      const angle = (s / g.spokes) * Math.PI * 2;
+      const spoke = document.createElementNS(NS, 'line');
+      spoke.setAttribute('class', 'g-gear');
+      spoke.setAttribute('x1', (g.cx + (g.hub + 6) * Math.cos(angle)).toFixed(2));
+      spoke.setAttribute('y1', (g.cy + (g.hub + 6) * Math.sin(angle)).toFixed(2));
+      spoke.setAttribute('x2', (g.cx + (g.iR  - 4) * Math.cos(angle)).toFixed(2));
+      spoke.setAttribute('y2', (g.cy + (g.iR  - 4) * Math.sin(angle)).toFixed(2));
+      spoke.setAttribute('stroke', '#5aadad');
+      spoke.setAttribute('stroke-width', '1');
+      spoke.setAttribute('opacity', g.op * 0.55);
+      spoke.style.transformOrigin = origin;
+      spoke.style.animation = anim;
+      svg.appendChild(spoke);
+    }
+
+    // Hub dot
+    const hub = document.createElementNS(NS, 'circle');
+    hub.setAttribute('class', 'g-gear');
+    hub.setAttribute('cx', g.cx); hub.setAttribute('cy', g.cy);
+    hub.setAttribute('r', 3);
+    hub.setAttribute('fill', '#5aadad');
+    hub.setAttribute('opacity', g.op * 0.6);
+    hub.style.transformOrigin = origin;
+    hub.style.animation = anim;
+    svg.appendChild(hub);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', buildGears);
+
+// ═══════════════════════════════════════════════
+// CONFIGURATION
+// ═══════════════════════════════════════════════
+// Before publishing: replace with your Airtable Personal Access Token
+// Scope it to data.records:write on the RWE Harmonization base only
+const AIRTABLE_PAT = 'YOUR_AIRTABLE_PAT_HERE'; // Replace via backend proxy before going live
+const AIRTABLE_BASE = 'appyO6LVFpsaVfqAl';
+const AIRTABLE_TABLE = 'tblbr4hjZH3if675t';
+
+// Airtable field IDs
+const FIELDS = {
+  name: 'flduT7jhV44GMmqvh',
+  org:  'fldRsB5G323wqWnFP',
+  email:'fldpr6og6MThdmCUF',
+  q1:   'fldkYKv618uvwyAIm',
+  q2:   'fldkzIr08tyBkf3WK',
+  q3:   'fldIgs6zOM1Wy2pW3',
+  q4:   'fldQhNJDrahKwaWKJ',
+  q5:   'fld9CkyqCruAwBO3W',
+  q6:   'fldr8kxkyu0ARuElM',
+  q7:   'fld2YuJTqDM3DwQQu',
+  q8:   'fldFQNLwtnLt8jd2Q',
+  q9:   'fldxHPNaBUORQKceV',
+  q10:  'fldeXFpOZbscpXCsd',
+  q11:  'fldIh67hJnW8zDANI',
+  q12:  'fld06fol7FuIS1T5K',
+  q13:  'fldsgwMd1gAb6EzL4',
+  q14:  'fldYbbgzothJYPjnC',
+  q15:  'fldCN7jJnAbnmxGeY',
+  foundationsScore: 'fldhEIh6LUX7ZlQqW',
+  rweScore:         'fldtM6DJCHOkw63V5',
+  practicalScore:   'fldb8oIWauq8Lt1Kv',
+  governanceScore:  'fldURO3Jd8VdPUK4T',
+  overallScore:     'fldF825W72q0mbXL8',
+  tier:             'fld2bjLpQSHkpcxc3',
+  interested:       'fldPkcsGbcPpNGhUw',
+  submittedAt:      'fld5oDyPdCrgL5X9Q',
+};
+
+// ═══════════════════════════════════════════════
+// QUIZ DATA
+// ═══════════════════════════════════════════════
+const DIMENSIONS = [
+  {
+    key: 'foundations',
+    num: 'Dimension 1 of 4',
+    title: 'Foundations',
+    desc: 'Understanding how AI and LLMs work, including key limitations practitioners must know.',
+    questions: [
+      {
+        id: 'q1', tag: 'Q1', type: 'Multiple Choice',
+        text: 'What does a large language model (LLM) actually do when it generates a response?',
+        options: [
+          { letter: 'A', text: 'It searches a database of facts and retrieves the best match' },
+          { letter: 'B', text: 'It predicts the most statistically likely next word, repeatedly, based on patterns in training data' },
+          { letter: 'C', text: 'It reasons through problems the way a human expert would' },
+          { letter: 'D', text: 'It accesses the internet in real time to answer your question' },
+        ],
+        correct: 'B'
+      },
+      {
+        id: 'q2', tag: 'Q2', type: 'True / False',
+        text: 'AI models like ChatGPT or Claude "know" when they\'re wrong and will typically flag their own errors.',
+        options: [
+          { letter: 'True', text: 'True' },
+          { letter: 'False', text: 'False' },
+        ],
+        correct: 'False'
+      },
+      {
+        id: 'q3', tag: 'Q3', type: 'Multiple Choice',
+        text: 'Which of the following best describes "prompt engineering"?',
+        options: [
+          { letter: 'A', text: 'Writing code to train an AI model' },
+          { letter: 'B', text: 'Designing the hardware that runs AI systems' },
+          { letter: 'C', text: 'Crafting inputs to an AI model to reliably get useful, accurate outputs' },
+          { letter: 'D', text: 'A method for testing AI software before deployment' },
+        ],
+        correct: 'C'
+      },
+      {
+        id: 'q4', tag: 'Q4', type: 'Scenario',
+        text: 'You ask an AI to summarize a clinical guideline and it produces a confident, well-structured response. What\'s the most important next step?',
+        options: [
+          { letter: 'A', text: 'Use it — the formatting looks professional' },
+          { letter: 'B', text: 'Verify the key claims against the source document' },
+          { letter: 'C', text: 'Ask the AI to double-check itself' },
+          { letter: 'D', text: 'Run it through a second AI to confirm' },
+        ],
+        correct: 'B'
+      },
+    ]
+  },
+  {
+    key: 'rwe',
+    num: 'Dimension 2 of 4',
+    title: 'Applied RWE & Pharmacoepidemiology',
+    desc: 'AI fluency in the context of real-world evidence science — causal inference, study design, regulatory alignment, and research reproducibility.',
+    questions: [
+      {
+        id: 'q5', tag: 'Q5', type: 'Multiple Choice', pill: 'RWE',
+        text: 'An AI tool claims it can automatically select the right comparator group for your study. What\'s the most critical limitation to probe?',
+        options: [
+          { letter: 'A', text: 'Whether the UI is easy to use' },
+          { letter: 'B', text: 'Whether the tool understands the causal assumptions behind comparator selection' },
+          { letter: 'C', text: 'Whether it can process large datasets quickly' },
+          { letter: 'D', text: 'Whether it integrates with your existing software' },
+        ],
+        correct: 'B'
+      },
+      {
+        id: 'q6', tag: 'Q6', type: 'True / False', pill: 'RWE',
+        text: 'A directed acyclic graph (DAG) can be fully and reliably constructed by an AI without any domain expert input.',
+        options: [
+          { letter: 'True', text: 'True' },
+          { letter: 'False', text: 'False' },
+        ],
+        correct: 'False'
+      },
+      {
+        id: 'q7', tag: 'Q7', type: 'Scenario', pill: 'RWE',
+        text: 'Your team is using an AI tool to help design a retrospective cohort study using claims data. The AI suggests a set of covariates for your propensity score. What do you do?',
+        options: [
+          { letter: 'A', text: 'Accept the list — AI has seen more studies than any human' },
+          { letter: 'B', text: 'Use it as a starting point, then validate each covariate against your DAG and clinical knowledge' },
+          { letter: 'C', text: 'Reject it — AI shouldn\'t be involved in covariate selection' },
+          { letter: 'D', text: 'Have a statistician rerun the same prompt to confirm' },
+        ],
+        correct: 'B'
+      },
+      {
+        id: 'q8', tag: 'Q8', type: 'Multiple Choice', pill: 'RWE',
+        text: 'The FDA\'s 2023 discussion paper on AI/ML in drug development emphasizes which of the following?',
+        options: [
+          { letter: 'A', text: 'AI tools should replace traditional statistical methods in RWE submissions' },
+          { letter: 'B', text: 'Sponsors must document and justify AI-assisted decisions as part of the evidence package' },
+          { letter: 'C', text: 'LLMs are approved for use in NDA submissions without restriction' },
+          { letter: 'D', text: 'AI use in RWE is currently prohibited pending further guidance' },
+        ],
+        correct: 'B'
+      },
+      {
+        id: 'q9', tag: 'Q9', type: 'Confidence Rating', pill: 'RWE',
+        text: 'How confident are you that you could explain to a regulator exactly how an AI tool contributed to a study design decision?',
+        options: [
+          { letter: 'A', text: 'Not at all confident' },
+          { letter: 'B', text: 'Slightly confident' },
+          { letter: 'C', text: 'Moderately confident' },
+          { letter: 'D', text: 'Very confident' },
+        ],
+        correct: 'D', isSelfAssessment: true
+      },
+    ]
+  },
+  {
+    key: 'practical',
+    num: 'Dimension 3 of 4',
+    title: 'Practical Use',
+    desc: 'Day-to-day AI fluency: prompting, output validation, and knowing where AI augments vs. where it falls short.',
+    questions: [
+      {
+        id: 'q10', tag: 'Q10', type: 'Multiple Choice',
+        text: 'Which prompting approach tends to produce the most reliable outputs for complex analytical tasks?',
+        options: [
+          { letter: 'A', text: 'Ask one large, detailed question all at once' },
+          { letter: 'B', text: 'Break the task into steps and prompt the model sequentially, reviewing outputs at each stage' },
+          { letter: 'C', text: 'Use the shortest possible prompt to avoid confusing the model' },
+          { letter: 'D', text: 'Always ask two different AI tools and average their answers' },
+        ],
+        correct: 'B'
+      },
+      {
+        id: 'q11', tag: 'Q11', type: 'True / False',
+        text: 'The same AI model can produce different answers to the exact same question on different occasions.',
+        options: [
+          { letter: 'True', text: 'True' },
+          { letter: 'False', text: 'False' },
+        ],
+        correct: 'True'
+      },
+      {
+        id: 'q12', tag: 'Q12', type: 'Scenario',
+        text: 'You\'re using AI to help draft a methods section. A colleague says, "Just have it write the whole thing." What\'s your response?',
+        options: [
+          { letter: 'A', text: 'Agree — AI writes faster and more consistently' },
+          { letter: 'B', text: 'Use AI to generate a structured draft, then rewrite for accuracy, nuance, and your own methodological voice' },
+          { letter: 'C', text: 'Decline entirely — AI shouldn\'t be used in scientific writing' },
+          { letter: 'D', text: 'Let AI write it, then have a different AI review it' },
+        ],
+        correct: 'B'
+      },
+    ]
+  },
+  {
+    key: 'governance',
+    num: 'Dimension 4 of 4',
+    title: 'Governance & Regulatory Readiness',
+    desc: 'Accountability, transparency, and organizational readiness for responsible AI use in RWE contexts.',
+    questions: [
+      {
+        id: 'q13', tag: 'Q13', type: 'Multiple Choice',
+        text: 'What does "algorithmic transparency" mean in the context of using AI in a regulatory submission?',
+        options: [
+          { letter: 'A', text: 'Making your AI tool open-source' },
+          { letter: 'B', text: 'Being able to explain what data the AI was trained on and how it influenced outputs' },
+          { letter: 'C', text: 'Sharing your prompt library with the review team' },
+          { letter: 'D', text: 'Using only FDA-approved AI vendors' },
+        ],
+        correct: 'B'
+      },
+      {
+        id: 'q14', tag: 'Q14', type: 'True / False',
+        text: 'If an AI tool produces a biased output, the vendor is solely responsible — not the study team.',
+        options: [
+          { letter: 'True', text: 'True' },
+          { letter: 'False', text: 'False' },
+        ],
+        correct: 'False'
+      },
+      {
+        id: 'q15', tag: 'Q15', type: 'Scenario',
+        text: 'Your organization wants to establish an AI use policy for RWE studies. What should it include first?',
+        options: [
+          { letter: 'A', text: 'A list of approved AI tools' },
+          { letter: 'B', text: 'A framework for documenting when, how, and why AI was used in each study' },
+          { letter: 'C', text: 'A prohibition on AI until FDA issues formal guidance' },
+          { letter: 'D', text: 'A requirement that all AI outputs be kept confidential' },
+        ],
+        correct: 'B'
+      },
+    ]
+  },
+];
+
+// Dimension feedback by score range
+const FEEDBACK = {
+  foundations: {
+    high: { threshold: 4, label: 'Strength', text: 'You have a strong grasp of AI fundamentals — how LLMs work, their limitations, and the critical importance of verifying outputs. This foundation positions you well for responsible AI adoption.' },
+    mid:  { threshold: 2, label: 'Developing', text: 'You have some foundation but may have gaps in understanding AI limitations like hallucination and output verification. Deepening your understanding of how models actually generate responses will sharpen your critical evaluation skills.' },
+    low:  { label: 'Growth Area', text: 'Building a clearer understanding of how AI actually works — and where it fails — will unlock safer, more effective use in your practice. This is the most important dimension to address first.' },
+  },
+  rwe: {
+    high: { threshold: 4, label: 'Strength', text: 'You demonstrate deep applied fluency in connecting AI capabilities to RWE methodology. You understand the limits of automation in causal inference, covariate selection, and regulatory documentation.' },
+    mid:  { threshold: 2, label: 'Developing', text: 'You recognize some of the critical intersections between AI and RWE methodology, but there are opportunities to deepen your understanding of causal assumptions, regulatory expectations, and where human judgment remains irreplaceable.' },
+    low:  { label: 'Growth Area', text: 'Connecting AI capabilities to pharmacoepidemiology and RWE methodology is a high-value growth area. Understanding how AI interacts with causal inference, study design, and regulatory expectations will differentiate your practice.' },
+  },
+  practical: {
+    high: { threshold: 3, label: 'Strength', text: 'You know how to prompt effectively, validate outputs, and integrate AI into scientific workflows without over-relying on it. You treat AI as a capable assistant, not an oracle.' },
+    mid:  { threshold: 1, label: 'Developing', text: 'You\'re building practical skills, but structured prompting techniques and output validation habits will significantly improve the quality and reliability of your AI-assisted work.' },
+    low:  { label: 'Growth Area', text: 'Hands-on practice with structured prompting and systematic output validation will accelerate your AI fluency. Start with breaking complex tasks into sequential steps.' },
+  },
+  governance: {
+    high: { threshold: 3, label: 'Strength', text: 'You understand the accountability, transparency, and documentation requirements for AI use in regulated environments. This is critical for anyone involved in RWE-based regulatory submissions.' },
+    mid:  { threshold: 1, label: 'Developing', text: 'You have awareness of governance principles but would benefit from deepening your understanding of documentation frameworks and accountability structures specific to AI in regulated research.' },
+    low:  { label: 'Growth Area', text: 'Governance and regulatory readiness are essential for anyone working with AI in pharmacoepidemiology. Understanding who is accountable for AI outputs — and how to document AI contributions — should be a priority.' },
+  },
+};
+
+const TIERS = [
+  { min: 0,  max: 4,  label: 'AI-Aware',   name: 'Novice',       airtable: 'AI-Aware' },
+  { min: 5,  max: 8,  label: 'AI-Curious',  name: 'Developing',   airtable: 'AI-Curious' },
+  { min: 9,  max: 11, label: 'AI-Capable',  name: 'Practitioner', airtable: 'AI-Capable' },
+  { min: 12, max: 14, label: 'AI-Fluent',   name: 'Fluent',       airtable: 'AI-Fluent' },
+  { min: 15, max: 15, label: 'AI-Native',   name: 'Expert',       airtable: 'AI-Native' },
+];
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let answers = {};
+let currentDim = 0;
+let recordId = null;
+let computedScores = null;
+let computedTotal = 0;
+let computedTier = null;
+
+// ═══════════════════════════════════════════════
+// SCREEN MANAGEMENT
+// ═══════════════════════════════════════════════
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════════════
+// INTRO → QUIZ
+// ═══════════════════════════════════════════════
+function startQuiz() {
+  currentDim = 0;
+  renderDimension();
+  showScreen('screen-quiz');
+}
+
+// ═══════════════════════════════════════════════
+// RENDER QUIZ DIMENSION
+// ═══════════════════════════════════════════════
+function renderDimension() {
+  const dim = DIMENSIONS[currentDim];
+  const totalQ = DIMENSIONS.reduce((s, d) => s + d.questions.length, 0);
+  const answeredBefore = DIMENSIONS.slice(0, currentDim).reduce((s, d) => s + d.questions.length, 0);
+  const answeredInDim = dim.questions.filter(q => answers[q.id]).length;
+  const progress = ((answeredBefore + answeredInDim) / totalQ) * 100;
+  document.getElementById('progress-fill').style.width = progress + '%';
+
+  let html = `
+    <div class="dim-header">
+      <span class="dim-num">${dim.num}</span>
+      <div class="dim-line"></div>
+    </div>
+    <h2 class="dim-title">${dim.title}</h2>
+    <p class="dim-desc">${dim.desc}</p>
+  `;
+
+  dim.questions.forEach(q => {
+    const selected = answers[q.id] || null;
+    html += `
+      <div class="q-card ${selected ? 'answered' : ''}" id="card-${q.id}">
+        <p class="q-tag">${q.tag} &mdash; ${q.type}${q.pill ? ` <span class="q-tag-pill">${q.pill}</span>` : ''}</p>
+        <p class="q-text">${q.text}</p>
+        <div class="q-options">
+          ${q.options.map(o => `
+            <div class="q-option ${selected === o.letter ? 'selected' : ''}"
+                 onclick="selectOption('${q.id}', '${o.letter}')">
+              ${o.letter !== o.text ? `<span class="q-option-letter">${o.letter}</span>` : ''}
+              <span class="q-option-text">${o.text}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById('quiz-content').innerHTML = html;
+
+  // Nav buttons
+  document.getElementById('btn-prev').style.visibility = currentDim === 0 ? 'hidden' : 'visible';
+  const isLast = currentDim === DIMENSIONS.length - 1;
+  document.getElementById('btn-next').textContent = isLast ? 'See My Results' : 'Next Dimension \u2192';
+}
+
+function selectOption(qId, letter) {
+  answers[qId] = letter;
+  // Re-render to update styles
+  renderDimension();
+}
+
+function prevDimension() {
+  if (currentDim > 0) { currentDim--; renderDimension(); showScreen('screen-quiz'); }
+}
+
+function nextDimension() {
+  const dim = DIMENSIONS[currentDim];
+  const unanswered = dim.questions.filter(q => !answers[q.id]);
+  if (unanswered.length > 0) {
+    // Highlight unanswered
+    unanswered.forEach(q => {
+      const card = document.getElementById('card-' + q.id);
+      card.style.borderColor = 'rgba(160,64,64,0.5)';
+      setTimeout(() => { card.style.borderColor = ''; }, 1500);
+    });
+    return;
+  }
+
+  if (currentDim < DIMENSIONS.length - 1) {
+    currentDim++;
+    renderDimension();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    // Show processing, then results
+    showScreen('screen-processing');
+    setTimeout(() => { computeAndShowResults(); }, 3500);
+  }
+}
+
+// ═══════════════════════════════════════════════
+// TIER RESOURCES
+// ═══════════════════════════════════════════════
+const TIER_RESOURCES = {
+  'AI-Aware': {
+    intro: 'You know AI is changing your field. Here\'s where to start.',
+    categories: [
+      {
+        label: 'Foundational Concepts',
+        items: [
+          {
+            name: 'Elements of AI',
+            desc: 'Free, no-code intro course from the University of Helsinki. Covers what AI is, what it can and can\'t do, and how it affects society.',
+            url: 'https://www.elementsofai.com',
+            urlLabel: 'elementsofai.com',
+          },
+          {
+            name: 'AI for Everyone — Andrew Ng, DeepLearning.AI',
+            desc: 'Non-technical and business-accessible. ~6 hours. Free to audit via Coursera.',
+            url: 'https://www.coursera.org/learn/ai-for-everyone',
+            urlLabel: 'coursera.org',
+          },
+          {
+            name: '"A Few Useful Things to Know About Machine Learning"',
+            desc: 'Domingos, Communications of the ACM, 2012. Free PDF. The best short primer on how models actually behave.',
+            url: 'https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf',
+            urlLabel: 'Free PDF',
+          },
+        ],
+      },
+      {
+        label: 'RWE Entry Point',
+        items: [
+          {
+            name: 'FDA Real-World Evidence Program',
+            desc: 'Official FDA hub for RWE frameworks, guidance documents, and regulatory submissions.',
+            url: 'https://www.fda.gov/science-research/science-and-research-special-topics/real-world-evidence',
+            urlLabel: 'fda.gov',
+          },
+        ],
+      },
+    ],
+  },
+  'AI-Curious': {
+    intro: 'You have the instincts. Now build the vocabulary.',
+    categories: [
+      {
+        label: 'Building Fluency',
+        items: [
+          {
+            name: 'ChatGPT Prompt Engineering for Developers',
+            desc: 'DeepLearning.AI. Free short course (~1.5 hours). Practical prompting fundamentals from OpenAI and Andrew Ng.',
+            url: 'https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/',
+            urlLabel: 'deeplearning.ai',
+          },
+        ],
+      },
+      {
+        label: 'RWE & Methods',
+        items: [
+          {
+            name: 'Causal Inference: The Mixtape — Scott Cunningham',
+            desc: 'Free online book. Best accessible entry point into causal thinking for applied researchers.',
+            url: 'https://mixtape.scunning.com',
+            urlLabel: 'mixtape.scunning.com',
+          },
+          {
+            name: '"Using Big Data to Emulate a Target Trial"',
+            desc: 'Hernán & Robins, AJE, 2016. Free via PubMed Central. The paper that reframed how RWE studies should be designed.',
+            url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4832051/',
+            urlLabel: 'PubMed Central',
+          },
+        ],
+      },
+      {
+        label: 'Regulatory Awareness',
+        items: [
+          {
+            name: 'FDA Discussion Paper: Using AI/ML in Drug Development',
+            desc: 'May 2023. Free PDF. Short, readable, and essential for anyone working at the RWE–AI intersection.',
+            url: 'https://www.fda.gov/media/167973/download',
+            urlLabel: 'Free PDF — fda.gov',
+          },
+        ],
+      },
+    ],
+  },
+  'AI-Capable': {
+    intro: 'You\'re applying AI. Now go deeper on rigor.',
+    categories: [
+      {
+        label: 'Applied Depth',
+        items: [
+          {
+            name: 'Machine Learning for Healthcare — MIT OpenCourseWare',
+            desc: 'Free. Full lecture videos and notes. Rigorous treatment of ML in clinical contexts including failure modes.',
+            url: 'https://ocw.mit.edu/courses/6-s897-machine-learning-for-healthcare-spring-2019/',
+            urlLabel: 'ocw.mit.edu',
+          },
+        ],
+      },
+      {
+        label: 'Causal Inference',
+        items: [
+          {
+            name: 'The Book of Why — Judea Pearl & Dana Mackenzie',
+            desc: 'The accessible version of Pearl\'s causal framework. Available in print and widely at libraries.',
+            url: 'https://www.amazon.com/Book-Why-Science-Cause-Effect/dp/046509760X',
+            urlLabel: 'amazon.com',
+            note: 'Not freely available online — check your library',
+          },
+          {
+            name: 'DAGitty',
+            desc: 'Browser-based DAG tool. Understanding its logic deepens causal reasoning for observational study design. Free.',
+            url: 'https://www.dagitty.net',
+            urlLabel: 'dagitty.net',
+          },
+        ],
+      },
+      {
+        label: 'RWE Practice',
+        items: [
+          {
+            name: '"Large Language Models Encode Clinical Knowledge"',
+            desc: 'Singhal et al., Nature, 2023. Free via PubMed. Tests LLM limits in clinical reasoning — directly relevant to RWE use cases.',
+            url: 'https://pubmed.ncbi.nlm.nih.gov/37438534/',
+            urlLabel: 'PubMed',
+          },
+        ],
+      },
+    ],
+  },
+  'AI-Fluent': {
+    intro: 'You evaluate AI critically. Here\'s what\'s at the frontier.',
+    categories: [
+      {
+        label: 'AI in Pharmacoepi & RWE',
+        items: [
+          {
+            name: '"Causal Reasoning and Large Language Models: Opening a New Frontier for Causality"',
+            desc: 'Kıcıman et al., arXiv, 2023. Directly tests whether LLMs can do causal inference. The answer is nuanced and important.',
+            url: 'https://arxiv.org/abs/2305.00050',
+            urlLabel: 'arxiv.org',
+          },
+        ],
+      },
+      {
+        label: 'Governance',
+        items: [
+          {
+            name: 'NICE Evidence Standards Framework for Digital Health Technologies',
+            desc: 'UK\'s most practical framework for evaluating AI tools in a health context. Includes AI and adaptive algorithm standards. Free.',
+            url: 'https://www.nice.org.uk/what-nice-does/digital-health/evidence-standards-framework-esf-for-digital-health-technologies',
+            urlLabel: 'nice.org.uk',
+          },
+        ],
+      },
+      {
+        label: 'Staying Current',
+        items: [
+          {
+            name: 'NEJM AI',
+            desc: 'Peer-reviewed, clinical-context AI research. High signal, low noise. Abstracts are free; full articles may require access.',
+            url: 'https://ai.nejm.org',
+            urlLabel: 'ai.nejm.org',
+          },
+        ],
+      },
+    ],
+  },
+  'AI-Native': {
+    intro: 'You\'re operating at the frontier. Stay sharp.',
+    categories: [
+      {
+        label: 'Staying Current',
+        items: [
+          {
+            name: 'arXiv — cs.AI and stat.ML',
+            desc: 'Set a weekly alert for both sections. This is where the field moves first.',
+            url: 'https://arxiv.org/list/cs.AI/recent',
+            urlLabel: 'arxiv.org',
+          },
+          {
+            name: 'The Gradient',
+            desc: 'Long-form, rigorous commentary on AI research and its real limits. Free.',
+            url: 'https://thegradient.pub',
+            urlLabel: 'thegradient.pub',
+          },
+        ],
+      },
+      {
+        label: 'Leadership & Policy',
+        items: [
+          {
+            name: 'ICER-PHTI Assessment Framework for Digital Health Technologies',
+            desc: 'Free PDF. Practical organizational lens on AI in HEOR and RWE contexts. Useful for building internal governance.',
+            url: 'https://icer.org/wp-content/uploads/2023/09/ICER-PHTI-Assessment-Framework-for-Digital-Health-Technologies.pdf',
+            urlLabel: 'Free PDF — icer.org',
+          },
+        ],
+      },
+    ],
+  },
+};
+
+function renderResources(tierLabel) {
+  const data = TIER_RESOURCES[tierLabel];
+  if (!data) return;
+
+  let html = `
+    <div class="resources-header">
+      <p class="resources-eyebrow">Curated Resources</p>
+      <h3 class="resources-title">Your <em>Learning Path</em></h3>
+      <p class="resources-subtitle">${data.intro}</p>
+    </div>
+    <div class="resource-categories">
+  `;
+
+  data.categories.forEach(cat => {
+    html += `<div class="resource-cat"><p class="resource-cat-label">${cat.label}</p><div class="resource-items">`;
+    cat.items.forEach(item => {
+      html += `
+        <div class="resource-item">
+          <p class="resource-name">${item.name}</p>
+          <p class="resource-desc">${item.desc}</p>
+          <a class="resource-link" href="${item.url}" target="_blank" rel="noopener">${item.urlLabel} &rarr;</a>
+          ${item.note ? `<p class="resource-note">${item.note}</p>` : ''}
+        </div>
+      `;
+    });
+    html += `</div></div>`;
+  });
+
+  html += `</div>`;
+
+  const el = document.getElementById('resources-section');
+  el.innerHTML = html;
+  el.style.display = 'block';
+}
+
+// ═══════════════════════════════════════════════
+// SCORING & RESULTS
+// ═══════════════════════════════════════════════
+function computeAndShowResults() {
+  // Score each dimension
+  const scores = {};
+  DIMENSIONS.forEach(dim => {
+    let correct = 0;
+    dim.questions.forEach(q => {
+      if (q.isSelfAssessment) {
+        // Q9: weighted — D=1, C=0.5 (we'll round), others=0
+        if (answers[q.id] === 'D') correct++;
+      } else {
+        if (answers[q.id] === q.correct) correct++;
+      }
+    });
+    scores[dim.key] = correct;
+  });
+
+  const total = scores.foundations + scores.rwe + scores.practical + scores.governance;
+  const tier = TIERS.find(t => total >= t.min && total <= t.max);
+
+  computedScores = scores;
+  computedTotal = total;
+  computedTier = tier;
+
+  // Populate results
+  document.getElementById('tier-score').textContent = total;
+  document.getElementById('tier-label').textContent = tier.label;
+  document.getElementById('tier-name').textContent = tier.name;
+
+  // Dimension cards
+  const dimMeta = [
+    { key: 'foundations', title: 'Foundations', max: 4 },
+    { key: 'rwe', title: 'Applied RWE & Pharmacoepidemiology', max: 5 },
+    { key: 'practical', title: 'Practical Use', max: 3 },
+    { key: 'governance', title: 'Governance & Regulatory Readiness', max: 3 },
+  ];
+
+  let dimHtml = '';
+  dimMeta.forEach(d => {
+    const score = scores[d.key];
+    const pct = (score / d.max) * 100;
+    const fb = FEEDBACK[d.key];
+    let feedback;
+    if (score >= fb.high.threshold) feedback = fb.high;
+    else if (score >= fb.mid.threshold) feedback = fb.mid;
+    else feedback = fb.low;
+
+    dimHtml += `
+      <div class="dim-result-card">
+        <div class="dim-result-head">
+          <span class="dim-result-title">${d.title}</span>
+          <span class="dim-result-score">${score} / ${d.max}</span>
+        </div>
+        <div class="dim-bar-track">
+          <div class="dim-bar-fill" data-width="${pct}"></div>
+        </div>
+        <p class="dim-feedback"><strong>${feedback.label}:</strong> ${feedback.text}</p>
+      </div>
+    `;
+  });
+  document.getElementById('dim-results').innerHTML = dimHtml;
+
+  renderResources(tier.label);
+
+  showScreen('screen-results');
+
+  // Animate bars after screen is visible
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.dim-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.width + '%';
+    });
+  });
+
+  // Submit to Airtable
+  submitToAirtable(scores, total, tier);
+}
+
+// ═══════════════════════════════════════════════
+// AIRTABLE SUBMISSION
+// ═══════════════════════════════════════════════
+async function submitToAirtable(scores, total, tier, contactInfo) {
+  if (AIRTABLE_PAT === 'YOUR_AIRTABLE_PAT_HERE') {
+    console.warn('Airtable PAT not configured — submission skipped.');
+    return;
+  }
+
+  const fields = {};
+
+  // Contact info (only present when user opts in)
+  if (contactInfo) {
+    fields[FIELDS.name]  = contactInfo.name;
+    fields[FIELDS.org]   = contactInfo.org;
+    fields[FIELDS.email] = contactInfo.email;
+    fields[FIELDS.interested] = true;
+  }
+
+  // Map answers
+  const qFields = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10','q11','q12','q13','q14','q15'];
+  qFields.forEach(q => { fields[FIELDS[q]] = answers[q] || ''; });
+
+  fields[FIELDS.foundationsScore] = scores.foundations;
+  fields[FIELDS.rweScore]         = scores.rwe;
+  fields[FIELDS.practicalScore]   = scores.practical;
+  fields[FIELDS.governanceScore]  = scores.governance;
+  fields[FIELDS.overallScore]     = total;
+  fields[FIELDS.tier]             = tier.airtable;
+  fields[FIELDS.submittedAt]      = new Date().toISOString();
+
+  try {
+    // If we already have a record, update it (user connecting after quiz)
+    if (recordId && contactInfo) {
+      await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${AIRTABLE_PAT}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          records: [{ id: recordId, fields: {
+            [FIELDS.name]: contactInfo.name,
+            [FIELDS.org]: contactInfo.org,
+            [FIELDS.email]: contactInfo.email,
+            [FIELDS.interested]: true,
+          }}]
+        }),
+      });
+      return;
+    }
+
+    // Otherwise create a new record
+    const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${AIRTABLE_PAT}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ records: [{ fields }] }),
+    });
+    const data = await res.json();
+    if (data.records && data.records[0]) {
+      recordId = data.records[0].id;
+    }
+  } catch (e) {
+    console.error('Airtable submission failed:', e);
+  }
+}
+
+// ═══════════════════════════════════════════════
+// "LET'S CONNECT" — POST-RESULTS CONTACT FORM
+// ═══════════════════════════════════════════════
+function submitConnect() {
+  const name  = document.getElementById('inp-name').value.trim();
+  const org   = document.getElementById('inp-org').value.trim();
+  const email = document.getElementById('inp-email').value.trim();
+
+  // Validate
+  let valid = true;
+  document.querySelectorAll('#connect-form input').forEach(i => i.classList.remove('error'));
+  if (!name) { document.getElementById('inp-name').classList.add('error'); valid = false; }
+  if (!email || !email.includes('@')) { document.getElementById('inp-email').classList.add('error'); valid = false; }
+  if (!valid) return;
+
+  // Submit contact info to Airtable (updates existing record or creates with contact)
+  submitToAirtable(computedScores, computedTotal, computedTier, { name, org, email });
+
+  // Show confirmation, hide form
+  document.getElementById('connect-form').style.display = 'none';
+  document.getElementById('connect-confirmation').style.display = 'block';
+}
+</script>
+</body>
+</html>
