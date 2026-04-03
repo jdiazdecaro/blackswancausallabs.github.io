@@ -54,10 +54,10 @@
   .nav-back {
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(200,205,212,0.45);
+    color: var(--white);
     text-decoration: none;
     transition: color 0.3s;
   }
@@ -68,6 +68,17 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 160px 24px 100px;
+    border: 2px solid rgba(238,240,243,0.85);
+    outline: 2px solid rgba(238,240,243,0.85);
+    outline-offset: 6px;
+    margin-top: 120px;
+    margin-bottom: 80px;
+    padding: 60px 48px 80px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .page-wrap:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
   }
 
   @keyframes fadeUp {
@@ -81,7 +92,7 @@
   /* ── HEADER ── */
   .page-eyebrow {
     font-family: 'Cinzel', serif;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.42em;
     text-transform: uppercase;
     color: var(--teal-light);
@@ -96,8 +107,8 @@
     margin-bottom: 12px;
   }
   .page-updated {
-    font-size: 12px;
-    color: rgba(200,205,212,0.35);
+    font-size: 14px;
+    color: var(--white);
     letter-spacing: 0.06em;
     margin-bottom: 36px;
   }
@@ -109,9 +120,9 @@
 
   /* ── CONTENT ── */
   .legal-intro {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.8;
-    color: rgba(200,205,212,0.55);
+    color: rgba(238,240,243,0.9);
     margin-bottom: 48px;
     padding: 24px;
     border-left: 2px solid rgba(61,122,122,0.25);
@@ -121,7 +132,7 @@
   .section-heading {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 26px;
     color: var(--white);
     margin-bottom: 20px;
     margin-top: 56px;
@@ -129,14 +140,14 @@
   .section-heading:first-of-type { margin-top: 0; }
 
   .legal-text {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.85;
-    color: rgba(200,205,212,0.6);
+    color: rgba(238,240,243,0.9);
     margin-bottom: 16px;
     letter-spacing: 0.01em;
   }
   .legal-text strong {
-    color: rgba(238,240,243,0.8);
+    color: var(--white);
     font-weight: 400;
   }
   .legal-text a {
@@ -152,9 +163,9 @@
     margin: 12px 0 20px;
   }
   .legal-list li {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.8;
-    color: rgba(200,205,212,0.6);
+    color: rgba(238,240,243,0.9);
     padding: 4px 0 4px 20px;
     position: relative;
   }
@@ -189,7 +200,7 @@
     text-align: center;
   }
   .page-footer p {
-    font-size: 12px;
+    font-size: 14px;
     color: rgba(200,205,212,0.3);
     line-height: 1.8;
   }
@@ -217,8 +228,8 @@
   }
   @media (max-width: 640px) {
     nav { padding: 18px 16px; }
-    .nav-logo { font-size: 10px; }
-    .nav-back { font-size: 9px; }
+    .nav-logo { font-size: 12px; }
+    .nav-back { font-size: 11px; }
     .page-wrap { padding: 90px 14px 48px; }
   }
 </style>
@@ -236,10 +247,6 @@
   <h1 class="page-title animate animate-d1">Privacy Policy</h1>
   <p class="page-updated animate animate-d2">Last updated: April 2026</p>
   <div class="page-rule animate animate-d2"></div>
-
-  <div class="legal-intro">
-    This privacy policy is provided for informational purposes only and does not constitute legal advice. If you have questions about your legal rights or obligations, please consult a qualified attorney.
-  </div>
 
   <h2 class="section-heading">Introduction</h2>
   <p class="legal-text">Black Swan Causal Labs ("we," "us," or "our") is a technology consulting company based in Los Angeles, California. We are committed to protecting the privacy of individuals who visit our website and use our services. This Privacy Policy describes how we collect, use, and safeguard your information when you interact with our website.</p>
@@ -324,6 +331,8 @@
   <h2 class="section-heading">Contact Us</h2>
   <p class="legal-text">If you have any questions or concerns about this Privacy Policy or our data practices, please reach out through our <a href="blackswan_v3.html#contact">contact page</a>.</p>
   <p class="legal-text">Black Swan Causal Labs<br>Los Angeles, California</p>
+
+  <p style="font-size: 12px; color: rgba(238,240,243,0.9); font-style: italic; text-align: center; margin-top: 48px; line-height: 1.6;">This privacy policy is provided for informational purposes only and does not constitute legal advice. If you have questions about your legal rights or obligations, please consult a qualified attorney.</p>
 
   <div class="page-footer">
     <p><a href="terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>

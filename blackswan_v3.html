@@ -65,18 +65,32 @@
     z-index: 100;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 30px 64px;
     background: linear-gradient(to bottom, rgba(5,6,8,0.92) 0%, transparent 100%);
+    transition: justify-content 0.3s;
+  }
+  nav.nav-scrolled {
+    justify-content: space-between;
+    background: rgba(5,6,8,0.97);
   }
 
   .nav-logo {
     font-family: 'Cinzel', serif;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.3em;
     color: var(--silver);
     text-decoration: none;
     text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  nav.nav-scrolled .nav-logo {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
   .nav-logo span { color: var(--teal-light); }
 
@@ -88,10 +102,10 @@
   .nav-links a {
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(200,205,212,0.45);
+    color: var(--white);
     text-decoration: none;
     transition: color 0.3s;
   }
@@ -104,10 +118,10 @@
   .nav-dropdown-toggle {
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(200,205,212,0.45);
+    color: var(--white);
     text-decoration: none;
     transition: color 0.3s;
     cursor: pointer;
@@ -153,10 +167,10 @@
     padding: 10px 24px;
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(200,205,212,0.45);
+    color: var(--white);
     text-decoration: none;
     transition: color 0.2s, background 0.2s;
   }
@@ -191,7 +205,7 @@
     inset: 0;
     background:
       radial-gradient(ellipse 75% 90% at 72% 48%, transparent 28%, rgba(5,6,8,0.55) 100%),
-      linear-gradient(to bottom, rgba(5,6,8,0.28) 0%, transparent 22%, transparent 45%, rgba(5,6,8,0.99) 100%),
+      linear-gradient(to bottom, rgba(5,6,8,0.28) 0%, transparent 22%, transparent 40%, rgba(5,6,8,1) 100%),
       linear-gradient(to right, rgba(5,6,8,0.78) 0%, rgba(5,6,8,0.3) 44%, transparent 62%),
       radial-gradient(ellipse 40% 30% at 100% 100%, rgba(5,6,8,1) 0%, transparent 100%);
     pointer-events: none;
@@ -214,11 +228,27 @@
     opacity: 0;
   }
 
+  .hero-brand-line {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(32px, 4.2vw, 56px);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 0;
+    opacity: 0;
+    white-space: nowrap;
+  }
+  .hero-brand-sub {
+    color: var(--teal-light);
+    margin-bottom: 28px;
+  }
+
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    font-size: clamp(36px, 4.5vw, 62px);
-    line-height: 1.0;
+    font-size: clamp(24px, 3vw, 40px);
+    line-height: 1.15;
     letter-spacing: -0.01em;
     color: var(--white);
     margin-bottom: 28px;
@@ -274,7 +304,7 @@
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(200,205,212,0.55);
+    color: var(--white);
     border: 1px solid rgba(200,205,212,0.18);
     padding: 14px 34px;
     cursor: pointer;
@@ -298,11 +328,11 @@
     animation-delay: 1.4s;
   }
   .scroll-hint span {
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
     writing-mode: vertical-rl;
-    color: rgba(200,205,212,0.3);
+    color: var(--white);
   }
   .scroll-line {
     width: 1px;
@@ -310,293 +340,214 @@
     background: linear-gradient(to bottom, rgba(200,205,212,0.3), transparent);
   }
 
-  /* ── THESIS ── */
-  /* ── COMPARISON SLIDER SECTION ── */
+  /* ── ABOUT SECTION ── */
   .comparison-section {
-    background: linear-gradient(to bottom, var(--black) 0%, var(--deep) 120px);
-    padding: 80px 64px;
+    position: relative;
+    background: var(--black);
+    padding: 120px 64px 80px;
+    overflow: hidden;
+    margin-top: -1px;
+  }
+  .comparison-section > *:not(.ethereal-bg) {
+    position: relative;
+    z-index: 1;
+  }
+  .ethereal-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 82%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 82%, transparent 100%);
+  }
+  .ethereal-inner {
+    position: absolute;
+    inset: -100px;
+    filter: url(#etherealFilter) blur(4px);
+  }
+  .ethereal-color {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(45, 120, 120, 1);
+    mask-image: url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png');
+    -webkit-mask-image: url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png');
+    mask-size: cover;
+    -webkit-mask-size: cover;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+  }
+  .ethereal-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 240px;
+    background-repeat: repeat;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .story-block {
+    max-width: 900px;
+    margin: 0 auto;
     text-align: center;
   }
-  .comparison-header {
-    margin-bottom: 48px;
-  }
-  .comparison-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 16px;
-  }
-  .comparison-title {
+  .story-headline {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 3.5vw, 44px);
+    font-size: clamp(34px, 4vw, 54px);
     font-weight: 300;
     color: var(--white);
     line-height: 1.2;
+    margin-bottom: 28px;
   }
-  .comparison-title em { font-style: italic; color: var(--accent); }
-  .comparison-subtitle {
-    font-family: 'Raleway', sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    color: rgba(200,205,212,0.45);
-    margin-top: 14px;
-    letter-spacing: 0.03em;
-  }
-
-  /* Slider container */
-  .comparison-slider {
-    position: relative;
-    width: 100%;
+  .story-headline em { font-style: italic; color: var(--accent); }
+  .definition-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
     max-width: 1080px;
-    margin: 0 auto;
-    aspect-ratio: 16 / 9;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    cursor: ew-resize;
-    user-select: none;
-    -webkit-user-select: none;
+    margin: 56px auto;
   }
-
-  /* Base layer: RWD text left + diagram right */
-  .comp-base {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: var(--ink);
-    background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=80');
-    background-size: cover;
-    background-position: center;
-  }
-  .comp-base::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg,
-      rgba(9,12,16,0.94) 0%,
-      rgba(9,12,16,0.88) 50%,
-      rgba(9,12,16,0.82) 100%);
-    z-index: 0;
-  }
-  .comp-base-left {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 48px 40px 48px 56px;
-    text-align: left;
-  }
-  .comp-base-right {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 86px 24px 0;
-  }
-
-  /* Top layer: RWE panel, clipped to show right of slider */
-  .comp-panel-rwe {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: var(--surface);
-    background-image: url('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1400&q=80');
-    background-size: cover;
-    background-position: center;
-  }
-  .comp-panel-rwe::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(225deg,
-      rgba(9,12,16,0.94) 0%,
-      rgba(9,12,16,0.88) 60%,
-      rgba(9,12,16,0.80) 100%);
-  }
-  .comp-rwe-left {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 12px 24px 100px;
-  }
-  .comp-panel-content {
-    position: relative;
-    z-index: 1;
-    text-align: right;
-    max-width: 460px;
-    margin-left: auto;
-    padding: 48px 56px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .rwe-diagram {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .rwe-diagram svg {
-    width: 100%;
-    max-width: none;
-    height: 100%;
-  }
-  .comp-label {
+  .narrative-eyebrow {
     font-family: 'Cinzel', serif;
-    font-size: 13px;
-    letter-spacing: 0.35em;
+    font-size: 14px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--teal-light);
-    margin-bottom: 20px;
-    opacity: 0.8;
-  }
-  .comp-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 3.2vw, 42px);
-    font-weight: 300;
-    color: var(--white);
-    line-height: 1.3;
     margin-bottom: 18px;
   }
-  .comp-desc {
-    font-family: 'Raleway', sans-serif;
-    font-size: 15px;
+  .narrative-text {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--white);
     font-weight: 300;
-    line-height: 1.75;
-    color: rgba(200,205,212,0.6);
     letter-spacing: 0.02em;
+    margin-bottom: 28px;
   }
-  .comp-desc em { font-style: italic; color: var(--accent); }
-  .comp-examples {
-    list-style: none;
-    padding: 0;
-    margin: 14px 0 0;
+  .narrative-text strong {
+    color: var(--accent);
+    font-weight: 400;
   }
-  .comp-examples li {
-    font-family: 'Raleway', sans-serif;
-    font-size: 13px;
-    font-weight: 300;
-    color: rgba(200,205,212,0.5);
-    padding: 5px 0;
-    letter-spacing: 0.02em;
+  .narrative-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--teal);
+    margin: 32px auto;
   }
-  .comp-examples li::before {
-    content: '—';
+  .narrative-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
     color: var(--teal-light);
-    opacity: 0.5;
-    margin-right: 8px;
+    margin-bottom: 18px;
   }
-  .comp-panel-rwe .comp-examples li::before {
-    margin-right: 0;
-    margin-left: 8px;
+  .offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1080px;
+    margin: 0 auto;
   }
-
-  /* RWD radial diagram */
-  .rwd-diagram {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  /* center the last row if only 2 items */
+  .offerings-grid-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 720px;
+    margin: 20px auto 0;
   }
-  .rwd-diagram svg {
-    width: 100%;
-    max-width: none;
-    height: 100%;
+  .offering-card {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    background: var(--ink);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
-
-  /* Slider handle */
-  .comp-handle {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: rgba(90,173,173,0.6);
-    z-index: 10;
-    pointer-events: none;
+  .offering-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+    border-color: rgba(90,173,173,0.3);
   }
-  .comp-handle-grip {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(9,12,16,0.85);
-    border: 2px solid rgba(90,173,173,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: auto;
-    cursor: ew-resize;
-    transition: transform 0.15s, border-color 0.2s;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  }
-  .comp-handle-grip:hover,
-  .comp-handle-grip.active {
-    transform: translate(-50%, -50%) scale(1.1);
-    border-color: var(--teal-light);
-  }
-  .comp-handle-grip svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--teal-light);
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-  }
-
-  /* Edge spine labels */
-  .comp-spine {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 72px;
-    z-index: 8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-    background: rgba(5,6,8,1);
-  }
-  .comp-spine-left { left: 0; }
-  .comp-spine-right { right: 0; }
-  .comp-spine-text {
+  .offering-card-title {
     font-family: 'Cinzel', serif;
     font-size: 13px;
-    letter-spacing: 0.4em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.9);
-    writing-mode: vertical-rl;
-    white-space: nowrap;
+    color: var(--teal-light);
+    margin-bottom: 14px;
+    line-height: 1.4;
   }
-  .comp-spine-left .comp-spine-text { transform: rotate(180deg); }
-
-  /* Slider hint */
-  .comp-slider-hint {
-    font-family: 'Raleway', sans-serif;
-    font-size: 13px;
+  .offering-card-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--white);
     font-weight: 300;
-    font-style: italic;
-    color: rgba(200,205,212,0.4);
-    margin-top: 20px;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
   }
-
+  .info-box {
+    border: 2px solid rgba(238,240,243,0.85);
+    padding: 36px 32px;
+    background: transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .info-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+  .info-box-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 12px;
+  }
+  .info-box-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .info-box-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--white);
+    font-weight: 300;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .info-box-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .info-box-list li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--white);
+    font-weight: 300;
+    padding-left: 18px;
+    position: relative;
+  }
+  .info-box-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--teal-light);
+    border-radius: 50%;
+  }
   /* Mission line below slider */
   .thesis-mission {
     max-width: 1080px;
@@ -607,7 +558,7 @@
     font-size: clamp(19px, 2.4vw, 28px);
     font-weight: 300;
     font-style: italic;
-    color: rgba(200,205,212,0.6);
+    color: var(--white);
     line-height: 1.55;
     text-align: center;
   }
@@ -619,9 +570,10 @@
 
   /* ── TOOLS ── */
   .tools {
-    background: var(--surface);
+    background: var(--black);
     padding: 128px 64px;
-    border-top: 1px solid var(--border);
+    border-top: none;
+    position: relative;
   }
   .section-head {
     display: flex;
@@ -633,7 +585,7 @@
   }
   .section-tag {
     font-family: 'Cinzel', serif;
-    font-size: 13px;
+    font-size: 15px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--teal);
@@ -646,15 +598,6 @@
     font-weight: 300;
     line-height: 1.15;
     color: var(--white);
-  }
-  .section-count {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 72px;
-    font-weight: 300;
-    color: rgba(61,122,122,0.12);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    flex-shrink: 0;
   }
   .tools-grid {
     display: grid;
@@ -682,7 +625,7 @@
   .tool-card:hover { background: #0f1620; }
   .tool-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.28em;
     color: var(--teal);
     opacity: 0.6;
@@ -690,16 +633,16 @@
   }
   .tool-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 400;
     color: var(--white);
     margin-bottom: 18px;
     line-height: 1.15;
   }
   .tool-desc {
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.85;
-    color: rgba(200,205,212,0.5);
+    color: var(--white);
     max-width: 400px;
     font-weight: 300;
     letter-spacing: 0.025em;
@@ -708,7 +651,7 @@
     margin-top: 36px;
     display: inline-block;
     font-family: 'Cinzel', serif;
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--teal);
@@ -732,7 +675,7 @@
   .pillar:last-child { border-right: none; margin-right: 0; padding-right: 0; }
   .pillar-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.28em;
     color: var(--teal);
     opacity: 0.55;
@@ -740,15 +683,15 @@
   }
   .pillar-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 400;
     color: var(--white);
     margin-bottom: 18px;
   }
   .pillar-text {
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.85;
-    color: rgba(200,205,212,0.48);
+    color: var(--white);
     font-weight: 300;
     letter-spacing: 0.02em;
   }
@@ -810,7 +753,7 @@
     transform: translateX(-50%) translateY(50%) rotate(90deg);
     white-space: nowrap;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.08em;
     color: #ffffff;
@@ -839,7 +782,7 @@
   .blog-panel-coming {
     display: inline-block;
     font-family: 'Cinzel', serif;
-    font-size: 8px;
+    font-size: 10px;
     letter-spacing: 0.38em;
     text-transform: uppercase;
     color: var(--teal-light);
@@ -849,16 +792,16 @@
   }
   .blog-panel-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 600;
     color: #ffffff;
     line-height: 1.25;
     margin-bottom: 12px;
   }
   .blog-panel-teaser {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.8;
-    color: rgba(200,205,212,0.48);
+    color: var(--white);
     font-weight: 300;
     max-width: 300px;
   }
@@ -883,7 +826,7 @@
     }
     .blog-panel-label {
       transform: translateX(-50%) translateY(50%) rotate(0deg);
-      font-size: 13px;
+      font-size: 15px;
     }
   }
 
@@ -907,9 +850,9 @@
   }
   .contact-text h2 em { font-style: italic; color: var(--accent); }
   .contact-text p {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.85;
-    color: rgba(200,205,212,0.45);
+    color: var(--white);
     max-width: 420px;
     font-weight: 300;
     letter-spacing: 0.025em;
@@ -919,7 +862,7 @@
   .contact-detail-item { display: flex; gap: 16px; align-items: center; }
   .contact-detail-label {
     font-family: 'Cinzel', serif;
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--teal);
@@ -927,9 +870,9 @@
     flex-shrink: 0;
   }
   .contact-detail-value {
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.06em;
-    color: rgba(200,205,212,0.4);
+    color: var(--white);
     font-weight: 300;
   }
   .contact-form { display: flex; flex-direction: column; gap: 14px; }
@@ -940,7 +883,7 @@
     border: 1px solid var(--border);
     color: var(--white);
     font-family: 'Raleway', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 300;
     padding: 15px 20px;
     outline: none;
@@ -955,12 +898,12 @@
     color: rgba(200,205,212,0.22);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-size: 10px;
+    font-size: 12px;
   }
   .contact-form textarea { resize: none; height: 110px; }
   .contact-form button {
     font-family: 'Cinzel', serif;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--black);
@@ -988,7 +931,7 @@
   }
   .footer-col-title {
     font-family: 'Cinzel', serif;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--white);
@@ -1001,9 +944,9 @@
     gap: 12px;
   }
   .footer-col-links a {
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.04em;
-    color: rgba(200,205,212,0.38);
+    color: var(--white);
     text-decoration: none;
     transition: color 0.3s;
     font-weight: 300;
@@ -1015,9 +958,9 @@
     text-align: center;
   }
   .footer-copy {
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.1em;
-    color: rgba(200,205,212,0.18);
+    color: rgba(200,205,212,0.55);
   }
 
   /* grain overlay */
@@ -1032,19 +975,17 @@
   }
 
   /* ── RESPONSIVE: TABLET ── */
-  /* ── RESPONSIVE: TABLET ── */
   @media (max-width: 900px) {
     nav { padding: 22px 28px; }
     .nav-links { display: none; }
     .hero-content { padding: 0 28px 80px; }
-    .hero-title { font-size: clamp(32px, 5vw, 48px); }
+    .hero-brand-line { font-size: clamp(26px, 4vw, 42px); }
+    .hero-title { font-size: clamp(22px, 3.5vw, 34px); }
     .hero-subtitle { font-size: 14px; }
     .comparison-section { padding: 60px 28px; }
-    .comparison-slider { aspect-ratio: 4 / 3; }
-    .comp-panel { padding: 36px 32px; }
-    .comp-heading { font-size: clamp(20px, 2.5vw, 30px); }
-    .comp-desc { font-size: 12px; }
-    .comp-examples li { font-size: 11px; }
+    .definition-row { grid-template-columns: 1fr; gap: 24px; }
+    .offerings-grid { grid-template-columns: 1fr 1fr; }
+    .offerings-grid-bottom { grid-template-columns: 1fr; max-width: 100%; }
     .tools { padding: 60px 28px; }
     .section-head { flex-direction: column; align-items: flex-start; gap: 16px; }
     .tools-grid { grid-template-columns: 1fr; }
@@ -1060,23 +1001,16 @@
   /* ── RESPONSIVE: MOBILE ── */
   @media (max-width: 480px) {
     nav { padding: 18px 16px; }
-    .nav-logo { font-size: 10px; letter-spacing: 0.2em; }
     .hero-content { padding: 0 16px 60px; }
-    .hero-title { font-size: clamp(26px, 7vw, 36px); }
+    .hero-brand-line { font-size: clamp(20px, 6.5vw, 34px); }
+    .hero-title { font-size: clamp(18px, 5vw, 28px); }
     .hero-subtitle { font-size: 13px; max-width: 100%; }
     .hero-cta-group { flex-direction: column; gap: 12px; }
     .hero-cta-group a { width: 100%; text-align: center; }
     .scroll-hint { display: none; }
     .comparison-section { padding: 48px 16px; }
-    .comparison-title { font-size: clamp(22px, 6vw, 32px); }
-    .comparison-slider { aspect-ratio: 3 / 4; }
-    .comp-panel { padding: 28px 20px; }
-    .comp-base { grid-template-columns: 1fr; }
-    .comp-base-right { display: none; }
-    .comp-panel-content { text-align: left; margin-left: 0; }
-    .comp-heading { font-size: 20px; }
-    .comp-desc { font-size: 11px; }
-    .comp-examples li { font-size: 10px; }
+    .offerings-grid { grid-template-columns: 1fr; }
+    .offerings-grid-bottom { grid-template-columns: 1fr; }
     .thesis-mission { font-size: clamp(16px, 4vw, 20px); }
     .tools { padding: 48px 16px; }
     .pillars { padding: 48px 16px; }
@@ -1093,7 +1027,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo reveal reveal-d1">Black Swan <span>Causal Labs</span></a>
+  <a href="#" class="nav-logo">Black Swan <span>Causal Labs</span></a>
   <ul class="nav-links reveal reveal-d1">
     <li class="nav-dropdown">
       <button class="nav-dropdown-toggle">About <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></button>
@@ -1122,15 +1056,17 @@
   <div class="hero-vignette"></div>
 
   <div class="hero-content">
-    <h1 class="hero-title reveal reveal-d1">
+    <p class="hero-brand-line reveal reveal-d1">Black Swan</p>
+    <p class="hero-brand-line hero-brand-sub reveal reveal-d2">Causal Labs</p>
+    <h1 class="hero-title reveal reveal-d3">
       Real-World Evidence<br>
       and Causal Inference<br>
       at the frontier of<br>
       <em>Artificial Intelligence.</em>
     </h1>
-    <div class="hero-rule reveal reveal-d2"></div>
-    <p class="hero-subtitle reveal reveal-d3">Purpose-built tools at the intersection of AI and real-world evidence science, rigorous, regulatory-ready, and practitioner-led.</p>
-    <div class="hero-cta-group reveal reveal-d4">
+    <div class="hero-rule reveal reveal-d4"></div>
+    <p class="hero-subtitle reveal reveal-d5">Purpose-built solutions at the intersection of AI and real-world evidence science, from strategy and training to bespoke tooling, rigorous, regulatory-ready, and practitioner-led.</p>
+    <div class="hero-cta-group reveal reveal-d6">
       <a href="#tools" class="btn-primary">Explore Tools</a>
       <a href="#contact" class="btn-ghost">Partner With Us</a>
     </div>
@@ -1142,217 +1078,99 @@
   </div>
 </section>
 
-<!-- COMPARISON SLIDER -->
+<!-- ABOUT -->
 <section class="comparison-section" id="mission">
-  <div class="comparison-header">
-    <h2 class="comparison-title">From <em>Data</em> to <em>Evidence</em></h2>
+  <!-- Ethereal liquid background -->
+  <div class="ethereal-bg">
+    <svg style="position:absolute; width:0; height:0;">
+      <defs>
+        <filter id="etherealFilter">
+          <feTurbulence result="undulation" numOctaves="2" baseFrequency="0.0003,0.0015" seed="0" type="turbulence"/>
+          <feColorMatrix id="etherealHueRotate" in="undulation" type="hueRotate" values="0"/>
+          <feColorMatrix in="dist" result="circulation" type="matrix" values="4 0 0 0 1  4 0 0 0 1  4 0 0 0 1  1 0 0 0 0"/>
+          <feDisplacementMap in="SourceGraphic" in2="circulation" scale="100" result="dist"/>
+          <feDisplacementMap in="dist" in2="undulation" scale="100" result="output"/>
+        </filter>
+      </defs>
+    </svg>
+    <div class="ethereal-inner">
+      <div class="ethereal-color"></div>
+    </div>
+    <div class="ethereal-noise"></div>
   </div>
 
-  <div class="comparison-slider" id="compSlider">
+  <!-- BLOCK 1: Why the Black Swan -->
+  <div class="story-block">
+    <p class="narrative-eyebrow">Why the Black Swan</p>
+    <h2 class="story-headline">Rare events <em>reshape</em> everything</h2>
+    <p class="narrative-text">In probability theory, a <strong>black swan</strong> is an event that is rare, carries extreme impact, and is only rationalized in hindsight. For centuries, it was assumed all swans were white until a single observation in Australia shattered that certainty. In medicine, the most consequential insights often follow the same pattern: hidden in messy, real-world data, invisible to conventional methods, and transformative once revealed.</p>
+  </div>
 
-    <!-- Base layer: RWD text (left) + Radial diagram (right) -->
-    <div class="comp-base">
-      <div class="comp-base-left">
-        <p class="comp-label">Real-World Data</p>
-        <h3 class="comp-heading">The raw material</h3>
-        <p class="comp-desc">Data collected outside of traditional clinical trials, drawn from the routine delivery of healthcare and patient experience.</p>
-        <ul class="comp-examples">
-          <li>Electronic health records (EHR)</li>
-          <li>Insurance claims &amp; billing data</li>
-          <li>Patient registries &amp; biobanks</li>
-          <li>Wearables &amp; digital health devices</li>
-          <li>Patient-reported outcomes</li>
-        </ul>
-      </div>
-      <div class="comp-base-right">
-        <div class="rwd-diagram">
-          <svg viewBox="-10 -10 360 360" xmlns="http://www.w3.org/2000/svg">
-            <!-- Title -->
-            <text x="170" y="4" text-anchor="middle" font-family="Cinzel,serif" font-size="11" letter-spacing="0.3em" fill="rgba(90,173,173,0.85)">SOURCES OF RWD</text>
-
-            <!-- Dashed lines from patient circle edge to nodes (6 at 60° intervals) -->
-            <line x1="170" y1="130" x2="170" y2="64" stroke="rgba(90,173,173,0.25)" stroke-width="1.2" stroke-dasharray="4 4"/>
-            <line x1="204" y1="150" x2="259" y2="106" stroke="rgba(90,173,173,0.25)" stroke-width="1.2" stroke-dasharray="4 4"/>
-            <line x1="204" y1="190" x2="259" y2="234" stroke="rgba(90,173,173,0.25)" stroke-width="1.2" stroke-dasharray="4 4"/>
-            <line x1="170" y1="210" x2="170" y2="276" stroke="rgba(90,173,173,0.25)" stroke-width="1.2" stroke-dasharray="4 4"/>
-            <line x1="136" y1="190" x2="81" y2="234" stroke="rgba(90,173,173,0.25)" stroke-width="1.2" stroke-dasharray="4 4"/>
-            <line x1="136" y1="150" x2="81" y2="106" stroke="rgba(90,173,173,0.25)" stroke-width="1.2" stroke-dasharray="4 4"/>
-
-            <!-- Center patient circle -->
-            <circle cx="170" cy="170" r="40" fill="rgba(90,173,173,0.06)" stroke="rgba(90,173,173,0.35)" stroke-width="1.5"/>
-            <circle cx="170" cy="156" r="9" fill="none" stroke="rgba(200,205,212,0.75)" stroke-width="1.5"/>
-            <path d="M155 186 Q155 173 170 173 Q185 173 185 186" fill="none" stroke="rgba(200,205,212,0.75)" stroke-width="1.5" stroke-linecap="round"/>
-            <text x="170" y="200" text-anchor="middle" font-family="Cinzel,serif" font-size="7" letter-spacing="0.2em" fill="rgba(200,205,212,0.45)">PATIENT</text>
-
-            <!-- Source nodes: 6 evenly spaced at 60° intervals, radius 128 from center -->
-
-            <!-- EHR (0° / top) cx=170 cy=42 -->
-            <g>
-              <circle cx="170" cy="42" r="22" fill="rgba(9,12,16,0.8)" stroke="rgba(90,173,173,0.4)" stroke-width="1.2"/>
-              <rect x="161" y="34" width="18" height="12" rx="2" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="1"/>
-              <line x1="170" y1="46" x2="170" y2="49" stroke="rgba(200,205,212,0.6)" stroke-width="1"/>
-              <line x1="165" y1="49" x2="175" y2="49" stroke="rgba(200,205,212,0.6)" stroke-width="1"/>
-              <text x="170" y="74" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">EHR</text>
-            </g>
-
-            <!-- Surveys (60° / top-right) cx=281 cy=106 -->
-            <g>
-              <circle cx="281" cy="106" r="22" fill="rgba(9,12,16,0.8)" stroke="rgba(90,173,173,0.4)" stroke-width="1.2"/>
-              <rect x="273" y="98" width="14" height="16" rx="1.5" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="1"/>
-              <line x1="276" y1="104" x2="284" y2="104" stroke="rgba(200,205,212,0.6)" stroke-width="0.8"/>
-              <line x1="276" y1="108" x2="282" y2="108" stroke="rgba(200,205,212,0.6)" stroke-width="0.8"/>
-              <text x="281" y="138" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">Surveys</text>
-            </g>
-
-            <!-- Biobanks (120° / bottom-right) cx=281 cy=234 -->
-            <g>
-              <circle cx="281" cy="234" r="22" fill="rgba(9,12,16,0.8)" stroke="rgba(90,173,173,0.4)" stroke-width="1.2"/>
-              <rect x="275" y="226" width="9" height="16" rx="3" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="1"/>
-              <line x1="275" y1="232" x2="284" y2="232" stroke="rgba(200,205,212,0.6)" stroke-width="0.8"/>
-              <text x="281" y="266" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">Biobanks</text>
-            </g>
-
-            <!-- Claims (180° / bottom) cx=170 cy=298 -->
-            <g>
-              <circle cx="170" cy="298" r="22" fill="rgba(9,12,16,0.8)" stroke="rgba(90,173,173,0.4)" stroke-width="1.2"/>
-              <rect x="162" y="290" width="13" height="15" rx="1" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="1"/>
-              <line x1="165" y1="295" x2="172" y2="295" stroke="rgba(200,205,212,0.6)" stroke-width="0.7"/>
-              <line x1="165" y1="299" x2="173" y2="299" stroke="rgba(200,205,212,0.6)" stroke-width="0.7"/>
-              <text x="170" y="330" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">Claims</text>
-            </g>
-
-            <!-- Wearables (240° / bottom-left) cx=59 cy=234 -->
-            <g>
-              <circle cx="59" cy="234" r="22" fill="rgba(9,12,16,0.8)" stroke="rgba(90,173,173,0.4)" stroke-width="1.2"/>
-              <rect x="51" y="227" width="13" height="14" rx="3" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="1"/>
-              <polyline points="55,233 57,236 62,232" fill="none" stroke="rgba(90,173,173,0.65)" stroke-width="1" stroke-linecap="round"/>
-              <text x="59" y="266" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">Wearables</text>
-            </g>
-
-            <!-- Registries (300° / top-left) cx=59 cy=106 -->
-            <g>
-              <circle cx="59" cy="106" r="22" fill="rgba(9,12,16,0.8)" stroke="rgba(90,173,173,0.4)" stroke-width="1.2"/>
-              <rect x="51" y="98" width="14" height="16" rx="1" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="1"/>
-              <line x1="58" y1="98" x2="58" y2="114" stroke="rgba(200,205,212,0.6)" stroke-width="0.8"/>
-              <text x="59" y="138" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">Registries</text>
-            </g>
-          </svg>
-        </div>
-      </div>
+  <!-- BLOCK 2: RWD & RWE definitions side by side -->
+  <div class="definition-row">
+    <div class="info-box">
+      <p class="info-box-eyebrow">Real-World Data</p>
+      <h3 class="info-box-title">The raw material</h3>
+      <p class="info-box-text">Data collected outside of traditional clinical trials, drawn from the routine delivery of healthcare and patient experience.</p>
+      <ul class="info-box-list">
+        <li>Electronic health records (EHR)</li>
+        <li>Insurance claims &amp; billing data</li>
+        <li>Patient registries &amp; biobanks</li>
+        <li>Wearables &amp; digital health devices</li>
+        <li>Patient-reported outcomes</li>
+      </ul>
     </div>
 
-    <!-- Top layer: RWE panel (clipped to show right of slider) -->
-    <div class="comp-panel-rwe" id="compPanelRWE">
-      <!-- Left: RWE generation process diagram (revealed when slider moves left) -->
-      <div class="comp-rwe-left">
-        <div class="rwe-diagram">
-          <svg viewBox="-10 -10 410 360" xmlns="http://www.w3.org/2000/svg">
-            <!-- Title — centered on diagram (midpoint of 60 to 358 = 209) -->
-            <text x="209" y="4" text-anchor="middle" font-family="Cinzel,serif" font-size="11" letter-spacing="0.3em" fill="rgba(90,173,173,0.85)">RWE GENERATION</text>
+    <div class="info-box">
+      <p class="info-box-eyebrow">Real-World Evidence</p>
+      <h3 class="info-box-title">The insight derived</h3>
+      <p class="info-box-text">Clinical evidence about the use, benefits, and risks of medical products, generated from the analysis of real-world data through rigorous methodology.</p>
+      <ul class="info-box-list">
+        <li>Comparative effectiveness studies</li>
+        <li>Post-market safety surveillance</li>
+        <li>Treatment pattern analyses</li>
+        <li>Health technology assessments</li>
+        <li>Regulatory decision support</li>
+      </ul>
+    </div>
+  </div>
 
-            <!-- Step 1: Research Question — magnifying glass with ? -->
-            <circle cx="60" cy="170" r="38" fill="rgba(9,12,16,0.8)" stroke="rgba(90,173,173,0.4)" stroke-width="1.2"/>
-            <circle cx="55" cy="160" r="14" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="2"/>
-            <line x1="65" y1="170" x2="74" y2="179" stroke="rgba(200,205,212,0.6)" stroke-width="2" stroke-linecap="round"/>
-            <text x="55" y="165" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="16" font-weight="400" fill="rgba(90,173,173,0.8)">?</text>
-            <text x="60" y="224" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">Research</text>
-            <text x="60" y="236" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">Question</text>
+  <!-- BLOCK 3: Why We Exist → Offerings -->
+  <div class="story-block">
+    <div class="narrative-divider" style="margin: 0 auto 32px;"></div>
+    <p class="narrative-eyebrow">Our Mission</p>
+    <h2 class="story-headline" style="font-size: clamp(24px, 2.8vw, 38px);">Black Swan Causal Labs exists to find<br>the signals that <em>change practice</em></h2>
+    <p class="narrative-text">We apply AI and causal inference to surface evidence hidden in real-world data, so better decisions reach patients sooner. Our work spans strategy, tooling, and training across the full evidence lifecycle.</p>
 
-            <!-- Solid arrow 1→2 -->
-            <line x1="102" y1="170" x2="122" y2="170" stroke="rgba(90,173,173,0.4)" stroke-width="1.5"/>
-            <polygon points="122,165 132,170 122,175" fill="rgba(90,173,173,0.4)"/>
+    <div class="narrative-divider"></div>
 
-            <!-- Step 2: Real-World Data — open folder -->
-            <circle cx="170" cy="170" r="38" fill="rgba(9,12,16,0.8)" stroke="rgba(90,173,173,0.4)" stroke-width="1.2"/>
-            <path d="M155 176 L155 158 L163 158 L167 154 L183 154 L183 160" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M155 164 L159 160 L187 160 L183 176 L155 176Z" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="2" stroke-linejoin="round"/>
-            <text x="170" y="224" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">Real-World</text>
-            <text x="170" y="236" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">Data</text>
-
-            <!-- Solid arrow 2→3 -->
-            <line x1="212" y1="170" x2="232" y2="170" stroke="rgba(90,173,173,0.4)" stroke-width="1.5"/>
-            <polygon points="232,165 242,170 232,175" fill="rgba(90,173,173,0.4)"/>
-
-            <!-- Step 3: Analysis — bar chart -->
-            <circle cx="280" cy="170" r="38" fill="rgba(9,12,16,0.8)" stroke="rgba(90,173,173,0.4)" stroke-width="1.2"/>
-            <rect x="262" y="170" width="8" height="12" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="1.5"/>
-            <rect x="273" y="160" width="8" height="22" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="1.5"/>
-            <rect x="284" y="155" width="8" height="27" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="1.5"/>
-            <rect x="295" y="164" width="8" height="18" fill="none" stroke="rgba(200,205,212,0.6)" stroke-width="1.5"/>
-            <text x="280" y="224" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">Analysis &amp;</text>
-            <text x="280" y="236" text-anchor="middle" font-family="Raleway,sans-serif" font-size="10" font-weight="300" fill="rgba(200,205,212,0.65)">Interpretation</text>
-
-            <!-- Solid arrow 3 → RWE lightbulb -->
-            <line x1="318" y1="170" x2="338" y2="170" stroke="rgba(90,173,173,0.4)" stroke-width="1.5"/>
-            <polygon points="338,165 348,170 338,175" fill="rgba(90,173,173,0.4)"/>
-
-            <!-- Step 4: RWE Insights — lightbulb -->
-            <g transform="translate(358,170)">
-              <circle cx="0" cy="-6" r="12" fill="none" stroke="rgba(90,173,173,0.7)" stroke-width="2"/>
-              <line x1="0" y1="-20" x2="0" y2="-24" stroke="rgba(90,173,173,0.5)" stroke-width="1.2" stroke-linecap="round"/>
-              <line x1="10" y1="-16" x2="13" y2="-19" stroke="rgba(90,173,173,0.5)" stroke-width="1.2" stroke-linecap="round"/>
-              <line x1="-10" y1="-16" x2="-13" y2="-19" stroke="rgba(90,173,173,0.5)" stroke-width="1.2" stroke-linecap="round"/>
-              <line x1="-5" y1="6" x2="5" y2="6" stroke="rgba(90,173,173,0.7)" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="-4" y1="10" x2="4" y2="10" stroke="rgba(90,173,173,0.7)" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="-2" y1="14" x2="2" y2="14" stroke="rgba(90,173,173,0.7)" stroke-width="1.2" stroke-linecap="round"/>
-            </g>
-            <text x="358" y="224" text-anchor="middle" font-family="Cinzel,serif" font-size="10" letter-spacing="0.15em" fill="rgba(90,173,173,0.7)">RWE</text>
-            <text x="358" y="236" text-anchor="middle" font-family="Raleway,sans-serif" font-size="9" font-weight="300" fill="rgba(200,205,212,0.5)">Insights</text>
-
-            <!-- Dashed loop: RWE Insights back to Research Question (top arc) -->
-            <path d="M358 128 Q358 38 209 38 Q60 38 60 128" fill="none" stroke="rgba(90,173,173,0.25)" stroke-width="1.2" stroke-dasharray="5 5"/>
-            <polygon points="56,124 60,134 64,124" fill="rgba(90,173,173,0.3)"/>
-
-            <!-- Dashed loop: Research Question forward to RWE Insights (bottom arc) -->
-            <path d="M60 212 Q60 302 209 302 Q358 302 358 212" fill="none" stroke="rgba(90,173,173,0.25)" stroke-width="1.2" stroke-dasharray="5 5"/>
-            <polygon points="354,216 358,206 362,216" fill="rgba(90,173,173,0.3)"/>
-
-            <!-- Loop labels — bigger, white -->
-            <text x="209" y="30" text-anchor="middle" font-family="Raleway,sans-serif" font-size="11" font-style="italic" font-weight="300" fill="rgba(238,240,243,0.7)">new questions emerge</text>
-            <text x="209" y="318" text-anchor="middle" font-family="Raleway,sans-serif" font-size="11" font-style="italic" font-weight="300" fill="rgba(238,240,243,0.7)">evidence informs practice</text>
-          </svg>
-        </div>
+    <p class="narrative-subtitle">What We Offer</p>
+    <div class="offerings-grid">
+      <div class="offering-card">
+        <p class="offering-card-title">AI &amp; RWE Strategy Consulting</p>
+        <p class="offering-card-text">Advisory services at the intersection of artificial intelligence, real-world evidence, and causal inference to help organizations design rigorous, regulatory-ready evidence programs.</p>
       </div>
-
-      <!-- Right: RWE text content -->
-      <div class="comp-panel-content">
-        <p class="comp-label">Real-World Evidence</p>
-        <h3 class="comp-heading">The insight derived</h3>
-        <p class="comp-desc">Clinical evidence about the use, benefits, and risks of medical products, generated from the analysis of real-world data through rigorous methodology.</p>
-        <ul class="comp-examples">
-          <li>Comparative effectiveness studies</li>
-          <li>Post-market safety surveillance</li>
-          <li>Treatment pattern analyses</li>
-          <li>Health technology assessments</li>
-          <li>Regulatory decision support</li>
-        </ul>
+      <div class="offering-card">
+        <p class="offering-card-title">Bespoke AI Tool Development</p>
+        <p class="offering-card-text">Purpose-built AI tools that streamline real-world data curation, analysis pipelines, and evidence generation workflows, tailored to your therapeutic area and data environment.</p>
+      </div>
+      <div class="offering-card">
+        <p class="offering-card-title">Causal Inference &amp; Study Design</p>
+        <p class="offering-card-text">Expert guidance on observational study design, target trial emulation, and advanced causal methods to extract defensible insights from complex data.</p>
       </div>
     </div>
-
-    <!-- Spine labels at edges -->
-    <div class="comp-spine comp-spine-left" id="spineLeft">
-      <span class="comp-spine-text">Real-World Data</span>
-    </div>
-    <div class="comp-spine comp-spine-right" id="spineRight">
-      <span class="comp-spine-text">Real-World Evidence</span>
-    </div>
-
-    <!-- Handle -->
-    <div class="comp-handle" id="compHandle">
-      <div class="comp-handle-grip" id="compGrip">
-        <svg viewBox="0 0 24 24">
-          <polyline points="8,4 4,12 8,20"></polyline>
-          <polyline points="16,4 20,12 16,20"></polyline>
-        </svg>
+    <div class="offerings-grid-bottom">
+      <div class="offering-card">
+        <p class="offering-card-title">Custom Training &amp; Enablement</p>
+        <p class="offering-card-text">Tailored workshops and training programs on AI fluency, RWE methodology, causal inference, and the regulatory landscape, for teams at every level.</p>
+      </div>
+      <div class="offering-card">
+        <p class="offering-card-title">Regulatory &amp; Policy Support</p>
+        <p class="offering-card-text">Navigating the evolving guidance from FDA, EMA, and ICH on the use of AI and real-world data in regulatory decision-making.</p>
       </div>
     </div>
   </div>
 
-  <p class="comp-slider-hint">Drag the slider to explore the relationship between real-world data and real-world evidence.</p>
-
-  <div class="thesis-mission">
-    <strong>Black Swan Causal Labs</strong> builds AI-enabled tools to increase the efficiency of real-world data and evidence generation, so better decisions reach patients sooner.
-  </div>
 </section>
 
 <!-- TOOLS -->
@@ -1533,44 +1351,6 @@
   }, { threshold: 0.2 });
   revealEls.forEach(el => observer.observe(el));
 
-  // Comparison slider
-  const slider = document.getElementById('compSlider');
-  const panelRWE = document.getElementById('compPanelRWE');
-  const handle = document.getElementById('compHandle');
-  const grip = document.getElementById('compGrip');
-  const spineLeft = document.getElementById('spineLeft');
-  const spineRight = document.getElementById('spineRight');
-
-  if (slider && panelRWE && handle) {
-    let isDragging = false;
-    let pos = 50;
-
-    function setPosition(pct) {
-      pos = Math.max(6.5, Math.min(93.5, pct));
-      panelRWE.style.clipPath = `inset(0 0 0 ${pos}%)`;
-      handle.style.left = pos + '%';
-
-      // Right spine: "REAL-WORLD EVIDENCE" when slider far RIGHT
-      if (spineRight) spineRight.style.opacity = pos > 80 ? Math.min(1, (pos - 80) / 8) : 0;
-      // Left spine: "REAL-WORLD DATA" when slider far LEFT
-      if (spineLeft) spineLeft.style.opacity = pos < 20 ? Math.min(1, (20 - pos) / 8) : 0;
-    }
-    setPosition(50);
-
-    function getPos(clientX) {
-      const rect = slider.getBoundingClientRect();
-      return ((clientX - rect.left) / rect.width) * 100;
-    }
-
-    slider.addEventListener('mousedown', (e) => { isDragging = true; grip.classList.add('active'); setPosition(getPos(e.clientX)); });
-    window.addEventListener('mousemove', (e) => { if (isDragging) setPosition(getPos(e.clientX)); });
-    window.addEventListener('mouseup', () => { isDragging = false; grip.classList.remove('active'); });
-
-    slider.addEventListener('touchstart', (e) => { isDragging = true; grip.classList.add('active'); setPosition(getPos(e.touches[0].clientX)); }, { passive: true });
-    slider.addEventListener('touchmove', (e) => { if (isDragging) setPosition(getPos(e.touches[0].clientX)); }, { passive: true });
-    window.addEventListener('touchend', () => { isDragging = false; grip.classList.remove('active'); });
-  }
-
   // Blog accordion
   const blogPanels = document.querySelectorAll('.blog-panel');
   blogPanels.forEach(panel => {
@@ -1579,6 +1359,38 @@
       panel.classList.add('active');
     });
   });
+
+  // Show nav logo after scrolling past hero
+  const hero = document.querySelector('.hero');
+  const navEl = document.querySelector('nav');
+  const navObserver = new IntersectionObserver(([entry]) => {
+    navEl.classList.toggle('nav-scrolled', !entry.isIntersecting);
+  }, { threshold: 0 });
+  navObserver.observe(hero);
+
+  // ── Ethereal shadow animation ──
+  (function() {
+    const hueEl = document.getElementById('etherealHueRotate');
+    if (!hueEl) return;
+    let hue = 0;
+    let animating = false;
+
+    function tick() {
+      hue = (hue + 0.8) % 360;
+      hueEl.setAttribute('values', String(hue));
+      if (animating) requestAnimationFrame(tick);
+    }
+
+    const section = document.getElementById('mission');
+    const etherealObs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (!animating) { animating = true; requestAnimationFrame(tick); }
+      } else {
+        animating = false;
+      }
+    }, { threshold: 0 });
+    etherealObs.observe(section);
+  })();
 </script>
 </body>
 </html>

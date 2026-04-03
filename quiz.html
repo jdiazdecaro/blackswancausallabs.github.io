@@ -55,10 +55,10 @@
   .nav-back {
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(200,205,212,0.45);
+    color: var(--white);
     text-decoration: none;
     transition: color 0.3s;
   }
@@ -90,7 +90,7 @@
   /* ── INTRO / GATE ── */
   .intro-eyebrow {
     font-family: 'Cinzel', serif;
-    font-size: 13px;
+    font-size: 15px;
     letter-spacing: 0.42em;
     text-transform: uppercase;
     color: var(--teal-light);
@@ -112,17 +112,17 @@
   }
   .intro-quote {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 300;
     font-style: italic;
     line-height: 1.6;
-    color: rgba(200,205,212,0.6);
+    color: var(--white);
     margin-bottom: 14px;
     max-width: 580px;
   }
   .intro-meta {
-    font-size: 14px;
-    color: rgba(200,205,212,0.3);
+    font-size: 16px;
+    color: var(--white);
     margin-bottom: 48px;
     letter-spacing: 0.05em;
   }
@@ -135,7 +135,7 @@
     border: 1px solid var(--border);
     color: var(--white);
     font-family: 'Raleway', sans-serif;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 300;
     padding: 17px 22px;
     outline: none;
@@ -148,13 +148,13 @@
     color: rgba(200,205,212,0.22);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 14px;
   }
   .gate-form input.error { border-color: #a04040; }
 
   .btn-primary {
     font-family: 'Cinzel', serif;
-    font-size: 13px;
+    font-size: 15px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--black);
@@ -178,7 +178,7 @@
   }
   .dim-num {
     font-family: 'Cinzel', serif;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.3em;
     color: var(--teal);
     text-transform: uppercase;
@@ -193,9 +193,9 @@
     margin-bottom: 8px;
   }
   .dim-desc {
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.7;
-    color: rgba(200,205,212,0.4);
+    color: var(--white);
     margin-bottom: 40px;
     max-width: 580px;
   }
@@ -225,7 +225,7 @@
   .q-card.answered { border-color: rgba(90,173,173,0.25); }
   .q-tag {
     font-family: 'Cinzel', serif;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--teal);
@@ -238,11 +238,11 @@
   .q-tag-pill {
     border: 1px solid rgba(61,122,122,0.25);
     padding: 3px 10px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .q-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 400;
     line-height: 1.5;
     color: var(--white);
@@ -265,7 +265,7 @@
   .q-option.selected { border-color: var(--teal-light); background: rgba(90,173,173,0.08); }
   .q-option-letter {
     font-family: 'Cinzel', serif;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.15em;
     color: var(--teal);
     width: 20px;
@@ -274,9 +274,9 @@
   }
   .q-option.selected .q-option-letter { color: var(--teal-light); }
   .q-option-text {
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.6;
-    color: rgba(200,205,212,0.7);
+    color: var(--white);
     font-weight: 300;
   }
   .q-option.selected .q-option-text { color: var(--white); }
@@ -289,10 +289,10 @@
   }
   .btn-ghost {
     font-family: 'Cinzel', serif;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(200,205,212,0.45);
+    color: var(--white);
     border: 1px solid rgba(200,205,212,0.15);
     padding: 14px 30px;
     cursor: pointer;
@@ -302,7 +302,7 @@
   .btn-ghost:hover { color: var(--teal-light); border-color: var(--teal); }
   .btn-next {
     font-family: 'Cinzel', serif;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--black);
@@ -326,28 +326,19 @@
     text-align: center;
   }
 
-  .gears-scene {
-    width: 100%;
-    max-width: 640px;
-    margin-bottom: 36px;
-    filter: drop-shadow(0 0 28px rgba(90,173,173,0.18));
-  }
-
-  @keyframes spin        { to { transform: rotate( 360deg); } }
-  @keyframes spinReverse { to { transform: rotate(-360deg); } }
 
   .processing-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 300;
-    color: rgba(200,205,212,0.6);
+    color: var(--white);
     margin-bottom: 12px;
   }
   .processing-sub {
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(200,205,212,0.25);
+    color: var(--white);
   }
 
   /* dots animation */
@@ -366,7 +357,7 @@
   /* ── RESULTS SCREEN ── */
   .results-eyebrow {
     font-family: 'Cinzel', serif;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.42em;
     text-transform: uppercase;
     color: var(--teal-light);
@@ -374,9 +365,9 @@
   }
   .results-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 300;
-    color: rgba(200,205,212,0.5);
+    color: var(--white);
     margin-bottom: 32px;
   }
 
@@ -393,6 +384,34 @@
     margin-bottom: 48px;
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .tier-badge:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(90,173,173,0.12), inset 0 1px 0 rgba(90,173,173,0.12);
+  }
+  @keyframes kenBurns {
+    0%   { transform: scale(1)   translate(0, 0); }
+    50%  { transform: scale(1.15) translate(-2%, -1%); }
+    100% { transform: scale(1)   translate(0, 0); }
+  }
+  .tier-badge-bg {
+    position: absolute;
+    inset: -10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: kenBurns 20s ease-in-out infinite;
+    transition: opacity 1.5s ease;
+  }
+  .tier-badge-bg.visible {
+    opacity: 0.3;
+  }
+  .tier-badge > *:not(.tier-badge-bg) {
+    position: relative;
+    z-index: 1;
   }
   .tier-badge::before {
     content: '';
@@ -400,6 +419,7 @@
     top: 0; left: 0; right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent 0%, rgba(90,173,173,0.5) 50%, transparent 100%);
+    z-index: 2;
   }
   .tier-score {
     font-family: 'Cormorant Garamond', serif;
@@ -411,8 +431,8 @@
     margin-bottom: 10px;
   }
   .tier-of {
-    font-size: 12px;
-    color: rgba(200,205,212,0.35);
+    font-size: 14px;
+    color: var(--white);
     margin-bottom: 20px;
     letter-spacing: 0.15em;
     line-height: 1;
@@ -425,7 +445,7 @@
   }
   .tier-label {
     font-family: 'Cinzel', serif;
-    font-size: 17px;
+    font-size: 19px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
     color: var(--accent);
@@ -433,10 +453,10 @@
   }
   .tier-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 300;
     font-style: italic;
-    color: rgba(200,205,212,0.45);
+    color: var(--white);
     margin-top: 0;
   }
 
@@ -460,13 +480,13 @@
   }
   .dim-result-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 400;
     color: var(--white);
   }
   .dim-result-score {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 300;
     color: var(--teal-light);
   }
@@ -485,9 +505,9 @@
   }
   .dim-bar-fill.animate { /* width set via JS */ }
   .dim-feedback {
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.75;
-    color: rgba(200,205,212,0.55);
+    color: var(--white);
     font-weight: 300;
   }
   .dim-feedback strong {
@@ -513,7 +533,7 @@
   .cta-text {
     font-size: 13px;
     line-height: 1.8;
-    color: rgba(200,205,212,0.45);
+    color: var(--white);
     margin-bottom: 28px;
     max-width: 520px;
   }
@@ -551,33 +571,41 @@
 
   /* ── RESOURCES SECTION ── */
   .resources-section {
-    border-top: 1px solid var(--border);
-    padding-top: 40px;
+    border: 2px solid rgba(238,240,243,0.85);
+    outline: 2px solid rgba(238,240,243,0.85);
+    outline-offset: 6px;
+    padding: 48px 40px;
     margin-bottom: 48px;
+    margin-top: 48px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .resources-section:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
   }
   .resources-header {
     margin-bottom: 32px;
   }
   .resources-eyebrow {
     font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.42em;
+    font-size: 14px;
+    letter-spacing: 0.35em;
     text-transform: uppercase;
     color: var(--teal-light);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .resources-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 300;
     color: var(--white);
     line-height: 1.3;
   }
   .resources-title em { font-style: italic; color: var(--accent); }
   .resources-subtitle {
-    font-size: 13px;
-    color: rgba(200,205,212,0.4);
-    margin-top: 8px;
+    font-size: 16px;
+    color: var(--white);
+    margin-top: 10px;
     line-height: 1.7;
   }
   .resource-categories {
@@ -586,15 +614,15 @@
     gap: 32px;
   }
   .resource-cat {
-    border-left: 2px solid rgba(90,173,173,0.25);
+    border-left: 2px solid var(--teal-light);
     padding-left: 20px;
   }
   .resource-cat-label {
     font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 0.35em;
+    font-size: 13px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: rgba(90,173,173,0.6);
+    color: var(--teal-light);
     margin-bottom: 16px;
   }
   .resource-items {
@@ -605,35 +633,35 @@
   .resource-item {}
   .resource-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 17px;
+    font-size: 20px;
     font-weight: 400;
     color: var(--white);
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
   .resource-desc {
-    font-size: 12px;
-    line-height: 1.65;
-    color: rgba(200,205,212,0.45);
-    margin-bottom: 5px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--white);
+    margin-bottom: 6px;
     font-weight: 300;
   }
   .resource-link {
     font-family: 'Cinzel', serif;
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--teal-light);
     text-decoration: none;
-    border-bottom: 1px solid rgba(90,173,173,0.25);
-    padding-bottom: 1px;
+    border-bottom: 1px solid rgba(90,173,173,0.4);
+    padding-bottom: 2px;
     transition: color 0.25s, border-color 0.25s;
   }
-  .resource-link:hover { color: var(--accent); border-color: rgba(139,191,191,0.4); }
+  .resource-link:hover { color: var(--accent); border-color: rgba(139,191,191,0.5); }
   .resource-note {
-    font-size: 11px;
-    color: rgba(200,205,212,0.3);
+    font-size: 13px;
+    color: var(--white);
     font-style: italic;
-    margin-top: 3px;
+    margin-top: 4px;
   }
 
   /* grain overlay */
@@ -714,7 +742,7 @@
     <h1 class="intro-title">Where Do You<br>Stand with <em>AI?</em></h1>
     <div class="intro-rule"></div>
     <p class="intro-quote">"This isn't a test. Just 10 minutes to understand where you and your team actually stand with AI, and where the real gaps are."</p>
-    <p class="intro-meta">15 questions &middot; 4 dimensions &middot; Personalized results</p>
+    <p class="intro-meta">12 questions &middot; 4 dimensions &middot; Personalized results</p>
     <button class="btn-primary" style="max-width:320px" onclick="startQuiz()">Begin Assessment</button>
   </div>
 
@@ -735,16 +763,6 @@
   <!-- ═══════════════════════════════════════ -->
   <div class="screen" id="screen-processing">
     <div class="processing-wrap">
-      <svg class="gears-scene" id="gears-svg" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="sceneGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stop-color="#3d7a7a" stop-opacity="0.14"/>
-            <stop offset="100%" stop-color="#050608" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <rect width="600" height="340" fill="url(#sceneGlow)"/>
-        <!-- gears injected by JS -->
-      </svg>
       <p class="processing-text">Analyzing your responses<span class="dot-pulse"></span></p>
       <p class="processing-sub">Scoring across four dimensions</p>
     </div>
@@ -757,8 +775,9 @@
     <p class="results-eyebrow">Your Results</p>
 
     <div class="tier-badge">
+      <div class="tier-badge-bg" id="tier-badge-bg"></div>
       <span class="tier-score" id="tier-score">0</span>
-      <span class="tier-of">of 15</span>
+      <span class="tier-of">of 12</span>
       <div class="tier-divider"></div>
       <span class="tier-label" id="tier-label"></span>
       <span class="tier-name" id="tier-name"></span>
@@ -770,7 +789,7 @@
 
     <div class="results-cta">
       <h3 class="cta-title">Interested in going <em>deeper?</em></h3>
-      <p class="cta-text">Whether you're looking to close gaps in your team's AI fluency, explore how AI fits into your RWE workflows, or simply want a thought partner on responsible AI adoption — I'm available for a conversation. No pitch, just perspective.</p>
+      <p class="cta-text">Whether you're looking to close gaps in your team's AI fluency, explore how AI fits into your RWE workflows, or simply want a thought partner on responsible AI adoption, we're available for a conversation. No pitch, just perspective.</p>
 
       <div class="connect-form" id="connect-form">
         <div class="gate-form">
@@ -799,110 +818,6 @@
 
 <script>
 // ═══════════════════════════════════════════════
-// GEAR SCENE
-// ═══════════════════════════════════════════════
-function makeGearPath(cx, cy, teeth, outerR, innerR, hubR) {
-  const step = (Math.PI * 2) / teeth;
-  let d = '';
-  for (let i = 0; i < teeth; i++) {
-    const base = i * step - Math.PI / 2;
-    const a0 = base - step * 0.05;
-    const a1 = base + step * 0.15;
-    const a2 = base + step * 0.35;
-    const a3 = base + step * 0.55;
-    const p = (r, a) => [(cx + r * Math.cos(a)).toFixed(2), (cy + r * Math.sin(a)).toFixed(2)];
-    const [x0,y0] = p(innerR, a0), [x1,y1] = p(outerR, a1);
-    const [x2,y2] = p(outerR, a2), [x3,y3] = p(innerR, a3);
-    d += `${i===0?'M':'L'}${x0},${y0} L${x1},${y1} L${x2},${y2} L${x3},${y3} `;
-  }
-  d += 'Z';
-  // punch hub hole with evenodd
-  const hr = hubR.toFixed(2);
-  d += ` M${(cx+hubR).toFixed(2)},${cy} A${hr},${hr} 0 1,0 ${(cx-hubR).toFixed(2)},${cy} A${hr},${hr} 0 1,0 ${(cx+hubR).toFixed(2)},${cy} Z`;
-  return d;
-}
-
-function buildGears() {
-  const NS = 'http://www.w3.org/2000/svg';
-  const svg = document.getElementById('gears-svg');
-  if (!svg) return;
-
-  // Remove any previously injected gear elements (keep defs + rect)
-  [...svg.querySelectorAll('.g-gear')].forEach(el => el.remove());
-
-  const GEARS = [
-    { cx:300, cy:170, teeth:18, oR:82, iR:67, hub:20, spokes:6, speed:9,   cw:true,  op:1.0  },
-    { cx:152, cy: 88, teeth:12, oR:56, iR:45, hub:13, spokes:4, speed:5.5, cw:false, op:0.85 },
-    { cx:168, cy:272, teeth:10, oR:46, iR:37, hub:11, spokes:4, speed:4.2, cw:false, op:0.78 },
-    { cx:430, cy:106, teeth:11, oR:52, iR:42, hub:12, spokes:4, speed:5.2, cw:false, op:0.82 },
-    { cx:448, cy:262, teeth: 9, oR:40, iR:32, hub: 9, spokes:3, speed:4.6, cw:true,  op:0.70 },
-    { cx: 58, cy:178, teeth: 7, oR:30, iR:24, hub: 7, spokes:3, speed:3.2, cw:false, op:0.60 },
-    { cx:544, cy:182, teeth: 7, oR:28, iR:22, hub: 6, spokes:3, speed:3.0, cw:true,  op:0.55 },
-  ];
-
-  GEARS.forEach(g => {
-    const anim = `${g.cw ? 'spin' : 'spinReverse'} ${g.speed}s linear infinite`;
-    const origin = `${g.cx}px ${g.cy}px`;
-
-    // Gear body
-    const path = document.createElementNS(NS, 'path');
-    path.setAttribute('class', 'g-gear');
-    path.setAttribute('d', makeGearPath(g.cx, g.cy, g.teeth, g.oR, g.iR, g.hub));
-    path.setAttribute('fill-rule', 'evenodd');
-    path.setAttribute('fill', 'none');
-    path.setAttribute('stroke', '#5aadad');
-    path.setAttribute('stroke-width', '1.5');
-    path.setAttribute('opacity', g.op);
-    path.style.transformOrigin = origin;
-    path.style.animation = anim;
-    svg.appendChild(path);
-
-    // Inner detail ring
-    const ring = document.createElementNS(NS, 'circle');
-    ring.setAttribute('class', 'g-gear');
-    ring.setAttribute('cx', g.cx); ring.setAttribute('cy', g.cy);
-    ring.setAttribute('r', g.hub + 5);
-    ring.setAttribute('fill', 'none');
-    ring.setAttribute('stroke', '#5aadad');
-    ring.setAttribute('stroke-width', '0.75');
-    ring.setAttribute('opacity', g.op * 0.45);
-    ring.style.transformOrigin = origin;
-    ring.style.animation = anim;
-    svg.appendChild(ring);
-
-    // Spokes
-    for (let s = 0; s < g.spokes; s++) {
-      const angle = (s / g.spokes) * Math.PI * 2;
-      const spoke = document.createElementNS(NS, 'line');
-      spoke.setAttribute('class', 'g-gear');
-      spoke.setAttribute('x1', (g.cx + (g.hub + 6) * Math.cos(angle)).toFixed(2));
-      spoke.setAttribute('y1', (g.cy + (g.hub + 6) * Math.sin(angle)).toFixed(2));
-      spoke.setAttribute('x2', (g.cx + (g.iR  - 4) * Math.cos(angle)).toFixed(2));
-      spoke.setAttribute('y2', (g.cy + (g.iR  - 4) * Math.sin(angle)).toFixed(2));
-      spoke.setAttribute('stroke', '#5aadad');
-      spoke.setAttribute('stroke-width', '1');
-      spoke.setAttribute('opacity', g.op * 0.55);
-      spoke.style.transformOrigin = origin;
-      spoke.style.animation = anim;
-      svg.appendChild(spoke);
-    }
-
-    // Hub dot
-    const hub = document.createElementNS(NS, 'circle');
-    hub.setAttribute('class', 'g-gear');
-    hub.setAttribute('cx', g.cx); hub.setAttribute('cy', g.cy);
-    hub.setAttribute('r', 3);
-    hub.setAttribute('fill', '#5aadad');
-    hub.setAttribute('opacity', g.op * 0.6);
-    hub.style.transformOrigin = origin;
-    hub.style.animation = anim;
-    svg.appendChild(hub);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', buildGears);
-
-// ═══════════════════════════════════════════════
 // CONFIGURATION
 // ═══════════════════════════════════════════════
 // Before publishing: replace with your Airtable Personal Access Token
@@ -918,22 +833,19 @@ const FIELDS = {
   email:'fldpr6og6MThdmCUF',
   q1:   'fldkYKv618uvwyAIm',
   q2:   'fldkzIr08tyBkf3WK',
-  q3:   'fldIgs6zOM1Wy2pW3',
-  q4:   'fldQhNJDrahKwaWKJ',
-  q5:   'fld9CkyqCruAwBO3W',
-  q6:   'fldr8kxkyu0ARuElM',
-  q7:   'fld2YuJTqDM3DwQQu',
-  q8:   'fldFQNLwtnLt8jd2Q',
-  q9:   'fldxHPNaBUORQKceV',
-  q10:  'fldeXFpOZbscpXCsd',
-  q11:  'fldIh67hJnW8zDANI',
-  q12:  'fld06fol7FuIS1T5K',
-  q13:  'fldsgwMd1gAb6EzL4',
-  q14:  'fldYbbgzothJYPjnC',
-  q15:  'fldCN7jJnAbnmxGeY',
+  q3:   'fldQhNJDrahKwaWKJ',
+  q4:   'fld9CkyqCruAwBO3W',
+  q5:   'fldr8kxkyu0ARuElM',
+  q6:   'fld2YuJTqDM3DwQQu',
+  q7:   'fldFQNLwtnLt8jd2Q',
+  q8:   'fldxHPNaBUORQKceV',
+  q9:   'fldeXFpOZbscpXCsd',
+  q10:  'fldIh67hJnW8zDANI',
+  q11:  'fld06fol7FuIS1T5K',
+  q12:  'fldsgwMd1gAb6EzL4',
   foundationsScore: 'fldhEIh6LUX7ZlQqW',
   rweScore:         'fldtM6DJCHOkw63V5',
-  practicalScore:   'fldb8oIWauq8Lt1Kv',
+  adoptionScore:    'fldb8oIWauq8Lt1Kv',
   governanceScore:  'fldURO3Jd8VdPUK4T',
   overallScore:     'fldF825W72q0mbXL8',
   tier:             'fld2bjLpQSHkpcxc3',
@@ -972,18 +884,7 @@ const DIMENSIONS = [
         correct: 'False'
       },
       {
-        id: 'q3', tag: 'Q3', type: 'Multiple Choice',
-        text: 'Which of the following best describes "prompt engineering"?',
-        options: [
-          { letter: 'A', text: 'Writing code to train an AI model' },
-          { letter: 'B', text: 'Designing the hardware that runs AI systems' },
-          { letter: 'C', text: 'Crafting inputs to an AI model to reliably get useful, accurate outputs' },
-          { letter: 'D', text: 'A method for testing AI software before deployment' },
-        ],
-        correct: 'C'
-      },
-      {
-        id: 'q4', tag: 'Q4', type: 'Scenario',
+        id: 'q3', tag: 'Q3', type: 'Scenario',
         text: 'You ask an AI to summarize a clinical guideline and it produces a confident, well-structured response. What\'s the most important next step?',
         options: [
           { letter: 'A', text: 'Use it — the formatting looks professional' },
@@ -999,10 +900,10 @@ const DIMENSIONS = [
     key: 'rwe',
     num: 'Dimension 2 of 4',
     title: 'Applied RWE & Pharmacoepidemiology',
-    desc: 'AI fluency in the context of real-world evidence science — causal inference, study design, regulatory alignment, and research reproducibility.',
+    desc: 'AI fluency in the context of real-world evidence science: causal inference, study design, and where human judgment remains essential.',
     questions: [
       {
-        id: 'q5', tag: 'Q5', type: 'Multiple Choice', pill: 'RWE',
+        id: 'q4', tag: 'Q4', type: 'Multiple Choice', pill: 'RWE',
         text: 'An AI tool claims it can automatically select the right comparator group for your study. What\'s the most critical limitation to probe?',
         options: [
           { letter: 'A', text: 'Whether the UI is easy to use' },
@@ -1013,7 +914,7 @@ const DIMENSIONS = [
         correct: 'B'
       },
       {
-        id: 'q6', tag: 'Q6', type: 'True / False', pill: 'RWE',
+        id: 'q5', tag: 'Q5', type: 'True / False', pill: 'RWE',
         text: 'A directed acyclic graph (DAG) can be fully and reliably constructed by an AI without any domain expert input.',
         options: [
           { letter: 'True', text: 'True' },
@@ -1022,7 +923,7 @@ const DIMENSIONS = [
         correct: 'False'
       },
       {
-        id: 'q7', tag: 'Q7', type: 'Scenario', pill: 'RWE',
+        id: 'q6', tag: 'Q6', type: 'Scenario', pill: 'RWE',
         text: 'Your team is using an AI tool to help design a retrospective cohort study using claims data. The AI suggests a set of covariates for your propensity score. What do you do?',
         options: [
           { letter: 'A', text: 'Accept the list — AI has seen more studies than any human' },
@@ -1032,66 +933,46 @@ const DIMENSIONS = [
         ],
         correct: 'B'
       },
-      {
-        id: 'q8', tag: 'Q8', type: 'Multiple Choice', pill: 'RWE',
-        text: 'The FDA\'s 2023 discussion paper on AI/ML in drug development emphasizes which of the following?',
-        options: [
-          { letter: 'A', text: 'AI tools should replace traditional statistical methods in RWE submissions' },
-          { letter: 'B', text: 'Sponsors must document and justify AI-assisted decisions as part of the evidence package' },
-          { letter: 'C', text: 'LLMs are approved for use in NDA submissions without restriction' },
-          { letter: 'D', text: 'AI use in RWE is currently prohibited pending further guidance' },
-        ],
-        correct: 'B'
-      },
-      {
-        id: 'q9', tag: 'Q9', type: 'Confidence Rating', pill: 'RWE',
-        text: 'How confident are you that you could explain to a regulator exactly how an AI tool contributed to a study design decision?',
-        options: [
-          { letter: 'A', text: 'Not at all confident' },
-          { letter: 'B', text: 'Slightly confident' },
-          { letter: 'C', text: 'Moderately confident' },
-          { letter: 'D', text: 'Very confident' },
-        ],
-        correct: 'D', isSelfAssessment: true
-      },
     ]
   },
   {
-    key: 'practical',
+    key: 'adoption',
     num: 'Dimension 3 of 4',
-    title: 'Practical Use',
-    desc: 'Day-to-day AI fluency: prompting, output validation, and knowing where AI augments vs. where it falls short.',
+    title: 'AI Adoption & Practice',
+    desc: 'How you actually use AI in your day-to-day work, your comfort level, habits, and willingness to experiment.',
     questions: [
       {
-        id: 'q10', tag: 'Q10', type: 'Multiple Choice',
-        text: 'Which prompting approach tends to produce the most reliable outputs for complex analytical tasks?',
+        id: 'q7', tag: 'Q7', type: 'Self-Assessment',
+        text: 'How frequently do you use AI tools (e.g., ChatGPT, Claude, Copilot, or domain-specific AI) in your professional work?',
         options: [
-          { letter: 'A', text: 'Ask one large, detailed question all at once' },
-          { letter: 'B', text: 'Break the task into steps and prompt the model sequentially, reviewing outputs at each stage' },
-          { letter: 'C', text: 'Use the shortest possible prompt to avoid confusing the model' },
-          { letter: 'D', text: 'Always ask two different AI tools and average their answers' },
+          { letter: 'A', text: 'Never — I haven\'t started using AI tools yet' },
+          { letter: 'B', text: 'Occasionally — a few times a month for simple tasks' },
+          { letter: 'C', text: 'Regularly — several times a week as part of my workflow' },
+          { letter: 'D', text: 'Daily — AI is integrated into how I think and work' },
         ],
-        correct: 'B'
+        correct: 'D', isSelfAssessment: true
       },
       {
-        id: 'q11', tag: 'Q11', type: 'True / False',
-        text: 'The same AI model can produce different answers to the exact same question on different occasions.',
+        id: 'q8', tag: 'Q8', type: 'Self-Assessment',
+        text: 'When an AI gives you an output you\'re unsure about, what do you typically do?',
         options: [
-          { letter: 'True', text: 'True' },
-          { letter: 'False', text: 'False' },
+          { letter: 'A', text: 'Accept it if it sounds reasonable' },
+          { letter: 'B', text: 'Ask the AI to explain its reasoning or try again' },
+          { letter: 'C', text: 'Cross-reference the output against a trusted source before using it' },
+          { letter: 'D', text: 'Discard it entirely — I don\'t trust AI outputs enough to use them' },
         ],
-        correct: 'True'
+        correct: 'C', isSelfAssessment: true
       },
       {
-        id: 'q12', tag: 'Q12', type: 'Scenario',
-        text: 'You\'re using AI to help draft a methods section. A colleague says, "Just have it write the whole thing." What\'s your response?',
+        id: 'q9', tag: 'Q9', type: 'Self-Assessment',
+        text: 'How would you describe your approach to experimenting with new AI tools or capabilities?',
         options: [
-          { letter: 'A', text: 'Agree — AI writes faster and more consistently' },
-          { letter: 'B', text: 'Use AI to generate a structured draft, then rewrite for accuracy, nuance, and your own methodological voice' },
-          { letter: 'C', text: 'Decline entirely — AI shouldn\'t be used in scientific writing' },
-          { letter: 'D', text: 'Let AI write it, then have a different AI review it' },
+          { letter: 'A', text: 'I wait for my organization to adopt and approve tools before I try them' },
+          { letter: 'B', text: 'I\'m curious but haven\'t found the time to explore beyond the basics' },
+          { letter: 'C', text: 'I actively test new tools, compare outputs, and iterate on how I use them' },
+          { letter: 'D', text: 'I\'m not interested in experimenting — AI feels overhyped' },
         ],
-        correct: 'B'
+        correct: 'C', isSelfAssessment: true
       },
     ]
   },
@@ -1102,7 +983,7 @@ const DIMENSIONS = [
     desc: 'Accountability, transparency, and organizational readiness for responsible AI use in RWE contexts.',
     questions: [
       {
-        id: 'q13', tag: 'Q13', type: 'Multiple Choice',
+        id: 'q10', tag: 'Q10', type: 'Multiple Choice',
         text: 'What does "algorithmic transparency" mean in the context of using AI in a regulatory submission?',
         options: [
           { letter: 'A', text: 'Making your AI tool open-source' },
@@ -1113,7 +994,7 @@ const DIMENSIONS = [
         correct: 'B'
       },
       {
-        id: 'q14', tag: 'Q14', type: 'True / False',
+        id: 'q11', tag: 'Q11', type: 'True / False',
         text: 'If an AI tool produces a biased output, the vendor is solely responsible — not the study team.',
         options: [
           { letter: 'True', text: 'True' },
@@ -1122,7 +1003,7 @@ const DIMENSIONS = [
         correct: 'False'
       },
       {
-        id: 'q15', tag: 'Q15', type: 'Scenario',
+        id: 'q12', tag: 'Q12', type: 'Scenario',
         text: 'Your organization wants to establish an AI use policy for RWE studies. What should it include first?',
         options: [
           { letter: 'A', text: 'A list of approved AI tools' },
@@ -1139,33 +1020,33 @@ const DIMENSIONS = [
 // Dimension feedback by score range
 const FEEDBACK = {
   foundations: {
-    high: { threshold: 4, label: 'Strength', text: 'You have a strong grasp of AI fundamentals — how LLMs work, their limitations, and the critical importance of verifying outputs. This foundation positions you well for responsible AI adoption.' },
+    high: { threshold: 3, label: 'Strength', text: 'You have a strong grasp of AI fundamentals, how LLMs work, their limitations, and the critical importance of verifying outputs. This foundation positions you well for responsible AI adoption.' },
     mid:  { threshold: 2, label: 'Developing', text: 'You have some foundation but may have gaps in understanding AI limitations like hallucination and output verification. Deepening your understanding of how models actually generate responses will sharpen your critical evaluation skills.' },
-    low:  { label: 'Growth Area', text: 'Building a clearer understanding of how AI actually works — and where it fails — will unlock safer, more effective use in your practice. This is the most important dimension to address first.' },
+    low:  { label: 'Growth Area', text: 'Building a clearer understanding of how AI actually works, and where it fails, will unlock safer, more effective use in your practice. This is the most important dimension to address first.' },
   },
   rwe: {
-    high: { threshold: 4, label: 'Strength', text: 'You demonstrate deep applied fluency in connecting AI capabilities to RWE methodology. You understand the limits of automation in causal inference, covariate selection, and regulatory documentation.' },
-    mid:  { threshold: 2, label: 'Developing', text: 'You recognize some of the critical intersections between AI and RWE methodology, but there are opportunities to deepen your understanding of causal assumptions, regulatory expectations, and where human judgment remains irreplaceable.' },
-    low:  { label: 'Growth Area', text: 'Connecting AI capabilities to pharmacoepidemiology and RWE methodology is a high-value growth area. Understanding how AI interacts with causal inference, study design, and regulatory expectations will differentiate your practice.' },
+    high: { threshold: 3, label: 'Strength', text: 'You demonstrate deep applied fluency in connecting AI capabilities to RWE methodology. You understand the limits of automation in causal inference and covariate selection.' },
+    mid:  { threshold: 2, label: 'Developing', text: 'You recognize some critical intersections between AI and RWE methodology, but there are opportunities to deepen your understanding of causal assumptions and where human judgment remains irreplaceable.' },
+    low:  { label: 'Growth Area', text: 'Connecting AI capabilities to pharmacoepidemiology and RWE methodology is a high-value growth area. Understanding how AI interacts with causal inference and study design will differentiate your practice.' },
   },
-  practical: {
-    high: { threshold: 3, label: 'Strength', text: 'You know how to prompt effectively, validate outputs, and integrate AI into scientific workflows without over-relying on it. You treat AI as a capable assistant, not an oracle.' },
-    mid:  { threshold: 1, label: 'Developing', text: 'You\'re building practical skills, but structured prompting techniques and output validation habits will significantly improve the quality and reliability of your AI-assisted work.' },
-    low:  { label: 'Growth Area', text: 'Hands-on practice with structured prompting and systematic output validation will accelerate your AI fluency. Start with breaking complex tasks into sequential steps.' },
+  adoption: {
+    high: { threshold: 3, label: 'Strength', text: 'You are actively integrating AI into your professional practice, experimenting with tools, validating outputs critically, and building real fluency through daily use.' },
+    mid:  { threshold: 2, label: 'Developing', text: 'You\'re engaging with AI but haven\'t yet made it a consistent part of your workflow. Increasing your hands-on experimentation and developing a habit of critical output validation will accelerate your fluency.' },
+    low:  { label: 'Growth Area', text: 'The biggest gains in AI fluency come from practice. Start small: use AI for a routine task this week, verify its output, and iterate. Comfort grows from experience, not theory.' },
   },
   governance: {
     high: { threshold: 3, label: 'Strength', text: 'You understand the accountability, transparency, and documentation requirements for AI use in regulated environments. This is critical for anyone involved in RWE-based regulatory submissions.' },
-    mid:  { threshold: 1, label: 'Developing', text: 'You have awareness of governance principles but would benefit from deepening your understanding of documentation frameworks and accountability structures specific to AI in regulated research.' },
-    low:  { label: 'Growth Area', text: 'Governance and regulatory readiness are essential for anyone working with AI in pharmacoepidemiology. Understanding who is accountable for AI outputs — and how to document AI contributions — should be a priority.' },
+    mid:  { threshold: 2, label: 'Developing', text: 'You have awareness of governance principles but would benefit from deepening your understanding of documentation frameworks and accountability structures specific to AI in regulated research.' },
+    low:  { label: 'Growth Area', text: 'Governance and regulatory readiness are essential for anyone working with AI in pharmacoepidemiology. Understanding who is accountable for AI outputs, and how to document AI contributions, should be a priority.' },
   },
 };
 
 const TIERS = [
-  { min: 0,  max: 4,  label: 'AI-Aware',   name: 'Novice',       airtable: 'AI-Aware' },
-  { min: 5,  max: 8,  label: 'AI-Curious',  name: 'Developing',   airtable: 'AI-Curious' },
-  { min: 9,  max: 11, label: 'AI-Capable',  name: 'Practitioner', airtable: 'AI-Capable' },
-  { min: 12, max: 14, label: 'AI-Fluent',   name: 'Fluent',       airtable: 'AI-Fluent' },
-  { min: 15, max: 15, label: 'AI-Native',   name: 'Expert',       airtable: 'AI-Native' },
+  { min: 0,  max: 3,  label: 'AI-Aware',   name: 'Novice',       airtable: 'AI-Aware' },
+  { min: 4,  max: 6,  label: 'AI-Curious',  name: 'Developing',   airtable: 'AI-Curious' },
+  { min: 7,  max: 9,  label: 'AI-Capable',  name: 'Practitioner', airtable: 'AI-Capable' },
+  { min: 10, max: 11, label: 'AI-Fluent',   name: 'Fluent',       airtable: 'AI-Fluent' },
+  { min: 12, max: 12, label: 'AI-Native',   name: 'Expert',       airtable: 'AI-Native' },
 ];
 
 // ═══════════════════════════════════════════════
@@ -1526,17 +1407,12 @@ function computeAndShowResults() {
   DIMENSIONS.forEach(dim => {
     let correct = 0;
     dim.questions.forEach(q => {
-      if (q.isSelfAssessment) {
-        // Q9: weighted — D=1, C=0.5 (we'll round), others=0
-        if (answers[q.id] === 'D') correct++;
-      } else {
-        if (answers[q.id] === q.correct) correct++;
-      }
+      if (answers[q.id] === q.correct) correct++;
     });
     scores[dim.key] = correct;
   });
 
-  const total = scores.foundations + scores.rwe + scores.practical + scores.governance;
+  const total = scores.foundations + scores.rwe + scores.adoption + scores.governance;
   const tier = TIERS.find(t => total >= t.min && total <= t.max);
 
   computedScores = scores;
@@ -1548,11 +1424,28 @@ function computeAndShowResults() {
   document.getElementById('tier-label').textContent = tier.label;
   document.getElementById('tier-name').textContent = tier.name;
 
+  // Set tier background image (growth progression)
+  const tierImages = {
+    'AI-Aware':   'https://images.unsplash.com/photo-1509773896068-7fd415d91e2e?auto=format&fit=crop&w=1200&q=80', // starry night sky — beginning
+    'AI-Curious': 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80', // misty forest path — exploring
+    'AI-Capable': 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80', // sunlit forest — growing
+    'AI-Fluent':  'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80', // mountain summit — ascending
+    'AI-Native':  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80', // above the clouds — mastery
+  };
+  const bgEl = document.getElementById('tier-badge-bg');
+  if (bgEl && tierImages[tier.label]) {
+    bgEl.style.backgroundImage = `url('${tierImages[tier.label]}')`;
+    // Fade in after image loads
+    const img = new Image();
+    img.onload = () => { bgEl.classList.add('visible'); };
+    img.src = tierImages[tier.label];
+  }
+
   // Dimension cards
   const dimMeta = [
-    { key: 'foundations', title: 'Foundations', max: 4 },
-    { key: 'rwe', title: 'Applied RWE & Pharmacoepidemiology', max: 5 },
-    { key: 'practical', title: 'Practical Use', max: 3 },
+    { key: 'foundations', title: 'Foundations', max: 3 },
+    { key: 'rwe', title: 'Applied RWE & Pharmacoepidemiology', max: 3 },
+    { key: 'adoption', title: 'AI Adoption & Practice', max: 3 },
     { key: 'governance', title: 'Governance & Regulatory Readiness', max: 3 },
   ];
 
@@ -1616,12 +1509,12 @@ async function submitToAirtable(scores, total, tier, contactInfo) {
   }
 
   // Map answers
-  const qFields = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10','q11','q12','q13','q14','q15'];
+  const qFields = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10','q11','q12'];
   qFields.forEach(q => { fields[FIELDS[q]] = answers[q] || ''; });
 
   fields[FIELDS.foundationsScore] = scores.foundations;
   fields[FIELDS.rweScore]         = scores.rwe;
-  fields[FIELDS.practicalScore]   = scores.practical;
+  fields[FIELDS.adoptionScore]    = scores.adoption;
   fields[FIELDS.governanceScore]  = scores.governance;
   fields[FIELDS.overallScore]     = total;
   fields[FIELDS.tier]             = tier.airtable;
