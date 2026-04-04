@@ -1563,7 +1563,7 @@ async function submitToAirtable(scores, total, tier, contactInfo) {
 // ═══════════════════════════════════════════════
 // "LET'S CONNECT" — POST-RESULTS CONTACT FORM
 // ═══════════════════════════════════════════════
-function submitConnect() {
+async function submitConnect() {
   const name  = document.getElementById('inp-name').value.trim();
   const org   = document.getElementById('inp-org').value.trim();
   const email = document.getElementById('inp-email').value.trim();
@@ -1575,8 +1575,28 @@ function submitConnect() {
   if (!email || !email.includes('@')) { document.getElementById('inp-email').classList.add('error'); valid = false; }
   if (!valid) return;
 
-  // Submit contact info to Airtable (updates existing record or creates with contact)
-  submitToAirtable(computedScores, computedTotal, computedTier, { name, org, email });
+  // Send to Google Apps Script
+  try {
+    await fetch('https://script.google.com/macros/s/AKfycbw3URdQEebdIE-a7ncDbjexID-noMQRQzPEUeoLD4qtYA_YbotK_pwDkaqmsd0jAiOc/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name,
+        organization: org,
+        email,
+        source: 'quiz',
+        tier: computedTier ? computedTier.label : 'Unknown',
+        score: computedTotal + '/12',
+        foundations: computedScores ? computedScores.foundations : 0,
+        rwe: computedScores ? computedScores.rwe : 0,
+        adoption: computedScores ? computedScores.adoption : 0,
+        governance: computedScores ? computedScores.governance : 0,
+      }),
+    });
+  } catch (err) {
+    console.error('Quiz connect submission failed:', err);
+  }
 
   // Show confirmation, hide form
   document.getElementById('connect-form').style.display = 'none';

@@ -1292,12 +1292,12 @@
   </div>
   <div class="contact-form">
     <div class="form-row">
-      <input type="text" placeholder="Name">
-      <input type="text" placeholder="Organization">
+      <input type="text" id="inq-name" placeholder="Name">
+      <input type="text" id="inq-org" placeholder="Organization">
     </div>
-    <input type="email" placeholder="Email">
-    <textarea placeholder="Tell us about your project or inquiry"></textarea>
-    <button type="button">Send Inquiry</button>
+    <input type="email" id="inq-email" placeholder="Email">
+    <textarea id="inq-message" placeholder="Tell us about your project or inquiry"></textarea>
+    <button type="button" id="inq-submit" onclick="submitInquiry()">Send Inquiry</button>
   </div>
 </section>
 
@@ -1392,6 +1392,46 @@
     }, { threshold: 0 });
     etherealObs.observe(section);
   })();
+
+  // ── Contact form → Google Apps Script ──
+  const INQUIRY_URL = 'https://script.google.com/macros/s/AKfycbw3URdQEebdIE-a7ncDbjexID-noMQRQzPEUeoLD4qtYA_YbotK_pwDkaqmsd0jAiOc/exec';
+
+  async function submitInquiry() {
+    const name  = document.getElementById('inq-name').value.trim();
+    const org   = document.getElementById('inq-org').value.trim();
+    const email = document.getElementById('inq-email').value.trim();
+    const msg   = document.getElementById('inq-message').value.trim();
+    const btn   = document.getElementById('inq-submit');
+
+    if (!name || !email || !msg) {
+      alert('Please fill in your name, email, and message.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      await fetch(INQUIRY_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, organization: org, email, message: msg }),
+      });
+
+      document.getElementById('inq-name').value = '';
+      document.getElementById('inq-org').value = '';
+      document.getElementById('inq-email').value = '';
+      document.getElementById('inq-message').value = '';
+      btn.textContent = 'Sent ✓';
+      setTimeout(() => { btn.textContent = 'Send Inquiry'; btn.disabled = false; }, 3000);
+    } catch (err) {
+      console.error('Inquiry submission failed:', err);
+      alert('Something went wrong. Please try again or email us directly.');
+      btn.textContent = 'Send Inquiry';
+      btn.disabled = false;
+    }
+  }
 </script>
 </body>
 </html>
