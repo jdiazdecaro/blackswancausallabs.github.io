@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>Reading List — Black Swan Causal Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:       #050608;
+    --deep:        #090c10;
+    --surface:     #0d1117;
+    --ink:         #111620;
+    --border:      rgba(255,255,255,0.06);
+    --silver:      #c8cdd4;
+    --white:       #eef0f3;
+    --teal:        #3d7a7a;
+    --teal-light:  #5aadad;
+    --accent:      #8bbfbf;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 64px;
+    background: linear-gradient(to bottom, rgba(5,6,8,0.95) 0%, transparent 100%);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--silver);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--teal-light); }
+  .nav-back {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-back:hover { color: var(--teal-light); }
+
+  /* FADE-IN ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .reveal-d1 { animation-delay: 0.1s; }
+  .reveal-d2 { animation-delay: 0.3s; }
+  .reveal-d3 { animation-delay: 0.5s; }
+  .reveal-d4 { animation-delay: 0.7s; }
+
+  /* MAIN CONTAINER */
+  .reading-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 140px 24px 80px;
+  }
+
+  /* HEADER */
+  .page-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 18px;
+  }
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 56px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 18px;
+    white-space: nowrap;
+  }
+  .page-subtitle {
+    font-size: 18px;
+    color: var(--silver);
+    line-height: 1.7;
+    max-width: 640px;
+    margin-bottom: 14px;
+  }
+  .last-updated {
+    font-size: 14px;
+    color: rgba(200,205,212,0.5);
+    letter-spacing: 0.1em;
+    margin-bottom: 48px;
+  }
+
+  /* WEEK GROUP */
+  .week-group {
+    margin-bottom: 56px;
+  }
+  .week-label {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  /* ARTICLE CARD */
+  .article-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .article-card:hover {
+    border-color: rgba(90,173,173,0.25);
+    transform: translateY(-2px);
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .article-source {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    background: rgba(61,122,122,0.15);
+    padding: 3px 10px;
+    border-radius: 3px;
+  }
+  .article-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .article-tag {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--silver);
+    background: rgba(255,255,255,0.04);
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  .article-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+  .article-title a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .article-title a:hover { color: var(--teal-light); }
+  .article-authors {
+    font-size: 14px;
+    color: rgba(200,205,212,0.5);
+    margin-bottom: 12px;
+  }
+  .article-blurb {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--silver);
+  }
+  .article-blurb strong {
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--silver);
+  }
+  .empty-state p {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 64px 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+  }
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(200,205,212,0.35);
+    letter-spacing: 0.08em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    nav { padding: 20px 20px; }
+    .reading-wrap { padding: 110px 16px 60px; }
+    .article-card { padding: 20px; }
+    footer { padding: 36px 16px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Black Swan <span>Causal Labs</span></a>
+  <a href="index.html" class="nav-back">&larr; Back to Home</a>
+</nav>
+
+<main class="reading-wrap">
+  <p class="page-eyebrow reveal reveal-d1">Curated Weekly</p>
+  <h1 class="page-title reveal reveal-d2">This Week in Real-World Evidence &amp; AI</h1>
+  <p class="page-subtitle reveal reveal-d3">Five papers each week at the intersection of RWE, causal inference, and AI.</p>
+  <p class="last-updated reveal reveal-d3" id="updated-date"></p>
+
+  <div id="articles-container" class="reveal reveal-d4">
+    <div class="empty-state">
+      <p>The first batch of articles is coming soon.<br>Check back Wednesday.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Black Swan Causal Labs, LLC — Los Angeles, CA</p>
+  </div>
+</footer>
+
+<script>
+(async function() {
+  try {
+    const res = await fetch('articles.json');
+    const data = await res.json();
+    const container = document.getElementById('articles-container');
+    const dateEl = document.getElementById('updated-date');
+
+    if (!data.weeks || data.weeks.length === 0) return;
+
+    dateEl.textContent = 'Last updated ' + formatDate(data.lastUpdated);
+    container.innerHTML = '';
+
+    data.weeks.forEach(week => {
+      const group = document.createElement('div');
+      group.className = 'week-group';
+
+      const label = document.createElement('p');
+      label.className = 'week-label';
+      label.textContent = 'Week of ' + formatDate(week.weekOf);
+      group.appendChild(label);
+
+      week.articles.forEach(article => {
+        const card = document.createElement('div');
+        card.className = 'article-card';
+
+        const tags = (article.tags || []).map(t =>
+          '<span class="article-tag">' + escHtml(t) + '</span>'
+        ).join('');
+
+        const authors = article.authors
+          ? '<p class="article-authors">' + escHtml(article.authors) + '</p>'
+          : '';
+
+        card.innerHTML =
+          '<div class="article-meta">' +
+            '<span class="article-source">' + escHtml(article.source) + '</span>' +
+            '<div class="article-tags">' + tags + '</div>' +
+          '</div>' +
+          '<p class="article-title"><a href="' + escAttr(article.url) + '" target="_blank" rel="noopener">' + escHtml(article.title) + '</a></p>' +
+          authors +
+          '<p class="article-blurb">' + article.blurb + '</p>';
+
+        group.appendChild(card);
+      });
+
+      container.appendChild(group);
+    });
+  } catch (e) {
+    // silently keep empty state
+  }
+
+  function formatDate(iso) {
+    const d = new Date(iso + 'T00:00:00');
+    return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+  function escHtml(s) {
+    const el = document.createElement('span');
+    el.textContent = s;
+    return el.innerHTML;
+  }
+  function escAttr(s) {
+    return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+})();
+</script>
+
+</body>
+</html>

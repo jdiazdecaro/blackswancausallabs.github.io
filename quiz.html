@@ -868,12 +868,12 @@ const DIMENSIONS = [
         id: 'q1', tag: 'Q1', type: 'Multiple Choice',
         text: 'What does a large language model (LLM) actually do when it generates a response?',
         options: [
-          { letter: 'A', text: 'It searches a database of facts and retrieves the best match' },
-          { letter: 'B', text: 'It predicts the most statistically likely next word, repeatedly, based on patterns in training data' },
-          { letter: 'C', text: 'It reasons through problems the way a human expert would' },
-          { letter: 'D', text: 'It accesses the internet in real time to answer your question' },
+          { letter: 'A', text: 'It compresses and retrieves information from its training data, like a search engine over learned text' },
+          { letter: 'B', text: 'It builds an internal model of the topic and reasons through it step by step before responding' },
+          { letter: 'C', text: 'It predicts the most statistically likely next token, repeatedly, based on patterns in training data' },
+          { letter: 'D', text: 'It matches your prompt to the most similar examples it was trained on and adapts their phrasing' },
         ],
-        correct: 'B'
+        correct: 'C'
       },
       {
         id: 'q2', tag: 'Q2', type: 'True / False',
@@ -886,14 +886,14 @@ const DIMENSIONS = [
       },
       {
         id: 'q3', tag: 'Q3', type: 'Scenario',
-        text: 'You ask an AI to summarize a clinical guideline and it produces a confident, well-structured response. What\'s the most important next step?',
+        text: 'You ask an AI to summarize an observational study on the safety of a newly approved oncology treatment. It produces a confident, well-structured response. What\'s the most important next step?',
         options: [
-          { letter: 'A', text: 'Use it — the formatting looks professional' },
-          { letter: 'B', text: 'Verify the key claims against the source document' },
-          { letter: 'C', text: 'Ask the AI to double-check itself' },
-          { letter: 'D', text: 'Run it through a second AI to confirm' },
+          { letter: 'A', text: 'Ask the AI to rate its own confidence level on the summary' },
+          { letter: 'B', text: 'Check whether the summary matches the structure of similar study summaries you\'ve seen' },
+          { letter: 'C', text: 'Run the same prompt through a second model to see if the outputs agree' },
+          { letter: 'D', text: 'Verify the key claims — such as the study design, endpoint definitions, and reported effect estimates — against the original publication' },
         ],
-        correct: 'B'
+        correct: 'D'
       },
     ]
   },
@@ -907,12 +907,12 @@ const DIMENSIONS = [
         id: 'q4', tag: 'Q4', type: 'Multiple Choice', pill: 'RWE',
         text: 'An AI tool claims it can automatically select the right comparator group for your study. What\'s the most critical limitation to probe?',
         options: [
-          { letter: 'A', text: 'Whether the UI is easy to use' },
-          { letter: 'B', text: 'Whether the tool understands the causal assumptions behind comparator selection' },
-          { letter: 'C', text: 'Whether it can process large datasets quickly' },
-          { letter: 'D', text: 'Whether it integrates with your existing software' },
+          { letter: 'A', text: 'Whether it accounts for the causal assumptions and clinical rationale behind comparator selection' },
+          { letter: 'B', text: 'Whether it has been validated against comparator choices made in published studies' },
+          { letter: 'C', text: 'Whether it can adjust for unmeasured confounding automatically' },
+          { letter: 'D', text: 'Whether it uses the latest version of the data source' },
         ],
-        correct: 'B'
+        correct: 'A'
       },
       {
         id: 'q5', tag: 'Q5', type: 'True / False', pill: 'RWE',
@@ -927,12 +927,12 @@ const DIMENSIONS = [
         id: 'q6', tag: 'Q6', type: 'Scenario', pill: 'RWE',
         text: 'Your team is using an AI tool to help design a retrospective cohort study using claims data. The AI suggests a set of covariates for your propensity score. What do you do?',
         options: [
-          { letter: 'A', text: 'Accept the list — AI has seen more studies than any human' },
-          { letter: 'B', text: 'Use it as a starting point, then validate each covariate against your DAG and clinical knowledge' },
-          { letter: 'C', text: 'Reject it — AI shouldn\'t be involved in covariate selection' },
-          { letter: 'D', text: 'Have a statistician rerun the same prompt to confirm' },
+          { letter: 'A', text: 'Reject the list — covariate selection should be done entirely by the study team without AI input' },
+          { letter: 'B', text: 'Accept the list if the AI was trained on similar pharmacoepi studies' },
+          { letter: 'C', text: 'Use it as a starting point, then validate each covariate against your DAG and clinical knowledge' },
+          { letter: 'D', text: 'Include all suggested covariates plus any additional ones to be conservative' },
         ],
-        correct: 'B'
+        correct: 'C'
       },
     ]
   },
@@ -987,12 +987,12 @@ const DIMENSIONS = [
         id: 'q10', tag: 'Q10', type: 'Multiple Choice',
         text: 'What does "algorithmic transparency" mean in the context of using AI in a regulatory submission?',
         options: [
-          { letter: 'A', text: 'Making your AI tool open-source' },
-          { letter: 'B', text: 'Being able to explain what data the AI was trained on and how it influenced outputs' },
-          { letter: 'C', text: 'Sharing your prompt library with the review team' },
-          { letter: 'D', text: 'Using only FDA-approved AI vendors' },
+          { letter: 'A', text: 'Disclosing that AI was used somewhere in the study process' },
+          { letter: 'B', text: 'Using only AI tools that have been pre-approved by the regulatory agency' },
+          { letter: 'C', text: 'Being able to explain what data the AI was trained on, how it influenced outputs, and the rationale for its use' },
+          { letter: 'D', text: 'Providing the regulator with access to the underlying model\'s source code or architecture' },
         ],
-        correct: 'B'
+        correct: 'C'
       },
       {
         id: 'q11', tag: 'Q11', type: 'True / False',
@@ -1007,10 +1007,10 @@ const DIMENSIONS = [
         id: 'q12', tag: 'Q12', type: 'Scenario',
         text: 'Your organization wants to establish an AI use policy for RWE studies. What should it include first?',
         options: [
-          { letter: 'A', text: 'A list of approved AI tools' },
+          { letter: 'A', text: 'A requirement that AI outputs be independently reproduced before use in any deliverable' },
           { letter: 'B', text: 'A framework for documenting when, how, and why AI was used in each study' },
-          { letter: 'C', text: 'A prohibition on AI until FDA issues formal guidance' },
-          { letter: 'D', text: 'A requirement that all AI outputs be kept confidential' },
+          { letter: 'C', text: 'A list of approved AI vendors that meet the organization\'s data security requirements' },
+          { letter: 'D', text: 'A moratorium on AI use until industry-wide standards are published' },
         ],
         correct: 'B'
       },
