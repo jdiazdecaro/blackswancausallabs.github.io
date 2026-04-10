@@ -1,4 +1,50 @@
 {
-  "lastUpdated": "2026-04-09",
-  "weeks": []
+  "lastUpdated": "2026-04-10",
+  "weeks": [
+    {
+      "weekOf": "2026-04-07",
+      "articles": [
+        {
+          "title": "A Target Trial Emulation Study of SGLT2 Inhibitors, GLP-1 Receptor Agonists, and Combination Therapy in Preventing Kidney Failure in Type 2 Diabetes",
+          "authors": "Blum et al.",
+          "source": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41400456/",
+          "tags": ["RWE", "Target Trial", "Causal Inference"],
+          "blurb": "This paper delivers a clean, clinically actionable comparison using target trial emulation on a large real-world claims database. The finding that SGLT2 inhibitors outperform GLP-1 agonists for kidney failure prevention \u2014 and that <strong>combination therapy may further benefit high-risk patients with CKD or heart failure</strong> \u2014 is precisely the kind of RWE practitioners need to guide prescribing decisions. The new-user, active-comparator design is the gold standard here."
+        },
+        {
+          "title": "An AI Agent for Automated Causal Inference in Epidemiology",
+          "authors": "Liu et al.",
+          "source": "medRxiv",
+          "url": "https://www.medrxiv.org/content/10.64898/2026.02.06.26345723v1",
+          "tags": ["AI/ML", "Causal Inference", "NLP"],
+          "blurb": "EpiCausalX is the first end-to-end LLM agent that automates the full causal inference pipeline in epidemiology \u2014 from multi-database literature retrieval to confounder identification to interactive DAG visualization. <strong>This is what AI-augmented causal epidemiology actually looks like in practice</strong>, not just a chatbot wrapper around a textbook. The architecture signals where agentic causal workflows are heading in 2026."
+        },
+        {
+          "title": "Evidence triangulator: using large language models to extract and synthesize causal evidence across study designs",
+          "authors": "Shi et al.",
+          "source": "PubMed",
+          "url": "https://doi.org/10.1038/s41467-025-62783-x",
+          "tags": ["AI/ML", "NLP", "Causal Inference", "RWE"],
+          "blurb": "Shi et al. tackle a genuinely hard problem \u2014 automating evidence triangulation across heterogeneous study designs \u2014 and show LLMs can extract directional effect and statistical significance information with high accuracy. <strong>The two-step approach (exposure-outcome concepts first, then relation extraction) is the key methodological insight worth borrowing.</strong> Practically, this is a game-changer for regulatory and HTA evidence synthesis."
+        },
+        {
+          "title": "Double Machine Learning for Causal Inference in High-Dimensional Electronic Health Records",
+          "authors": "Du et al.",
+          "source": "medRxiv",
+          "url": "https://www.medrxiv.org/content/10.1101/2025.07.21.25331944v1",
+          "tags": ["AI/ML", "Causal Inference", "RWE"],
+          "blurb": "For pharmacoepidemiologists still defaulting to IPTW in high-dimensional EHR settings, this is a wake-up call. Du et al. show that offset-DML consistently outperforms IPTW on both bias and empirical standard error \u2014 especially in sparse-data scenarios common in clinical practice. <strong>The plasmode simulation grounded in real clinical data gives these results far more credibility than a purely synthetic benchmark.</strong>"
+        },
+        {
+          "title": "Can Contemporary Large Language Models Provide the Domain Knowledge Needed for Causal Inference? Evaluating Automated Causal Graph Discovery Through an ASCVD Case Study",
+          "authors": "Aziz et al.",
+          "source": "PubMed",
+          "url": "https://doi.org/10.2147/CLEP.S550565",
+          "tags": ["AI/ML", "Causal Inference", "DAG"],
+          "blurb": "Aziz and Brookhart benchmark GPT-4o and GPT-o1 for automated DAG generation in cardiovascular pharmacoepidemiology \u2014 and find current LLMs can assist but cannot replace human domain expertise. <strong>This is required reading before you hand your confounder selection to a language model.</strong> The ASCVD case study exposes systematic failure modes: LLMs miss temporality, conflate proxies with mediators, and hallucinate causal paths."
+        }
+      ]
+    }
+  ]
 }
