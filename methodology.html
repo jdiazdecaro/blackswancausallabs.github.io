@@ -329,8 +329,8 @@
   <div class="section reveal reveal-d4">
     <p class="section-label">The architecture</p>
     <h2 class="section-heading">A scheduled agent, a search strategy, and a newsletter pipeline</h2>
-    <p>The system has three parts. A scheduled agent that runs every Wednesday at 10am Eastern, a structured search strategy stored in a single file in the website repository, and a newsletter delivery layer that sends the weekly issue to subscribers.</p>
-    <p>The agent itself runs in a sandboxed cloud environment. It has access to web search, file editing, the ability to commit and push to the website repository, and the ability to call the Buttondown API. It does not have access to email accounts, internal documents, or anything else. The blast radius is small on purpose.</p>
+    <p>The system has three parts. A scheduled agent that runs every Wednesday at 10am Eastern, a structured search strategy stored in a single file in the website repository, and a delivery layer that sends the weekly issue to subscribers.</p>
+    <p>The agent runs in a sandboxed cloud environment with deliberately limited access. It can use web search, edit files, and push commits to the website repository. It cannot reach the email service directly, by design. When the agent finishes curating the week, it writes the prepared newsletter to a file in the repository and pushes. That push triggers a GitHub Actions workflow with its own scoped credentials, and the workflow is the only thing that talks to Buttondown. Two agents, two responsibilities, two sets of permissions. The blast radius is small on purpose.</p>
 
     <div class="pipeline">
       <div class="pipeline-step">
@@ -358,14 +358,14 @@
         <div class="pipeline-num">04</div>
         <div class="pipeline-step-body">
           <h4>Publish</h4>
-          <p>The agent updates a JSON file in the website repository with the new week of articles, commits the change, and pushes it to GitHub. The reading list page reads from that file and updates automatically.</p>
+          <p>The agent writes the new week of articles to the website repository and prepares the newsletter as a separate JSON payload in the same repo. It commits both files and pushes them to GitHub. The reading list page reads from the articles file and updates automatically.</p>
         </div>
       </div>
       <div class="pipeline-step">
         <div class="pipeline-num">05</div>
         <div class="pipeline-step-body">
-          <h4>Send</h4>
-          <p>It composes an HTML newsletter from the same five articles and posts it to the <a href="https://buttondown.com" target="_blank" rel="noopener" style="color: var(--teal-light); border-bottom: 1px solid rgba(90,173,173,0.35);">Buttondown</a> API. Buttondown handles delivery, double opt-in confirmation for new subscribers, and unsubscribe management.</p>
+          <h4>Deliver</h4>
+          <p>The push to GitHub triggers a small GitHub Actions workflow that reads the newsletter payload and posts it to the <a href="https://buttondown.com" target="_blank" rel="noopener" style="color: var(--teal-light); border-bottom: 1px solid rgba(90,173,173,0.35);">Buttondown</a> API using a separate scoped API key. Buttondown handles delivery, double opt-in confirmation for new subscribers, and unsubscribe management.</p>
         </div>
       </div>
     </div>
