@@ -1,6 +1,51 @@
 {
-  "lastUpdated": "2026-04-10",
+  "lastUpdated": "2026-04-11",
   "weeks": [
+    {
+      "weekOf": "2026-04-11",
+      "articles": [
+        {
+          "title": "Causal mediation analysis with one or multiple mediators: A comparative study",
+          "authors": "Ab\u00e9cassis et al.",
+          "source": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41955059/",
+          "tags": ["Causal Inference", "AI/ML", "Double Machine Learning"],
+          "blurb": "This is the paper to send to anyone still defaulting to classical mediation analysis in observational data. Ab\u00e9cassis et al. comprehensively benchmark multiply-robust and double machine learning estimators against parametric approaches, and <strong>DML wins across nearly every simulation scenario</strong> \u2014 especially in the nonlinear confounding settings that define real-world EHR data. The UK Biobank application showing brain morphology mediates a substantial portion of the hypertension-cognition effect makes the methodology concrete."
+        },
+        {
+          "title": "Causal estimands and target trials for the effect of lag time to treatment of cancer patients",
+          "authors": "Goncalves et al.",
+          "source": "medRxiv",
+          "url": "https://www.medrxiv.org/content/10.64898/2026.04.07.26350338v1",
+          "tags": ["Causal Inference", "Target Trial", "RWE"],
+          "blurb": "The Waiting Time Paradox \u2014 where sicker patients see doctors sooner and appear to have worse outcomes from faster treatment \u2014 is one of the most treacherous confounding traps in oncology RWE. Goncalves &amp; Franco formalize the causal estimand problem for treatment lag time and propose a full target trial protocol to address it. <strong>This is the missing methods paper for anyone analyzing time-to-treatment data in cancer using EHR or administrative claims.</strong>"
+        },
+        {
+          "title": "STRASS 2 target trial emulation: Bridging the gap between trial efficacy and real-world effectiveness",
+          "authors": "Talathi et al.",
+          "source": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41936769/",
+          "tags": ["RWE", "Target Trial", "Causal Inference"],
+          "blurb": "Retroperitoneal sarcoma is rare and heterogeneous \u2014 making target trial emulation with the national cancer database especially valuable here. Talathi et al. find no survival benefit from neoadjuvant chemo vs. upfront surgery, and the finding holds across multivariable Cox, IPTW, and TTE analyses. <strong>The three-estimator consistency is exactly the triangulation practitioners should demand before treating observational findings as definitive.</strong>"
+        },
+        {
+          "title": "irAE-GPT: leveraging large language models to identify immune-related adverse events in electronic health records and clinical trial datasets",
+          "authors": "Bejan et al.",
+          "source": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41951517/",
+          "tags": ["AI/ML", "NLP", "RWE", "Pharmacovigilance"],
+          "blurb": "Pharmacovigilance is one of the most credible RWE use cases for LLMs, and irAE-GPT delivers a large-scale, multi-institution validation across both EHR and clinical trial text. GPT-4o achieves the best performance, but the critical finding is the causal attribution failure: <strong>models correctly identify adverse events but struggle to establish that they were caused by the immunotherapy</strong> \u2014 the exact limitation that matters for regulatory-grade safety signal detection."
+        },
+        {
+          "title": "Assessing the quality of AI-generated and physician-written discharge summaries: evaluation of an EHR-integrated tool in a Dutch academic hospital",
+          "authors": "Mehri et al.",
+          "source": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41962200/",
+          "tags": ["AI/ML", "EHR", "LLM"],
+          "blurb": "Most LLM-in-the-EHR papers test drafts in simulated settings; this one evaluates 292 fully automated summaries from a production-deployed system across multiple specialties at a real academic hospital. The headline finding \u2014 identical total quality scores \u2014 is striking, but <strong>the trust gap (85% vs. 95% full clinician trust) is the operationally meaningful number that should govern deployment decisions.</strong>"
+        }
+      ]
+    },
     {
       "weekOf": "2026-04-07",
       "articles": [
