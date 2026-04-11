@@ -402,6 +402,78 @@
     margin-top: 16px;
   }
 
+  /* RECENT ARCHIVES */
+  .recent-archives {
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+  }
+  .recent-archives-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .recent-archives-title {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+  }
+  .recent-archives-link {
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,205,212,0.25);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .recent-archives-link:hover {
+    color: var(--teal-light);
+    border-bottom-color: var(--teal-light);
+  }
+  .archive-week {
+    margin-bottom: 32px;
+  }
+  .archive-week-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .archive-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .archive-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .archive-list li:last-child { border-bottom: none; }
+  .archive-list a {
+    color: var(--silver);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .archive-list a:hover { color: var(--teal-light); }
+  .archive-list .archive-source {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-right: 10px;
+  }
+
   /* EMPTY STATE */
   .empty-state {
     text-align: center;
@@ -461,6 +533,16 @@
     </div>
   </div>
 
+  <div id="recent-archives-container" class="reveal reveal-d4" style="display:none;">
+    <div class="recent-archives">
+      <div class="recent-archives-header">
+        <p class="recent-archives-title">Recent Archives</p>
+        <a href="archive.html" class="recent-archives-link">View Full Archive &rarr;</a>
+      </div>
+      <div id="recent-archives-list"></div>
+    </div>
+  </div>
+
   <div class="how-it-works reveal reveal-d4" id="how-it-works">
     <button class="how-it-works-toggle" onclick="document.getElementById('how-it-works').classList.toggle('open')">
       <span>How this works</span>
@@ -517,41 +599,72 @@
     dateEl.textContent = 'Last updated ' + formatDate(data.lastUpdated);
     container.innerHTML = '';
 
-    data.weeks.forEach(week => {
-      const group = document.createElement('div');
-      group.className = 'week-group';
+    // Render only the current (most recent) week as full article cards
+    const currentWeek = data.weeks[0];
+    const group = document.createElement('div');
+    group.className = 'week-group';
 
-      const label = document.createElement('p');
-      label.className = 'week-label';
-      label.textContent = 'Week of ' + formatDate(week.weekOf);
-      group.appendChild(label);
+    const label = document.createElement('p');
+    label.className = 'week-label';
+    label.textContent = 'Week of ' + formatDate(currentWeek.weekOf);
+    group.appendChild(label);
 
-      week.articles.forEach(article => {
-        const card = document.createElement('div');
-        card.className = 'article-card';
+    currentWeek.articles.forEach(article => {
+      const card = document.createElement('div');
+      card.className = 'article-card';
 
-        const tags = (article.tags || []).map(t =>
-          '<span class="article-tag">' + escHtml(t) + '</span>'
-        ).join('');
+      const tags = (article.tags || []).map(t =>
+        '<span class="article-tag">' + escHtml(t) + '</span>'
+      ).join('');
 
-        const authors = article.authors
-          ? '<p class="article-authors">' + escHtml(article.authors) + '</p>'
-          : '';
+      const authors = article.authors
+        ? '<p class="article-authors">' + escHtml(article.authors) + '</p>'
+        : '';
 
-        card.innerHTML =
-          '<div class="article-meta">' +
-            '<span class="article-source">' + escHtml(article.source) + '</span>' +
-            '<div class="article-tags">' + tags + '</div>' +
-          '</div>' +
-          '<p class="article-title"><a href="' + escAttr(article.url) + '" target="_blank" rel="noopener">' + escHtml(article.title) + '</a></p>' +
-          authors +
-          '<p class="article-blurb">' + article.blurb + '</p>';
+      card.innerHTML =
+        '<div class="article-meta">' +
+          '<span class="article-source">' + escHtml(article.source) + '</span>' +
+          '<div class="article-tags">' + tags + '</div>' +
+        '</div>' +
+        '<p class="article-title"><a href="' + escAttr(article.url) + '" target="_blank" rel="noopener">' + escHtml(article.title) + '</a></p>' +
+        authors +
+        '<p class="article-blurb">' + article.blurb + '</p>';
 
-        group.appendChild(card);
-      });
-
-      container.appendChild(group);
+      group.appendChild(card);
     });
+
+    container.appendChild(group);
+
+    // Render the next 4 weeks (if any) as a condensed Recent Archives section
+    const recentWeeks = data.weeks.slice(1, 5);
+    if (recentWeeks.length > 0) {
+      const archivesContainer = document.getElementById('recent-archives-container');
+      const archivesList = document.getElementById('recent-archives-list');
+      archivesContainer.style.display = 'block';
+
+      recentWeeks.forEach(week => {
+        const wrap = document.createElement('div');
+        wrap.className = 'archive-week';
+
+        const heading = document.createElement('p');
+        heading.className = 'archive-week-label';
+        heading.textContent = 'Week of ' + formatDate(week.weekOf);
+        wrap.appendChild(heading);
+
+        const ul = document.createElement('ul');
+        ul.className = 'archive-list';
+        week.articles.forEach(article => {
+          const li = document.createElement('li');
+          li.innerHTML =
+            '<span class="archive-source">' + escHtml(article.source) + '</span>' +
+            '<a href="' + escAttr(article.url) + '" target="_blank" rel="noopener">' +
+            escHtml(article.title) + '</a>';
+          ul.appendChild(li);
+        });
+        wrap.appendChild(ul);
+        archivesList.appendChild(wrap);
+      });
+    }
   } catch (e) {
     // silently keep empty state
   }
