@@ -72,7 +72,7 @@
 ```
 
 ```
-("large language model" OR "LLM" OR "generative AI") AND ("real-world evidence" OR "electronic health records")
+("large language model" OR "LLM" OR "generative AI") AND ("real-world evidence" OR "real-world data" OR "electronic health records" OR "claims data" OR "administrative data" OR "registry" OR "epidemiology" OR "digital health" OR "digital technologies")
 ```
 
 ```
@@ -81,6 +81,10 @@
 
 ```
 ("double machine learning" OR "TMLE" OR "targeted learning") AND ("real-world" OR "observational")
+```
+
+```
+("large language model" OR "LLM" OR "generative AI") AND ("pharmacovigilance" OR "adverse event" OR "drug safety")
 ```
 
 ---
