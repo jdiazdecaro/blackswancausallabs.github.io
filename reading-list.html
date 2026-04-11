@@ -205,6 +205,90 @@
     font-weight: 400;
   }
 
+  /* SUBSCRIBE BOX */
+  .subscribe-box {
+    margin-top: 56px;
+    padding: 40px 36px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .subscribe-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 14px;
+  }
+  .subscribe-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .subscribe-desc {
+    font-size: 15px;
+    color: var(--silver);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 24px;
+  }
+  .subscribe-form {
+    display: flex;
+    gap: 10px;
+    max-width: 480px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .subscribe-form input[type="email"] {
+    flex: 1;
+    min-width: 220px;
+    padding: 14px 18px;
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    transition: border-color 0.3s;
+  }
+  .subscribe-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--teal-light);
+  }
+  .subscribe-form input[type="email"]::placeholder {
+    color: rgba(200,205,212,0.4);
+  }
+  .subscribe-form button {
+    padding: 14px 28px;
+    background: var(--teal);
+    border: 1px solid var(--teal);
+    border-radius: 4px;
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .subscribe-form button:hover {
+    background: var(--teal-light);
+    border-color: var(--teal-light);
+  }
+  .subscribe-note {
+    font-size: 11px;
+    color: rgba(200,205,212,0.45);
+    letter-spacing: 0.08em;
+    margin-top: 16px;
+  }
+
   /* EMPTY STATE */
   .empty-state {
     text-align: center;
@@ -261,6 +345,23 @@
     <div class="empty-state">
       <p>The first batch of articles is coming soon.<br>Check back Wednesday.</p>
     </div>
+  </div>
+
+  <div class="subscribe-box reveal reveal-d4">
+    <p class="subscribe-eyebrow">Get it in your inbox</p>
+    <h2 class="subscribe-title">Subscribe to the weekly digest</h2>
+    <p class="subscribe-desc">Five curated papers at the intersection of RWE, causal inference, and AI &mdash; delivered to your inbox every Wednesday.</p>
+    <form
+      action="https://buttondown.com/api/emails/embed-subscribe/jdiazdecaro"
+      method="post"
+      target="popupwindow"
+      onsubmit="window.open('https://buttondown.com/jdiazdecaro', 'popupwindow')"
+      class="subscribe-form"
+    >
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="subscribe-note">No spam. Unsubscribe anytime.</p>
   </div>
 </main>
 
