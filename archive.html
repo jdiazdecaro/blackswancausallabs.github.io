@@ -150,34 +150,77 @@
   }
   .jump-nav a:hover { color: var(--teal-light); }
 
-  /* WEEK SECTIONS */
+  /* WEEK SECTIONS (collapsible) */
   .archive-week {
-    margin-bottom: 64px;
+    margin-bottom: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
     scroll-margin-top: 180px;
+    transition: border-color 0.3s;
+  }
+  .archive-week.open { border-color: rgba(90,173,173,0.25); }
+  .archive-week-toggle {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    padding: 24px 32px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-family: inherit;
+    transition: background 0.3s;
+  }
+  .archive-week-toggle:hover { background: rgba(90,173,173,0.05); }
+  .archive-week-toggle-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
   }
   .archive-week-header {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 400;
     color: var(--white);
-    margin-bottom: 8px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
+    line-height: 1.2;
   }
   .archive-week-count {
     font-family: 'Raleway', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: rgba(200,205,212,0.5);
-    margin-left: 12px;
+  }
+  .archive-week-toggle-icon {
+    color: var(--teal-light);
+    font-size: 22px;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+    line-height: 1;
+  }
+  .archive-week.open .archive-week-toggle-icon { transform: rotate(45deg); }
+  .archive-week-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s;
+  }
+  .archive-week.open .archive-week-body {
+    max-height: 6000px;
+    padding: 0 32px 24px;
   }
 
   .archive-article {
     padding: 22px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    border-top: 1px solid rgba(255,255,255,0.04);
   }
-  .archive-article:last-child { border-bottom: none; }
+  .archive-article:first-child { border-top: none; padding-top: 12px; }
   .archive-article-meta {
     display: flex;
     align-items: center;
@@ -323,6 +366,10 @@
         const a = document.createElement('a');
         a.href = '#week-' + i;
         a.textContent = formatDateShort(week.weekOf);
+        a.addEventListener('click', () => {
+          const target = document.getElementById('week-' + i);
+          if (target) target.classList.add('open');
+        });
         jumpNavList.appendChild(a);
       });
     }
@@ -331,12 +378,23 @@
       const section = document.createElement('section');
       section.className = 'archive-week';
       section.id = 'week-' + i;
+      // First (most recent) week opens by default
+      if (i === 0) section.classList.add('open');
 
-      const header = document.createElement('h2');
-      header.className = 'archive-week-header';
-      header.innerHTML = 'Week of ' + formatDate(week.weekOf) +
-        '<span class="archive-week-count">' + week.articles.length + ' papers</span>';
-      section.appendChild(header);
+      const toggle = document.createElement('button');
+      toggle.className = 'archive-week-toggle';
+      toggle.type = 'button';
+      toggle.innerHTML =
+        '<div class="archive-week-toggle-left">' +
+          '<span class="archive-week-header">Week of ' + formatDate(week.weekOf) + '</span>' +
+          '<span class="archive-week-count">' + week.articles.length + ' papers</span>' +
+        '</div>' +
+        '<span class="archive-week-toggle-icon">+</span>';
+      toggle.addEventListener('click', () => section.classList.toggle('open'));
+      section.appendChild(toggle);
+
+      const body = document.createElement('div');
+      body.className = 'archive-week-body';
 
       week.articles.forEach(article => {
         const div = document.createElement('div');
@@ -359,11 +417,20 @@
           authors +
           '<p class="archive-article-blurb">' + article.blurb + '</p>';
 
-        section.appendChild(div);
+        body.appendChild(div);
       });
 
+      section.appendChild(body);
       container.appendChild(section);
     });
+
+    // If a hash like #week-2 is in the URL, open that week and scroll to it
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target && target.classList.contains('archive-week')) {
+        target.classList.add('open');
+      }
+    }
   } catch (e) {
     // silent
   }
