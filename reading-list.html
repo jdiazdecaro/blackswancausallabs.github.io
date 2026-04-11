@@ -81,9 +81,20 @@
 
   /* MAIN CONTAINER */
   .reading-wrap {
-    max-width: 960px;
+    max-width: 1180px;
     margin: 0 auto;
     padding: 140px 24px 80px;
+  }
+  .reading-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (min-width: 980px) {
+    .reading-layout {
+      grid-template-columns: minmax(0, 1fr) 240px;
+    }
   }
 
   /* HEADER */
@@ -404,77 +415,64 @@
     margin-top: 16px;
   }
 
-  /* RECENT ARCHIVES */
-  .recent-archives {
-    margin-top: 64px;
-    padding-top: 48px;
-    border-top: 1px solid var(--border);
+  /* ARCHIVES SIDEBAR */
+  .archives-sidebar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 26px;
   }
-  .recent-archives-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 28px;
-    flex-wrap: wrap;
-    gap: 12px;
+  @media (min-width: 980px) {
+    .archives-sidebar {
+      position: sticky;
+      top: 110px;
+    }
   }
-  .recent-archives-title {
+  .archives-sidebar-title {
     font-family: 'Cinzel', serif;
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
     color: var(--teal-light);
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--border);
   }
-  .recent-archives-link {
+  .archives-sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+  }
+  .archives-sidebar-list li {
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .archives-sidebar-list li:last-child { border-bottom: none; }
+  .archives-sidebar-list a {
+    color: var(--silver);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.4;
+    display: block;
+    transition: color 0.3s, padding 0.3s;
+  }
+  .archives-sidebar-list a:hover {
+    color: var(--teal-light);
+    padding-left: 4px;
+  }
+  .archives-sidebar-link {
+    display: block;
     font-family: 'Raleway', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--silver);
     text-decoration: none;
-    border-bottom: 1px solid rgba(200,205,212,0.25);
-    padding-bottom: 2px;
-    transition: color 0.3s, border-color 0.3s;
-  }
-  .recent-archives-link:hover {
-    color: var(--teal-light);
-    border-bottom-color: var(--teal-light);
-  }
-  .archive-week {
-    margin-bottom: 32px;
-  }
-  .archive-week-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--white);
-    margin-bottom: 12px;
-  }
-  .archive-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .archive-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    font-size: 14px;
-    line-height: 1.55;
-  }
-  .archive-list li:last-child { border-bottom: none; }
-  .archive-list a {
-    color: var(--silver);
-    text-decoration: none;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
     transition: color 0.3s;
   }
-  .archive-list a:hover { color: var(--teal-light); }
-  .archive-list .archive-source {
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--teal-light);
-    margin-right: 10px;
-  }
+  .archives-sidebar-link:hover { color: var(--teal-light); }
 
   /* EMPTY STATE */
   .empty-state {
@@ -529,20 +527,20 @@
   <p class="transparency-line reveal reveal-d3">Curated weekly by an AI agent with editorial oversight by John Diaz-Decaro. <a href="#how-it-works">How this works.</a></p>
   <p class="last-updated reveal reveal-d3" id="updated-date"></p>
 
-  <div id="articles-container" class="reveal reveal-d4">
-    <div class="empty-state">
-      <p>The first batch of articles is coming soon.<br>Check back Wednesday.</p>
-    </div>
-  </div>
-
-  <div id="recent-archives-container" class="reveal reveal-d4" style="display:none;">
-    <div class="recent-archives">
-      <div class="recent-archives-header">
-        <p class="recent-archives-title">Recent Archives</p>
-        <a href="archive.html" class="recent-archives-link">View Full Archive &rarr;</a>
+  <div class="reading-layout reveal reveal-d4">
+    <div id="articles-container">
+      <div class="empty-state">
+        <p>The first batch of articles is coming soon.<br>Check back Wednesday.</p>
       </div>
-      <div id="recent-archives-list"></div>
     </div>
+
+    <aside id="archives-sidebar-container" style="display:none;">
+      <div class="archives-sidebar">
+        <p class="archives-sidebar-title">Archives</p>
+        <ul class="archives-sidebar-list" id="archives-sidebar-list"></ul>
+        <a href="archive.html" class="archives-sidebar-link">View Full Archive &rarr;</a>
+      </div>
+    </aside>
   </div>
 
   <div class="how-it-works reveal reveal-d4" id="how-it-works">
@@ -637,34 +635,18 @@
 
     container.appendChild(group);
 
-    // Render the next 4 weeks (if any) as a condensed Recent Archives section
-    const recentWeeks = data.weeks.slice(1, 5);
-    if (recentWeeks.length > 0) {
-      const archivesContainer = document.getElementById('recent-archives-container');
-      const archivesList = document.getElementById('recent-archives-list');
-      archivesContainer.style.display = 'block';
+    // Populate the Archives sidebar with all past weeks (excluding the current one shown above)
+    const pastWeeks = data.weeks.slice(1);
+    if (pastWeeks.length > 0) {
+      const sidebarContainer = document.getElementById('archives-sidebar-container');
+      const sidebarList = document.getElementById('archives-sidebar-list');
+      sidebarContainer.style.display = 'block';
 
-      recentWeeks.forEach(week => {
-        const wrap = document.createElement('div');
-        wrap.className = 'archive-week';
-
-        const heading = document.createElement('p');
-        heading.className = 'archive-week-label';
-        heading.textContent = 'Week of ' + formatDate(week.weekOf);
-        wrap.appendChild(heading);
-
-        const ul = document.createElement('ul');
-        ul.className = 'archive-list';
-        week.articles.forEach(article => {
-          const li = document.createElement('li');
-          li.innerHTML =
-            '<span class="archive-source">' + escHtml(article.source) + '</span>' +
-            '<a href="' + escAttr(article.url) + '" target="_blank" rel="noopener">' +
-            escHtml(article.title) + '</a>';
-          ul.appendChild(li);
-        });
-        wrap.appendChild(ul);
-        archivesList.appendChild(wrap);
+      pastWeeks.forEach((week, idx) => {
+        const li = document.createElement('li');
+        // The archive page indexes weeks from 0 (most recent), so this past week is at index idx+1
+        li.innerHTML = '<a href="archive.html#week-' + (idx + 1) + '">Week of ' + formatDate(week.weekOf) + '</a>';
+        sidebarList.appendChild(li);
       });
     }
   } catch (e) {
