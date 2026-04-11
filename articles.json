@@ -5,6 +5,51 @@
       "weekOf": "2026-04-11",
       "articles": [
         {
+          "title": "Effects of individual sodium-glucose cotransporter-2 inhibitors on all-cause mortality in patients with diabetic kidney disease",
+          "authors": "Nobayashi et al.",
+          "source": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41963737/",
+          "tags": ["RWE", "Target Trial", "Pharmacoepidemiology"],
+          "blurb": "The SGLT2 inhibitor class comparison question is one of the most clinically consequential open RWE questions in nephrology, and Nobayashi et al. answer it with a target trial emulation on 12,308 Asian DKD patients across a decade of real-world data. <strong>The class-effect finding — all five agents show comparable mortality benefit versus dapagliflozin — gives clinicians license to select on tolerability and cost rather than defaulting to a single agent based on trial legacy.</strong> The Asian population coverage is itself a contribution, since Western RCTs have systematically under-represented this group."
+        },
+        {
+          "title": "Comparative effectiveness of mRNA-1273 versus protein-based NVX-CoV2705 vaccination on COVID-19-related outcomes among US insured adults during 2024–2025: a retrospective matched cohort study",
+          "authors": "Wilson et al.",
+          "source": "medRxiv",
+          "url": "https://www.medrxiv.org/content/10.64898/2026.04.02.26350067v1",
+          "tags": ["RWE", "Comparative Effectiveness", "Pharmacoepidemiology"],
+          "blurb": "A matched cohort of 103,710 US adults in insurance claims finds mRNA-1273 approximately 32% more effective than protein-based NVX-CoV2705 against medically attended COVID-19 and 41% more effective against hospitalization. <strong>The caveat that must accompany every citation of this paper: the corresponding author is at Moderna</strong> — read the methods carefully before taking the headline numbers at face value. That said, the design (exact matching plus stabilized IPTW) is sound, and head-to-head platform comparisons in real-world data are genuinely rare."
+        },
+        {
+          "title": "An integrative study of risk assessment, mediation analysis, and causal inference for the relationship between metabolic syndrome and dilated cardiomyopathy",
+          "authors": "Qi et al.",
+          "source": "medRxiv",
+          "url": "https://www.medrxiv.org/content/10.64898/2026.04.07.26350282v1",
+          "tags": ["Causal Inference", "Mendelian Randomization", "Mediation Analysis", "RWE"],
+          "blurb": "This is what multi-method causal triangulation looks like when it is done properly: Qi &amp; Zeng combine weighted quantile sum regression, nested case-control trajectory analysis, mediation analysis, and bidirectional Mendelian randomization in 378,837 UK Biobank participants to establish that central adiposity and hyperglycemia causally drive dilated cardiomyopathy. <strong>The 10-year pre-diagnosis metabolic risk score divergence is the finding practitioners should act on — it defines the intervention window before DCM onset.</strong> The MR confirmation eliminates the residual confounding concern that would undermine an observational-only result."
+        },
+        {
+          "title": "Cost-effectiveness analysis of resective epilepsy surgery in drug-resistant patients: an artificial intelligence data modeling",
+          "authors": "Kamalmaz et al.",
+          "source": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41946095/",
+          "tags": ["AI/ML", "LLM", "HTA", "EHR"],
+          "blurb": "Using Mistral 24B to extract epilepsy surgery outcomes from EHR text and pipe them directly into an ICER calculation is a genuinely novel end-to-end HTA workflow. The LLM achieves 91% binary outcome accuracy, but <strong>the critical finding is that LLM extraction errors push the cost-effectiveness estimate from €28,630/QALY to €57,858/QALY — nearly doubling it.</strong> Before any HTA unit deploys LLM-automated extraction pipelines for economic modeling, this error-propagation problem needs an explicit solution."
+        },
+        {
+          "title": "The Alberta Quality Assessment Tool: Risk of Bias (AQAT:RoB) for the Evaluation of Medical Large Language Model Question-Answer Studies: Development and Pilot Validation",
+          "authors": "Ye et al.",
+          "source": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41950508/",
+          "tags": ["AI/ML", "LLM", "Methodology"],
+          "blurb": "LLM-QA studies in medicine are proliferating faster than quality frameworks can track them, and AQAT:RoB fills that gap with a Delphi-validated, 5-domain tool covering question design, reference answer construction, LLM output evaluation, evaluator qualifications, and outcome measurement. Pilot validation shows 86% inter-rater agreement and κ=0.70 — solid for a new instrument. <strong>This is the systematic-review checklist equivalent for medical LLM benchmarks: if the study you are citing could not pass AQAT:RoB, weight its conclusions accordingly.</strong>"
+        }
+      ]
+    },
+    {
+      "weekOf": "2026-04-11",
+      "articles": [
+        {
           "title": "Causal mediation analysis with one or multiple mediators: A comparative study",
           "authors": "Ab\u00e9cassis et al.",
           "source": "PubMed",
