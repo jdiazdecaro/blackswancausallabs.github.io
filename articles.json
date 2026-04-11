@@ -5,6 +5,51 @@
       "weekOf": "2026-04-11",
       "articles": [
         {
+          "title": "TrialScout links published results to trial registrations using a large language model",
+          "authors": "von Schreeb et al.",
+          "source": "medRxiv",
+          "url": "https://www.medrxiv.org/content/10.64898/2026.03.15.26348383v2",
+          "tags": ["LLM", "Evidence Synthesis", "Clinical Trials", "RWE"],
+          "blurb": "Publication bias is not a theoretical concern — it is a systematic distortion of the evidence base, and TrialScout addresses it at industrial scale. von Schreeb and Nilsonne et al. deploy an LLM to match 9,600 ClinicalTrials.gov registrations against PubMed, finding results for 63.6% of trials at 92.5% sensitivity and 81.2% specificity against human coders. <strong>The 36% of trials with no findable publications is itself a research finding — and the automated pipeline makes reporting-compliance audits feasible for the first time at scale.</strong> Any systematic review team relying on registry screening as a publication-bias check should run TrialScout."
+        },
+        {
+          "title": "From Study Design to Executable Code: Automating Target Trial Emulation",
+          "authors": "Kim et al.",
+          "source": "medRxiv",
+          "url": "https://www.medrxiv.org/content/10.64898/2026.03.13.26348306v2",
+          "tags": ["TTE", "LLM", "Automation", "Tooling", "Causal Inference"],
+          "blurb": "The bottleneck in target trial emulation is rarely understanding the method — it is the gap between writing a protocol and generating correct, runnable code across a real database. Kim et al. test eight LLMs on their ability to translate TTE study descriptions into executable R scripts, validating across 15 OHDSI studies with external validation on five more. <strong>Code executability improved substantially after LLM self-auditing, but the performance gap between models and settings is the crucial finding: not all LLMs are created equal for this task.</strong> With an interactive prototype already publicly available, this paper marks the beginning of AI-augmented TTE implementation workflows."
+        },
+        {
+          "title": "Estimating the impact of Shigella vaccines on growth outcomes and implications for clinical trial design",
+          "authors": "Codi et al.",
+          "source": "medRxiv",
+          "url": "https://www.medrxiv.org/content/10.64898/2026.04.03.26350105v1",
+          "tags": ["TMLE", "Targeted Learning", "Vaccine", "Trial Design", "Causal Inference"],
+          "blurb": "David Benkeser and colleagues demonstrate the underappreciated third use case for TMLE: not just estimating causal effects from observational data, but using those estimates to power the next randomized trial. Applied to Shigella vaccine effects on linear growth faltering, the analysis generates the expected-effect-size distributions that Phase 3 trial designers need to choose sample sizes. <strong>This is the template for using causal estimation from existing data to avoid underpowered trials in neglected diseases, where there is no luxury of preliminary RCT data.</strong> The methodology transfers directly to any setting where regulatory and public health decision-makers need evidence-based power calculations before committing to a large trial."
+        },
+        {
+          "title": "Extracting Social Determinants of Health from Electronic Health Records: Development and Comparison of Rule-Based and Large Language Model Methods",
+          "authors": "Wang et al.",
+          "source": "medRxiv",
+          "url": "https://www.medrxiv.org/content/10.1101/2025.11.15.25339520v2",
+          "tags": ["LLM", "SDoH", "EHR", "RWD", "NLP"],
+          "blurb": "Social determinants of health are among the most consequential unmeasured confounders in pharmacoepidemiology, and they exist almost entirely in unstructured clinical notes. Wang, Smoller, and colleagues at Harvard/MGH run the head-to-head comparison practitioners have been waiting for: rule-based extraction versus LLM-based approaches on real EHR text. <strong>LLMs outperform rule-based methods on nuanced, contextually dependent SDoH categories (housing instability, food insecurity), while rule-based methods remain competitive for well-defined categorical variables.</strong> As regulatory agencies increasingly expect SDoH adjustment in RWE submissions, this comparison defines the minimum acceptable approach for each SDoH category."
+        },
+        {
+          "title": "Natural language processing to intercept rheumatoid and psoriatic arthritis from clinical notes in the Emergency Department",
+          "authors": "Tonutti et al.",
+          "source": "PubMed",
+          "url": "https://doi.org/10.1177/1759720X261431361",
+          "tags": ["NLP", "EHR", "Clinical Phenotyping", "Pharmacoepidemiology"],
+          "blurb": "This paper should be required reading before any team launches an NLP-based case ascertainment study in routine clinical data. Tonutti et al. build NLP models to detect RA and PsA signals from emergency department notes using propensity-score-matched controls — and watch performance collapse from AUC 70% in training to 62% in independent test sets. <strong>The drop is not a bug in the methodology; it is the expected consequence of deploying models on notes with different distributions than training data — precisely what happens in every real-world deployment scenario.</strong> The practical implication: NLP-based phenotyping algorithms need prospective external validation before they anchor any pharmacoepidemiology denominator."
+        }
+      ]
+    },
+    {
+      "weekOf": "2026-04-11",
+      "articles": [
+        {
           "title": "Effects of individual sodium-glucose cotransporter-2 inhibitors on all-cause mortality in patients with diabetic kidney disease",
           "authors": "Nobayashi et al.",
           "source": "PubMed",
@@ -51,11 +96,11 @@
       "articles": [
         {
           "title": "Causal mediation analysis with one or multiple mediators: A comparative study",
-          "authors": "Ab\u00e9cassis et al.",
+          "authors": "Abécassis et al.",
           "source": "PubMed",
           "url": "https://pubmed.ncbi.nlm.nih.gov/41955059/",
           "tags": ["Causal Inference", "AI/ML", "Double Machine Learning"],
-          "blurb": "This is the paper to send to anyone still defaulting to classical mediation analysis in observational data. Ab\u00e9cassis et al. comprehensively benchmark multiply-robust and double machine learning estimators against parametric approaches, and <strong>DML wins across nearly every simulation scenario</strong> \u2014 especially in the nonlinear confounding settings that define real-world EHR data. The UK Biobank application showing brain morphology mediates a substantial portion of the hypertension-cognition effect makes the methodology concrete."
+          "blurb": "This is the paper to send to anyone still defaulting to classical mediation analysis in observational data. Abécassis et al. comprehensively benchmark multiply-robust and double machine learning estimators against parametric approaches, and <strong>DML wins across nearly every simulation scenario</strong> — especially in the nonlinear confounding settings that define real-world EHR data. The UK Biobank application showing brain morphology mediates a substantial portion of the hypertension-cognition effect makes the methodology concrete."
         },
         {
           "title": "Causal estimands and target trials for the effect of lag time to treatment of cancer patients",
@@ -63,7 +108,7 @@
           "source": "medRxiv",
           "url": "https://www.medrxiv.org/content/10.64898/2026.04.07.26350338v1",
           "tags": ["Causal Inference", "Target Trial", "RWE"],
-          "blurb": "The Waiting Time Paradox \u2014 where sicker patients see doctors sooner and appear to have worse outcomes from faster treatment \u2014 is one of the most treacherous confounding traps in oncology RWE. Goncalves &amp; Franco formalize the causal estimand problem for treatment lag time and propose a full target trial protocol to address it. <strong>This is the missing methods paper for anyone analyzing time-to-treatment data in cancer using EHR or administrative claims.</strong>"
+          "blurb": "The Waiting Time Paradox — where sicker patients see doctors sooner and appear to have worse outcomes from faster treatment — is one of the most treacherous confounding traps in oncology RWE. Goncalves &amp; Franco formalize the causal estimand problem for treatment lag time and propose a full target trial protocol to address it. <strong>This is the missing methods paper for anyone analyzing time-to-treatment data in cancer using EHR or administrative claims.</strong>"
         },
         {
           "title": "STRASS 2 target trial emulation: Bridging the gap between trial efficacy and real-world effectiveness",
@@ -71,7 +116,7 @@
           "source": "PubMed",
           "url": "https://pubmed.ncbi.nlm.nih.gov/41936769/",
           "tags": ["RWE", "Target Trial", "Causal Inference"],
-          "blurb": "Retroperitoneal sarcoma is rare and heterogeneous \u2014 making target trial emulation with the national cancer database especially valuable here. Talathi et al. find no survival benefit from neoadjuvant chemo vs. upfront surgery, and the finding holds across multivariable Cox, IPTW, and TTE analyses. <strong>The three-estimator consistency is exactly the triangulation practitioners should demand before treating observational findings as definitive.</strong>"
+          "blurb": "Retroperitoneal sarcoma is rare and heterogeneous — making target trial emulation with the national cancer database especially valuable here. Talathi et al. find no survival benefit from neoadjuvant chemo vs. upfront surgery, and the finding holds across multivariable Cox, IPTW, and TTE analyses. <strong>The three-estimator consistency is exactly the triangulation practitioners should demand before treating observational findings as definitive.</strong>"
         },
         {
           "title": "irAE-GPT: leveraging large language models to identify immune-related adverse events in electronic health records and clinical trial datasets",
@@ -79,7 +124,7 @@
           "source": "PubMed",
           "url": "https://pubmed.ncbi.nlm.nih.gov/41951517/",
           "tags": ["AI/ML", "NLP", "RWE", "Pharmacovigilance"],
-          "blurb": "Pharmacovigilance is one of the most credible RWE use cases for LLMs, and irAE-GPT delivers a large-scale, multi-institution validation across both EHR and clinical trial text. GPT-4o achieves the best performance, but the critical finding is the causal attribution failure: <strong>models correctly identify adverse events but struggle to establish that they were caused by the immunotherapy</strong> \u2014 the exact limitation that matters for regulatory-grade safety signal detection."
+          "blurb": "Pharmacovigilance is one of the most credible RWE use cases for LLMs, and irAE-GPT delivers a large-scale, multi-institution validation across both EHR and clinical trial text. GPT-4o achieves the best performance, but the critical finding is the causal attribution failure: <strong>models correctly identify adverse events but struggle to establish that they were caused by the immunotherapy</strong> — the exact limitation that matters for regulatory-grade safety signal detection."
         },
         {
           "title": "Assessing the quality of AI-generated and physician-written discharge summaries: evaluation of an EHR-integrated tool in a Dutch academic hospital",
@@ -87,7 +132,7 @@
           "source": "PubMed",
           "url": "https://pubmed.ncbi.nlm.nih.gov/41962200/",
           "tags": ["AI/ML", "EHR", "LLM"],
-          "blurb": "Most LLM-in-the-EHR papers test drafts in simulated settings; this one evaluates 292 fully automated summaries from a production-deployed system across multiple specialties at a real academic hospital. The headline finding \u2014 identical total quality scores \u2014 is striking, but <strong>the trust gap (85% vs. 95% full clinician trust) is the operationally meaningful number that should govern deployment decisions.</strong>"
+          "blurb": "Most LLM-in-the-EHR papers test drafts in simulated settings; this one evaluates 292 fully automated summaries from a production-deployed system across multiple specialties at a real academic hospital. The headline finding — identical total quality scores — is striking, but <strong>the trust gap (85% vs. 95% full clinician trust) is the operationally meaningful number that should govern deployment decisions.</strong>"
         }
       ]
     },
@@ -100,7 +145,7 @@
           "source": "PubMed",
           "url": "https://pubmed.ncbi.nlm.nih.gov/41400456/",
           "tags": ["RWE", "Target Trial", "Causal Inference"],
-          "blurb": "This paper delivers a clean, clinically actionable comparison using target trial emulation on a large real-world claims database. The finding that SGLT2 inhibitors outperform GLP-1 agonists for kidney failure prevention \u2014 and that <strong>combination therapy may further benefit high-risk patients with CKD or heart failure</strong> \u2014 is precisely the kind of RWE practitioners need to guide prescribing decisions. The new-user, active-comparator design is the gold standard here."
+          "blurb": "This paper delivers a clean, clinically actionable comparison using target trial emulation on a large real-world claims database. The finding that SGLT2 inhibitors outperform GLP-1 agonists for kidney failure prevention — and that <strong>combination therapy may further benefit high-risk patients with CKD or heart failure</strong> — is precisely the kind of RWE practitioners need to guide prescribing decisions. The new-user, active-comparator design is the gold standard here."
         },
         {
           "title": "An AI Agent for Automated Causal Inference in Epidemiology",
@@ -108,7 +153,7 @@
           "source": "medRxiv",
           "url": "https://www.medrxiv.org/content/10.64898/2026.02.06.26345723v1",
           "tags": ["AI/ML", "Causal Inference", "NLP"],
-          "blurb": "EpiCausalX is the first end-to-end LLM agent that automates the full causal inference pipeline in epidemiology \u2014 from multi-database literature retrieval to confounder identification to interactive DAG visualization. <strong>This is what AI-augmented causal epidemiology actually looks like in practice</strong>, not just a chatbot wrapper around a textbook. The architecture signals where agentic causal workflows are heading in 2026."
+          "blurb": "EpiCausalX is the first end-to-end LLM agent that automates the full causal inference pipeline in epidemiology — from multi-database literature retrieval to confounder identification to interactive DAG visualization. <strong>This is what AI-augmented causal epidemiology actually looks like in practice</strong>, not just a chatbot wrapper around a textbook. The architecture signals where agentic causal workflows are heading in 2026."
         },
         {
           "title": "Evidence triangulator: using large language models to extract and synthesize causal evidence across study designs",
@@ -116,7 +161,7 @@
           "source": "PubMed",
           "url": "https://doi.org/10.1038/s41467-025-62783-x",
           "tags": ["AI/ML", "NLP", "Causal Inference", "RWE"],
-          "blurb": "Shi et al. tackle a genuinely hard problem \u2014 automating evidence triangulation across heterogeneous study designs \u2014 and show LLMs can extract directional effect and statistical significance information with high accuracy. <strong>The two-step approach (exposure-outcome concepts first, then relation extraction) is the key methodological insight worth borrowing.</strong> Practically, this is a game-changer for regulatory and HTA evidence synthesis."
+          "blurb": "Shi et al. tackle a genuinely hard problem — automating evidence triangulation across heterogeneous study designs — and show LLMs can extract directional effect and statistical significance information with high accuracy. <strong>The two-step approach (exposure-outcome concepts first, then relation extraction) is the key methodological insight worth borrowing.</strong> Practically, this is a game-changer for regulatory and HTA evidence synthesis."
         },
         {
           "title": "Double Machine Learning for Causal Inference in High-Dimensional Electronic Health Records",
@@ -124,7 +169,7 @@
           "source": "medRxiv",
           "url": "https://www.medrxiv.org/content/10.1101/2025.07.21.25331944v1",
           "tags": ["AI/ML", "Causal Inference", "RWE"],
-          "blurb": "For pharmacoepidemiologists still defaulting to IPTW in high-dimensional EHR settings, this is a wake-up call. Du et al. show that offset-DML consistently outperforms IPTW on both bias and empirical standard error \u2014 especially in sparse-data scenarios common in clinical practice. <strong>The plasmode simulation grounded in real clinical data gives these results far more credibility than a purely synthetic benchmark.</strong>"
+          "blurb": "For pharmacoepidemiologists still defaulting to IPTW in high-dimensional EHR settings, this is a wake-up call. Du et al. show that offset-DML consistently outperforms IPTW on both bias and empirical standard error — especially in sparse-data scenarios common in clinical practice. <strong>The plasmode simulation grounded in real clinical data gives these results far more credibility than a purely synthetic benchmark.</strong>"
         },
         {
           "title": "Can Contemporary Large Language Models Provide the Domain Knowledge Needed for Causal Inference? Evaluating Automated Causal Graph Discovery Through an ASCVD Case Study",
@@ -132,7 +177,7 @@
           "source": "PubMed",
           "url": "https://doi.org/10.2147/CLEP.S550565",
           "tags": ["AI/ML", "Causal Inference", "DAG"],
-          "blurb": "Aziz and Brookhart benchmark GPT-4o and GPT-o1 for automated DAG generation in cardiovascular pharmacoepidemiology \u2014 and find current LLMs can assist but cannot replace human domain expertise. <strong>This is required reading before you hand your confounder selection to a language model.</strong> The ASCVD case study exposes systematic failure modes: LLMs miss temporality, conflate proxies with mediators, and hallucinate causal paths."
+          "blurb": "Aziz and Brookhart benchmark GPT-4o and GPT-o1 for automated DAG generation in cardiovascular pharmacoepidemiology — and find current LLMs can assist but cannot replace human domain expertise. <strong>This is required reading before you hand your confounder selection to a language model.</strong> The ASCVD case study exposes systematic failure modes: LLMs miss temporality, conflate proxies with mediators, and hallucinate causal paths."
         }
       ]
     }
