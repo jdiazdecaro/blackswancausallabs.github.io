@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>Methodology: How the Reading List Works &middot; Black Swan Causal Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:       #050608;
+    --deep:        #090c10;
+    --surface:     #0d1117;
+    --ink:         #111620;
+    --border:      rgba(255,255,255,0.06);
+    --silver:      #c8cdd4;
+    --white:       #eef0f3;
+    --teal:        #3d7a7a;
+    --teal-light:  #5aadad;
+    --accent:      #8bbfbf;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 64px;
+    background: linear-gradient(to bottom, rgba(5,6,8,0.95) 0%, transparent 100%);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--silver);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--teal-light); }
+  .nav-back {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-back:hover { color: var(--teal-light); }
+
+  /* FADE-IN ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .reveal-d1 { animation-delay: 0.1s; }
+  .reveal-d2 { animation-delay: 0.3s; }
+  .reveal-d3 { animation-delay: 0.5s; }
+  .reveal-d4 { animation-delay: 0.7s; }
+
+  /* MAIN CONTAINER */
+  .methodology-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 140px 24px 80px;
+  }
+
+  /* HEADER */
+  .page-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 18px;
+  }
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5.5vw, 52px);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+  .page-title em { font-style: italic; }
+  .page-deck {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--accent);
+    max-width: 640px;
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* CONTENT SECTIONS */
+  .section {
+    margin-bottom: 56px;
+  }
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 14px;
+  }
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.25;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+  .section p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--silver);
+    margin-bottom: 18px;
+  }
+  .section p strong {
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .section p em {
+    color: var(--white);
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    margin: 40px 0;
+    padding: 28px 36px;
+    border-left: 2px solid var(--teal-light);
+    background: rgba(90,173,173,0.04);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--white);
+  }
+
+  /* STEP CARDS */
+  .pipeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 28px 0 32px;
+  }
+  .pipeline-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 28px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .pipeline-num {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    color: var(--teal-light);
+    flex-shrink: 0;
+    line-height: 1.2;
+    min-width: 32px;
+  }
+  .pipeline-step-body h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+  }
+  .pipeline-step-body p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--silver);
+    margin-bottom: 0;
+  }
+
+  /* SEARCH STRATEGY BLOCK */
+  .strategy-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin: 24px 0 32px;
+  }
+  .strategy-block h5 {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .strategy-block code {
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--silver);
+    background: var(--black);
+    padding: 14px 18px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    line-height: 1.6;
+    word-break: break-word;
+  }
+  .strategy-block code:last-child { margin-bottom: 0; }
+
+  /* CTA */
+  .cta {
+    margin-top: 64px;
+    padding: 40px 36px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .cta h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+  .cta p {
+    font-size: 15px;
+    color: var(--silver);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .cta a {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--teal);
+    border: 1px solid var(--teal);
+    border-radius: 4px;
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .cta a:hover {
+    background: var(--teal-light);
+    border-color: var(--teal-light);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 64px 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+  }
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(200,205,212,0.35);
+    letter-spacing: 0.08em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    nav { padding: 20px 20px; }
+    .methodology-wrap { padding: 110px 16px 60px; }
+    .pipeline-step { flex-direction: column; gap: 8px; padding: 20px; }
+    .strategy-block { padding: 20px; }
+    .pull-quote { padding: 22px 24px; font-size: 19px; }
+    .cta { padding: 32px 24px; }
+    footer { padding: 36px 16px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Black Swan <span>Causal Labs</span></a>
+  <a href="reading-list.html" class="nav-back">&larr; Back to Reading List</a>
+</nav>
+
+<main class="methodology-wrap">
+  <p class="page-eyebrow reveal reveal-d1">Methodology</p>
+  <h1 class="page-title reveal reveal-d2">An <em>AI agent</em> curates this reading list. Here is exactly how.</h1>
+  <p class="page-deck reveal reveal-d3">A working demonstration of responsible AI in evidence workflows, built and operated by Black Swan Causal Labs.</p>
+
+  <div class="section reveal reveal-d4">
+    <p class="section-label">The premise</p>
+    <h2 class="section-heading">Why automate the curation, and why be loud about it</h2>
+    <p>Real-world evidence, causal inference, and machine learning are converging faster than any single practitioner can track. New methods, new tools, and new pitfalls show up every week across PubMed, bioRxiv, and medRxiv. Most of us read what gets surfaced by colleagues, social feeds, or journal alerts. That works, but it leaves a lot on the table, and it is biased toward whatever the loudest voices in the field happen to be amplifying.</p>
+    <p>This reading list is a small experiment in fixing that. An autonomous AI agent runs once a week, searches the literature using a structured query strategy, picks five papers, writes opinionated takes on each, and publishes the result. The output is for me first, and for anyone else who finds it useful second.</p>
+    <p>Black Swan Causal Labs exists to help scientists use AI in evidence work responsibly. It would be strange to do that without using AI in our own workflows, in public, with the wiring exposed. <strong>This page is the wiring diagram.</strong></p>
+  </div>
+
+  <div class="section reveal reveal-d4">
+    <p class="section-label">The architecture</p>
+    <h2 class="section-heading">A scheduled agent, a search strategy, and a newsletter pipeline</h2>
+    <p>The system has three parts. A scheduled agent that runs every Wednesday at 10am Eastern, a structured search strategy stored in a single file in the website repository, and a newsletter delivery layer that sends the weekly issue to subscribers.</p>
+    <p>The agent itself runs in a sandboxed cloud environment. It has access to web search, file editing, the ability to commit and push to the website repository, and the ability to call the Buttondown API. It does not have access to email accounts, internal documents, or anything else. The blast radius is small on purpose.</p>
+
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <div class="pipeline-num">01</div>
+        <div class="pipeline-step-body">
+          <h4>Search</h4>
+          <p>The agent reads the search strategy file and runs a series of structured queries against PubMed and bioRxiv. It pulls candidate papers from the last seven days that match the topic intersections.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-num">02</div>
+        <div class="pipeline-step-body">
+          <h4>Curate</h4>
+          <p>It ranks the candidates by novelty, methodological substance, and relevance to practitioners. It narrows the field to five papers that ideally span methods, applications, and tooling so the issue is not five variations of the same theme.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-num">03</div>
+        <div class="pipeline-step-body">
+          <h4>Write</h4>
+          <p>For each paper the agent drafts a two or three sentence take. The instruction is explicit: write a take, not a summary. Say what is interesting, what is new, and what a practitioner should pay attention to. Use bold for the one sentence you would underline if you were reading on paper.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-num">04</div>
+        <div class="pipeline-step-body">
+          <h4>Publish</h4>
+          <p>The agent updates a JSON file in the website repository with the new week of articles, commits the change, and pushes it to GitHub. The reading list page reads from that file and updates automatically.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-num">05</div>
+        <div class="pipeline-step-body">
+          <h4>Send</h4>
+          <p>It composes an HTML newsletter from the same five articles and posts it to the Buttondown API. Buttondown handles delivery, double opt-in confirmation for new subscribers, and unsubscribe management.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section reveal reveal-d4">
+    <p class="section-label">The search strategy</p>
+    <h2 class="section-heading">What the agent looks for, and how</h2>
+    <p>The agent does not freelance. It searches against a fixed list of topics and combinations that I maintain by hand. The list lives in a single file in the website repository so it is easy to revise and version controlled, which means the methodology evolves transparently rather than drifting silently inside a chatbot.</p>
+    <p>The intersection queries are the most important part. They are designed to surface papers that sit at the seams between fields, where the interesting work is usually happening.</p>
+
+    <div class="strategy-block">
+      <h5>Intersection queries</h5>
+      <code>("real-world evidence" OR "real-world data") AND ("causal inference" OR "target trial emulation")</code>
+      <code>("machine learning" OR "artificial intelligence") AND ("causal inference") AND ("observational study" OR "pharmacoepidemiology")</code>
+      <code>("large language model" OR "LLM" OR "generative AI") AND ("real-world evidence" OR "electronic health records")</code>
+      <code>("double machine learning" OR "TMLE" OR "targeted learning") AND ("real-world" OR "observational")</code>
+    </div>
+
+    <p>Beyond these, the agent has access to a richer term library covering pharmacoepidemiology, post-market surveillance, propensity score methods, instrumental variables, difference-in-differences, g-methods, federated learning, and others. The full list is in the website repository.</p>
+  </div>
+
+  <div class="section reveal reveal-d4">
+    <p class="section-label">The human in the loop</p>
+    <h2 class="section-heading">What the AI does, and what I do</h2>
+    <p>The agent picks the papers from week to week. The agent writes the takes. The agent ships the newsletter. I do not approve each issue before it goes out, and I think that is important to be clear about. If you see a take in the newsletter, an AI wrote it.</p>
+    <p>What I do is everything that decides what kind of curator the agent is. I designed the search strategy. I wrote the curation criteria, the tone instructions for the takes, and the rules for what makes an issue good. I review the output over time and refine the system prompt when I notice patterns I want to change. I am the one accountable when the agent gets something wrong, because the agent is doing what I told it to do.</p>
+    <div class="pull-quote">The agent is the curator. The human is the editor and the accountable scientist.</div>
+    <p>This is the model I think most AI in evidence work should follow. Not full automation, not human review of every output, but humans in the loop at the right places. Designing the system, defining the criteria, monitoring drift, and standing behind the result.</p>
+  </div>
+
+  <div class="section reveal reveal-d4">
+    <p class="section-label">Limitations</p>
+    <h2 class="section-heading">What this system is bad at, and what I am watching for</h2>
+    <p>The agent uses web search rather than direct database APIs, which means it is sensitive to whatever search engines surface. Highly cited classics get surfaced more easily than genuinely new work. Preprints from less indexed servers get missed.</p>
+    <p>The takes can be confidently wrong. The agent has no access to the full text of most papers, so its read on a study is based on the abstract and whatever it can glean from secondary sources. If a paper has a subtle methodological flaw that only shows up in the supplementary materials, the agent will not catch it.</p>
+    <p>The five paper limit is a blunt instrument. A great week might deserve seven papers. A slow week might honestly only have three. The agent is currently asked to always pick five, and sometimes that means a borderline pick gets included.</p>
+    <p>The curation criteria favor novelty and methodological interest, which can underweight implementation papers, regulatory science, and applied work. I am refining the prompts over time to balance this better.</p>
+    <p><strong>If you spot a bad take, a missed paper, or a pattern that worries you, tell me.</strong> The whole point of doing this in public is so the failure modes get caught and the system gets better.</p>
+  </div>
+
+  <div class="cta reveal reveal-d4">
+    <h3>Subscribe to the weekly digest</h3>
+    <p>Five papers, every Wednesday, delivered to your inbox.</p>
+    <a href="reading-list.html#how-it-works">Visit the reading list</a>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Black Swan Causal Labs, LLC, Los Angeles, CA</p>
+  </div>
+</footer>
+
+</body>
+</html>

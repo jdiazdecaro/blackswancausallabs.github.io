@@ -205,6 +205,119 @@
     font-weight: 400;
   }
 
+  /* TRANSPARENCY LINE */
+  .transparency-line {
+    font-size: 13px;
+    color: rgba(200,205,212,0.55);
+    line-height: 1.6;
+    max-width: 640px;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .transparency-line a {
+    color: var(--teal-light);
+    text-decoration: none;
+    font-style: normal;
+    border-bottom: 1px solid rgba(90,173,173,0.35);
+    transition: border-color 0.3s;
+  }
+  .transparency-line a:hover { border-bottom-color: var(--teal-light); }
+
+  /* HOW IT WORKS CARD */
+  .how-it-works {
+    margin-top: 56px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .how-it-works-toggle {
+    width: 100%;
+    padding: 24px 32px;
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
+  }
+  .how-it-works-toggle:hover { background: rgba(90,173,173,0.05); }
+  .how-it-works-toggle .toggle-icon {
+    color: var(--teal-light);
+    font-size: 18px;
+    transition: transform 0.3s;
+  }
+  .how-it-works.open .toggle-icon { transform: rotate(45deg); }
+  .how-it-works-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s;
+  }
+  .how-it-works.open .how-it-works-body {
+    max-height: 1200px;
+    padding: 0 32px 32px;
+  }
+  .how-it-works-body p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--silver);
+    margin-bottom: 14px;
+  }
+  .how-it-works-body p strong {
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .how-it-works-body .step-list {
+    list-style: none;
+    margin: 18px 0 24px;
+    padding: 0;
+  }
+  .how-it-works-body .step-list li {
+    padding: 12px 0 12px 28px;
+    border-left: 1px solid rgba(90,173,173,0.2);
+    margin-left: 4px;
+    position: relative;
+    color: var(--silver);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .how-it-works-body .step-list li::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 18px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--teal-light);
+  }
+  .how-it-works-body .step-list strong {
+    color: var(--white);
+    font-weight: 400;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .how-it-works-body .read-more-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--teal-light);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(90,173,173,0.35);
+    padding-bottom: 2px;
+    transition: border-color 0.3s;
+  }
+  .how-it-works-body .read-more-link:hover { border-bottom-color: var(--teal-light); }
+
   /* SUBSCRIBE BOX */
   .subscribe-box {
     margin-top: 56px;
@@ -339,11 +452,31 @@
   <p class="page-eyebrow reveal reveal-d1">Curated Weekly</p>
   <h1 class="page-title reveal reveal-d2">This Week in Real-World Evidence &amp; AI</h1>
   <p class="page-subtitle reveal reveal-d3">Five papers each week at the intersection of RWE, causal inference, and AI.</p>
+  <p class="transparency-line reveal reveal-d3">Curated weekly by an AI agent with editorial oversight by John Diaz-Decaro. <a href="#how-it-works">How this works.</a></p>
   <p class="last-updated reveal reveal-d3" id="updated-date"></p>
 
   <div id="articles-container" class="reveal reveal-d4">
     <div class="empty-state">
       <p>The first batch of articles is coming soon.<br>Check back Wednesday.</p>
+    </div>
+  </div>
+
+  <div class="how-it-works reveal reveal-d4" id="how-it-works">
+    <button class="how-it-works-toggle" onclick="document.getElementById('how-it-works').classList.toggle('open')">
+      <span>How this works</span>
+      <span class="toggle-icon">+</span>
+    </button>
+    <div class="how-it-works-body">
+      <p>Every Wednesday morning, an autonomous AI agent searches PubMed and bioRxiv for the most noteworthy recent papers at the intersection of real-world evidence, causal inference, and artificial intelligence. It selects five, writes a short opinionated take on each, updates this page, and sends a newsletter to subscribers. No human curator picks the papers from week to week.</p>
+      <p>This is intentional. Black Swan Causal Labs exists to help scientists use AI in evidence work responsibly, and that means being transparent about how we use it ourselves. The reading list is a working demonstration, not a marketing prop.</p>
+      <ul class="step-list">
+        <li><strong>Search</strong>The agent runs structured queries across PubMed and bioRxiv covering RWE, target trial emulation, causal inference, machine learning in pharmacoepidemiology, and large language models in EHR research.</li>
+        <li><strong>Curate</strong>It ranks results by novelty and relevance to practitioners, then narrows the field to five papers that span methods, applications, and tooling.</li>
+        <li><strong>Write</strong>For each paper the agent drafts a two or three sentence take, focused on what is interesting or new and what readers should pay attention to. Not summaries. Takes.</li>
+        <li><strong>Publish and send</strong>It commits the new entries to the website repository and delivers the newsletter to subscribers through Buttondown.</li>
+      </ul>
+      <p>Editorial oversight comes from John Diaz-Decaro, who designed the search strategy, defined the curation criteria, and reviews outputs over time to refine the system. The agent is the curator. The human is the editor and the accountable scientist.</p>
+      <a href="methodology.html" class="read-more-link">Read the full methodology &rarr;</a>
     </div>
   </div>
 
