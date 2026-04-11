@@ -1,0 +1,67 @@
+name: Send Newsletter
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'latest_newsletter.json'
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify newsletter payload is ready to send
+        id: verify
+        run: |
+          if [ ! -f latest_newsletter.json ]; then
+            echo "::error::latest_newsletter.json not found"
+            exit 1
+          fi
+          echo "Payload size: $(wc -c < latest_newsletter.json) bytes"
+
+          status=$(python3 -c "import json; print(json.load(open('latest_newsletter.json')).get('status', ''))")
+          echo "Status: $status"
+
+          if [ "$status" != "about_to_send" ]; then
+            echo "::notice::Skipping send. Status is '$status', not 'about_to_send'. This is normal for the placeholder file."
+            echo "should_send=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "Subject: $(python3 -c "import json; print(json.load(open('latest_newsletter.json'))['subject'])")"
+          echo "should_send=true" >> $GITHUB_OUTPUT
+
+      - name: Send newsletter via Buttondown API
+        if: steps.verify.outputs.should_send == 'true'
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: |
+          if [ -z "$BUTTONDOWN_API_KEY" ]; then
+            echo "::error::BUTTONDOWN_API_KEY secret is not set. Add it at Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+          response=$(curl -s -w "\n__HTTP_CODE__%{http_code}" -X POST https://api.buttondown.com/v1/emails \
+            -H "Authorization: Token $BUTTONDOWN_API_KEY" \
+            -H "Content-Type: application/json" \
+            -H "X-Buttondown-Live-Dangerously: true" \
+            -d @latest_newsletter.json)
+
+          http_code=$(echo "$response" | grep -o '__HTTP_CODE__[0-9]*' | sed 's/__HTTP_CODE__//')
+          body=$(echo "$response" | sed 's/__HTTP_CODE__[0-9]*//')
+
+          echo "HTTP Status: $http_code"
+          echo "Response body:"
+          echo "$body" | python3 -m json.tool 2>/dev/null || echo "$body"
+
+          if [ "$http_code" != "201" ]; then
+            echo "::error::Buttondown API returned HTTP $http_code"
+            exit 1
+          fi
+
+          email_id=$(echo "$body" | python3 -c "import sys, json; print(json.load(sys.stdin).get('id', 'unknown'))")
+          echo "::notice::Newsletter sent successfully. Email ID: $email_id"
