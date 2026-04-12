@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <title>This Week in RWE, Causal Inference &amp; AI &middot; Black Swan Causal Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,13 +21,23 @@
     --teal:        #3d7a7a;
     --teal-light:  #5aadad;
     --accent:      #8bbfbf;
+
+    --light-bg:    #ffffff;
+    --grey-bg:     #f0f1f4;
+    --dark-text:   #1a1d24;
+    --body-text:   #3a3f4a;
+    --muted-text:  #6b7180;
+    --light-border: rgba(0,0,0,0.08);
+    --card-bg:     #ffffff;
+    --card-bg-alt: #f7f8fa;
+    --teal-dark:   #2a6363;
   }
 
   html { scroll-behavior: smooth; }
   body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Raleway', sans-serif;
+    background: var(--grey-bg);
+    color: var(--body-text);
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
     min-height: 100vh;
@@ -42,28 +52,28 @@
     align-items: center;
     justify-content: space-between;
     padding: 30px 64px;
-    background: linear-gradient(to bottom, rgba(5,6,8,0.95) 0%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(240,241,244,0.98) 0%, transparent 100%);
   }
   .nav-logo {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     letter-spacing: 0.3em;
-    color: var(--silver);
+    color: var(--dark-text);
     text-decoration: none;
     text-transform: uppercase;
   }
-  .nav-logo span { color: var(--teal-light); }
+  .nav-logo span { color: var(--teal-dark); }
   .nav-back {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--body-text);
     text-decoration: none;
     transition: color 0.3s;
   }
-  .nav-back:hover { color: var(--teal-light); }
+  .nav-back:hover { color: var(--teal-dark); }
 
   /* FADE-IN ANIMATION */
   @keyframes fadeUp {
@@ -99,18 +109,19 @@
 
   /* HEADER */
   .page-eyebrow {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 18px;
     letter-spacing: 0.42em;
     text-transform: uppercase;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     margin-bottom: 18px;
   }
   .page-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: clamp(34px, 5.2vw, 48px);
     font-weight: 300;
     line-height: 1.15;
+    color: var(--dark-text);
     margin-bottom: 18px;
   }
   @media (min-width: 980px) {
@@ -118,14 +129,14 @@
   }
   .page-subtitle {
     font-size: 18px;
-    color: var(--silver);
+    color: var(--body-text);
     line-height: 1.7;
     max-width: 640px;
     margin-bottom: 14px;
   }
   .last-updated {
     font-size: 14px;
-    color: rgba(200,205,212,0.5);
+    color: var(--muted-text);
     letter-spacing: 0.1em;
     margin-bottom: 48px;
   }
@@ -135,27 +146,28 @@
     margin-bottom: 56px;
   }
   .week-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 14px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--light-border);
     margin-bottom: 24px;
   }
 
   /* ARTICLE CARD */
   .article-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--card-bg);
+    border: 1px solid var(--light-border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     border-radius: 8px;
     padding: 28px 32px;
     margin-bottom: 16px;
     transition: border-color 0.3s, transform 0.2s;
   }
   .article-card:hover {
-    border-color: rgba(90,173,173,0.25);
+    border-color: var(--teal);
     transform: translateY(-2px);
   }
   .article-meta {
@@ -170,8 +182,8 @@
     font-weight: 400;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--teal-light);
-    background: rgba(61,122,122,0.15);
+    color: var(--teal-dark);
+    background: rgba(42,99,99,0.08);
     padding: 3px 10px;
     border-radius: 3px;
   }
@@ -185,62 +197,62 @@
     font-weight: 400;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--silver);
-    background: rgba(255,255,255,0.04);
+    color: var(--muted-text);
+    background: rgba(0,0,0,0.04);
     padding: 2px 8px;
     border-radius: 3px;
   }
   .article-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 26px;
     font-weight: 400;
     line-height: 1.35;
     margin-bottom: 12px;
   }
   .article-title a {
-    color: var(--white);
+    color: var(--dark-text);
     text-decoration: none;
     transition: color 0.3s;
   }
-  .article-title a:hover { color: var(--teal-light); }
+  .article-title a:hover { color: var(--teal-dark); }
   .article-authors {
     font-size: 14px;
-    color: rgba(200,205,212,0.5);
+    color: var(--muted-text);
     margin-bottom: 12px;
   }
   .article-blurb {
     font-size: 16px;
     line-height: 1.7;
-    color: var(--silver);
+    color: var(--body-text);
   }
   .article-blurb strong {
-    color: var(--accent);
+    color: var(--teal-dark);
     font-weight: 400;
   }
 
   /* TRANSPARENCY LINE */
   .transparency-line {
     font-size: 13px;
-    color: rgba(200,205,212,0.55);
+    color: var(--muted-text);
     line-height: 1.6;
     max-width: 640px;
     margin-bottom: 8px;
     font-style: italic;
   }
   .transparency-line a {
-    color: var(--teal-light);
+    color: var(--teal-dark);
     text-decoration: none;
     font-style: normal;
     border-bottom: 1px solid rgba(90,173,173,0.35);
     transition: border-color 0.3s;
   }
-  .transparency-line a:hover { border-bottom-color: var(--teal-light); }
+  .transparency-line a:hover { border-bottom-color: var(--teal-dark); }
 
   /* HOW IT WORKS CARD */
   .how-it-works {
     margin-top: 56px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--card-bg);
+    border: 1px solid var(--light-border);
     border-radius: 8px;
     overflow: hidden;
   }
@@ -249,8 +261,8 @@
     padding: 24px 32px;
     background: transparent;
     border: none;
-    color: var(--white);
-    font-family: 'Cinzel', serif;
+    color: var(--dark-text);
+    font-family: 'Syne', sans-serif;
     font-size: 13px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -261,9 +273,9 @@
     align-items: center;
     transition: background 0.3s;
   }
-  .how-it-works-toggle:hover { background: rgba(90,173,173,0.05); }
+  .how-it-works-toggle:hover { background: rgba(42,99,99,0.04); }
   .how-it-works-toggle .toggle-icon {
-    color: var(--teal-light);
+    color: var(--teal-dark);
     font-size: 18px;
     transition: transform 0.3s;
   }
@@ -280,11 +292,11 @@
   .how-it-works-body p {
     font-size: 15px;
     line-height: 1.75;
-    color: var(--silver);
+    color: var(--body-text);
     margin-bottom: 14px;
   }
   .how-it-works-body p strong {
-    color: var(--accent);
+    color: var(--teal-dark);
     font-weight: 400;
   }
   .how-it-works-body .step-list {
@@ -294,10 +306,10 @@
   }
   .how-it-works-body .step-list li {
     padding: 12px 0 12px 28px;
-    border-left: 1px solid rgba(90,173,173,0.2);
+    border-left: 1px solid rgba(42,99,99,0.2);
     margin-left: 4px;
     position: relative;
-    color: var(--silver);
+    color: var(--body-text);
     font-size: 14px;
     line-height: 1.6;
   }
@@ -309,10 +321,10 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--teal-light);
+    background: var(--teal-dark);
   }
   .how-it-works-body .step-list strong {
-    color: var(--white);
+    color: var(--dark-text);
     font-weight: 400;
     display: block;
     margin-bottom: 2px;
@@ -320,7 +332,7 @@
   .how-it-works-body .read-more-link {
     display: inline-block;
     margin-top: 8px;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     text-decoration: none;
     font-size: 13px;
     letter-spacing: 0.15em;
@@ -329,35 +341,36 @@
     padding-bottom: 2px;
     transition: border-color 0.3s;
   }
-  .how-it-works-body .read-more-link:hover { border-bottom-color: var(--teal-light); }
+  .how-it-works-body .read-more-link:hover { border-bottom-color: var(--teal-dark); }
 
   /* SUBSCRIBE BOX */
   .subscribe-box {
     margin-top: 56px;
     padding: 40px 36px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--card-bg);
+    border: 1px solid var(--light-border);
     border-radius: 8px;
     text-align: center;
   }
   .subscribe-eyebrow {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     margin-bottom: 14px;
   }
   .subscribe-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 28px;
     font-weight: 300;
+    color: var(--dark-text);
     line-height: 1.3;
     margin-bottom: 10px;
   }
   .subscribe-desc {
     font-size: 15px;
-    color: var(--silver);
+    color: var(--body-text);
     line-height: 1.6;
     max-width: 480px;
     margin: 0 auto 24px;
@@ -374,29 +387,29 @@
     flex: 1;
     min-width: 220px;
     padding: 14px 18px;
-    background: var(--black);
-    border: 1px solid var(--border);
+    background: var(--grey-bg);
+    border: 1px solid var(--light-border);
     border-radius: 4px;
-    color: var(--white);
-    font-family: 'Raleway', sans-serif;
+    color: var(--dark-text);
+    font-family: 'Syne', sans-serif;
     font-size: 14px;
     font-weight: 300;
     transition: border-color 0.3s;
   }
   .subscribe-form input[type="email"]:focus {
     outline: none;
-    border-color: var(--teal-light);
+    border-color: var(--teal-dark);
   }
   .subscribe-form input[type="email"]::placeholder {
-    color: rgba(200,205,212,0.4);
+    color: var(--muted-text);
   }
   .subscribe-form button {
     padding: 14px 28px;
-    background: var(--teal);
-    border: 1px solid var(--teal);
+    background: var(--teal-dark);
+    border: 1px solid var(--teal-dark);
     border-radius: 4px;
-    color: var(--white);
-    font-family: 'Raleway', sans-serif;
+    color: #ffffff;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.18em;
@@ -405,20 +418,20 @@
     transition: background 0.3s, border-color 0.3s;
   }
   .subscribe-form button:hover {
-    background: var(--teal-light);
-    border-color: var(--teal-light);
+    background: var(--teal);
+    border-color: var(--teal);
   }
   .subscribe-note {
     font-size: 11px;
-    color: rgba(200,205,212,0.45);
+    color: var(--muted-text);
     letter-spacing: 0.08em;
     margin-top: 16px;
   }
 
   /* ARCHIVES SIDEBAR */
   .archives-sidebar {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--card-bg);
+    border: 1px solid var(--light-border);
     border-radius: 8px;
     padding: 28px 26px;
   }
@@ -429,14 +442,14 @@
     }
   }
   .archives-sidebar-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     padding-bottom: 14px;
     margin-bottom: 14px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--light-border);
   }
   .archives-sidebar-list {
     list-style: none;
@@ -445,11 +458,11 @@
   }
   .archives-sidebar-list li {
     padding: 9px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid var(--light-border);
   }
   .archives-sidebar-list li:last-child { border-bottom: none; }
   .archives-sidebar-list a {
-    color: var(--silver);
+    color: var(--body-text);
     text-decoration: none;
     font-size: 14px;
     line-height: 1.4;
@@ -457,28 +470,28 @@
     transition: color 0.3s, padding 0.3s;
   }
   .archives-sidebar-list a:hover {
-    color: var(--teal-light);
+    color: var(--teal-dark);
     padding-left: 4px;
   }
   .archives-sidebar-link {
     display: block;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--silver);
+    color: var(--body-text);
     text-decoration: none;
     padding-top: 14px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--light-border);
     transition: color 0.3s;
   }
-  .archives-sidebar-link:hover { color: var(--teal-light); }
+  .archives-sidebar-link:hover { color: var(--teal-dark); }
 
   /* EMPTY STATE */
   .empty-state {
     text-align: center;
     padding: 80px 24px;
-    color: var(--silver);
+    color: var(--muted-text);
   }
   .empty-state p {
     font-size: 18px;
@@ -487,7 +500,7 @@
 
   /* FOOTER */
   footer {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--light-border);
     padding: 48px 64px 32px;
     max-width: 1100px;
     margin: 0 auto;
@@ -500,7 +513,7 @@
   }
   .footer-copy {
     font-size: 11px;
-    color: rgba(200,205,212,0.35);
+    color: var(--muted-text);
     letter-spacing: 0.08em;
   }
 
@@ -556,7 +569,7 @@
         <li><strong>Curate</strong>It scans the candidate set, identifies the papers most relevant to practitioners, and narrows the field to five that span methods, applications, and tooling.</li>
         <li><strong>Write</strong>For each paper the agent drafts a two or three sentence take, focused on what is interesting or new and what readers should pay attention to. Not summaries. Takes.</li>
         <li><strong>Publish</strong>It commits the new week of articles to the website repository and writes the prepared newsletter payload to a file in the same repo.</li>
-        <li><strong>Send</strong>The push to the repository triggers a GitHub Actions workflow that delivers the newsletter to subscribers through <a href="https://buttondown.com" target="_blank" rel="noopener" style="color: var(--teal-light); border-bottom: 1px solid rgba(90,173,173,0.35);">Buttondown</a>.</li>
+        <li><strong>Send</strong>The push to the repository triggers a GitHub Actions workflow that delivers the newsletter to subscribers through <a href="https://buttondown.com" target="_blank" rel="noopener" style="color: var(--teal-dark); border-bottom: 1px solid rgba(42,99,99,0.35);">Buttondown</a>.</li>
       </ul>
       <p>Editorial oversight comes from John Diaz-Decaro, who designed the search strategy, defined the curation criteria, and reviews outputs over time to refine the system. The agent is the curator. The human is the editor and the accountable scientist.</p>
       <a href="methodology.html" class="read-more-link">Read the full methodology &rarr;</a>

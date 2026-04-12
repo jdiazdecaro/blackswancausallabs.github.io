@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <title>The Founder — Black Swan Causal Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,13 +21,23 @@
     --teal:        #3d7a7a;
     --teal-light:  #5aadad;
     --accent:      #8bbfbf;
+
+    --light-bg:    #ffffff;
+    --grey-bg:     #f0f1f4;
+    --dark-text:   #1a1d24;
+    --body-text:   #3a3f4a;
+    --muted-text:  #6b7180;
+    --light-border: rgba(0,0,0,0.08);
+    --card-bg:     #ffffff;
+    --card-bg-alt: #f7f8fa;
+    --teal-dark:   #2a6363;
   }
 
   html { scroll-behavior: smooth; }
   body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Raleway', sans-serif;
+    background: var(--light-bg);
+    color: var(--body-text);
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
   }
@@ -41,28 +51,28 @@
     align-items: center;
     justify-content: space-between;
     padding: 30px 64px;
-    background: linear-gradient(to bottom, rgba(5,6,8,0.95) 0%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.98) 0%, transparent 100%);
   }
   .nav-logo {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     letter-spacing: 0.3em;
-    color: var(--silver);
+    color: var(--dark-text);
     text-decoration: none;
     text-transform: uppercase;
   }
-  .nav-logo span { color: var(--teal-light); }
+  .nav-logo span { color: var(--teal-dark); }
   .nav-back {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--body-text);
     text-decoration: none;
     transition: color 0.3s;
   }
-  .nav-back:hover { color: var(--teal-light); }
+  .nav-back:hover { color: var(--teal-dark); }
 
   /* ── LAYOUT ── */
   .founder-wrap {
@@ -83,32 +93,32 @@
 
   /* ── HEADER ── */
   .founder-eyebrow {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     letter-spacing: 0.42em;
     text-transform: uppercase;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     margin-bottom: 20px;
   }
   .founder-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     font-size: clamp(38px, 5vw, 56px);
     line-height: 1.1;
-    color: var(--white);
+    color: var(--dark-text);
     margin-bottom: 8px;
   }
   .founder-credentials {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 22px;
     font-weight: 300;
-    color: var(--white);
+    color: var(--dark-text);
     margin-bottom: 12px;
   }
   .founder-title {
     font-size: 15px;
     letter-spacing: 0.08em;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     margin-bottom: 36px;
   }
   .founder-rule {
@@ -124,16 +134,16 @@
     margin: 0;
   }
   .bio li {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 17px;
     font-weight: 300;
     line-height: 1.6;
-    color: var(--white);
+    color: var(--body-text);
     padding: 8px 0;
     letter-spacing: 0.02em;
   }
-  .bio li::marker { color: var(--teal-light); }
-  .bio li em { font-style: italic; color: var(--accent); }
+  .bio li::marker { color: var(--teal-dark); }
+  .bio li em { font-style: italic; color: var(--teal-dark); }
 
   /* ── BIO + PORTRAIT LAYOUT ── */
   .bio-row {
@@ -165,17 +175,17 @@
     margin: 56px 0 32px;
   }
   .section-divider-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--teal);
+    color: var(--teal-dark);
     white-space: nowrap;
   }
   .section-divider-line {
     flex: 1;
     height: 1px;
-    background: var(--border);
+    background: var(--light-border);
   }
 
   /* ── CREDENTIALS STRIP ── */
@@ -186,29 +196,29 @@
     margin-bottom: 16px;
   }
   .credential-card {
-    background: var(--ink);
-    border: 1px solid var(--border);
+    background: var(--card-bg-alt);
+    border: 1px solid var(--light-border);
     padding: 28px 24px;
   }
   .credential-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--teal);
+    color: var(--teal-dark);
     opacity: 0.7;
     margin-bottom: 10px;
   }
   .credential-value {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 19px;
     font-weight: 400;
-    color: var(--white);
+    color: var(--dark-text);
     line-height: 1.4;
   }
   .credential-sub {
     font-size: 14px;
-    color: var(--white);
+    color: var(--body-text);
     margin-top: 4px;
     line-height: 1.5;
   }
@@ -221,28 +231,28 @@
     margin-bottom: 16px;
   }
   .leadership-item {
-    background: var(--ink);
-    border: 1px solid var(--border);
+    background: var(--card-bg-alt);
+    border: 1px solid var(--light-border);
     padding: 24px 28px;
   }
   .leadership-role {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 21px;
     font-weight: 400;
-    color: var(--white);
+    color: var(--dark-text);
     margin-bottom: 6px;
     line-height: 1.3;
   }
   .leadership-org {
     font-size: 14px;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     letter-spacing: 0.06em;
     margin-bottom: 8px;
   }
   .leadership-desc {
     font-size: 16px;
     line-height: 1.75;
-    color: var(--white);
+    color: var(--body-text);
     font-weight: 300;
   }
 
@@ -254,21 +264,21 @@
   }
   .pub-item {
     padding-left: 20px;
-    border-left: 2px solid rgba(61,122,122,0.2);
+    border-left: 2px solid rgba(42,99,99,0.25);
   }
   .pub-citation {
     font-size: 16px;
     line-height: 1.75;
-    color: var(--white);
+    color: var(--body-text);
     font-weight: 300;
   }
   .pub-citation strong {
-    color: var(--white);
+    color: var(--dark-text);
     font-weight: 400;
   }
   .pub-journal {
     font-style: italic;
-    color: var(--accent);
+    color: var(--teal-dark);
   }
 
   /* ── PRESENTATIONS ── */
@@ -278,20 +288,20 @@
     gap: 16px;
   }
   .pres-item {
-    background: var(--ink);
-    border: 1px solid var(--border);
+    background: var(--card-bg-alt);
+    border: 1px solid var(--light-border);
     padding: 20px 24px;
     display: flex;
     gap: 16px;
     align-items: flex-start;
   }
   .pres-type {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--teal);
-    border: 1px solid rgba(61,122,122,0.25);
+    color: var(--teal-dark);
+    border: 1px solid rgba(42,99,99,0.25);
     padding: 4px 10px;
     white-space: nowrap;
     flex-shrink: 0;
@@ -300,11 +310,11 @@
   .pres-detail {
     font-size: 16px;
     line-height: 1.7;
-    color: var(--white);
+    color: var(--body-text);
     font-weight: 300;
   }
   .pres-detail strong {
-    color: var(--white);
+    color: var(--dark-text);
     font-weight: 400;
   }
 
@@ -312,30 +322,30 @@
   .founder-cta {
     margin-top: 64px;
     padding-top: 48px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--light-border);
     text-align: center;
   }
   .founder-cta h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 30px;
     font-weight: 300;
-    color: var(--white);
+    color: var(--dark-text);
     margin-bottom: 16px;
   }
-  .founder-cta h3 em { font-style: italic; color: var(--accent); }
+  .founder-cta h3 em { font-style: italic; color: var(--teal); }
   .founder-cta p {
     font-size: 16px;
-    color: var(--white);
+    color: var(--body-text);
     margin-bottom: 28px;
     line-height: 1.7;
   }
   .btn-primary {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--black);
-    background: var(--teal-light);
+    color: #ffffff;
+    background: var(--teal-dark);
     border: none;
     padding: 15px 38px;
     cursor: pointer;
@@ -343,7 +353,7 @@
     display: inline-block;
     transition: background 0.3s, transform 0.2s;
   }
-  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
 
   /* grain */
   body::after {
@@ -351,7 +361,7 @@
     position: fixed;
     inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: 0.022;
+    opacity: 0.01;
     pointer-events: none;
     z-index: 9999;
   }

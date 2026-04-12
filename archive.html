@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <title>Archive &middot; This Week in RWE, Causal Inference &amp; AI &middot; Black Swan Causal Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,13 +21,23 @@
     --teal:        #3d7a7a;
     --teal-light:  #5aadad;
     --accent:      #8bbfbf;
+
+    --light-bg:    #ffffff;
+    --grey-bg:     #f0f1f4;
+    --dark-text:   #1a1d24;
+    --body-text:   #3a3f4a;
+    --muted-text:  #6b7180;
+    --light-border: rgba(0,0,0,0.08);
+    --card-bg:     #ffffff;
+    --card-bg-alt: #f7f8fa;
+    --teal-dark:   #2a6363;
   }
 
   html { scroll-behavior: smooth; }
   body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Raleway', sans-serif;
+    background: var(--grey-bg);
+    color: var(--body-text);
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
     min-height: 100vh;
@@ -42,28 +52,28 @@
     align-items: center;
     justify-content: space-between;
     padding: 30px 64px;
-    background: linear-gradient(to bottom, rgba(5,6,8,0.95) 0%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(240,241,244,0.98) 0%, transparent 100%);
   }
   .nav-logo {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     letter-spacing: 0.3em;
-    color: var(--silver);
+    color: var(--dark-text);
     text-decoration: none;
     text-transform: uppercase;
   }
-  .nav-logo span { color: var(--teal-light); }
+  .nav-logo span { color: var(--teal-dark); }
   .nav-back {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--body-text);
     text-decoration: none;
     transition: color 0.3s;
   }
-  .nav-back:hover { color: var(--teal-light); }
+  .nav-back:hover { color: var(--teal-dark); }
 
   /* FADE-IN */
   @keyframes fadeUp {
@@ -87,30 +97,31 @@
   }
 
   .page-eyebrow {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 16px;
     letter-spacing: 0.42em;
     text-transform: uppercase;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     margin-bottom: 18px;
   }
   .page-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: clamp(36px, 5.5vw, 52px);
     font-weight: 300;
     line-height: 1.2;
+    color: var(--dark-text);
     margin-bottom: 18px;
   }
   .page-subtitle {
     font-size: 17px;
-    color: var(--silver);
+    color: var(--body-text);
     line-height: 1.7;
     max-width: 640px;
     margin-bottom: 12px;
   }
   .archive-meta {
     font-size: 13px;
-    color: rgba(200,205,212,0.5);
+    color: var(--muted-text);
     letter-spacing: 0.1em;
     margin-bottom: 56px;
   }
@@ -119,21 +130,21 @@
   .jump-nav {
     position: sticky;
     top: 96px;
-    background: rgba(13,17,23,0.85);
+    background: rgba(255,255,255,0.85);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid var(--border);
+    border: 1px solid var(--light-border);
     border-radius: 8px;
     padding: 14px 20px;
     margin-bottom: 48px;
     z-index: 50;
   }
   .jump-nav-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 10px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     margin-right: 12px;
   }
   .jump-nav-list {
@@ -141,31 +152,31 @@
   }
   .jump-nav a {
     display: inline-block;
-    color: var(--silver);
+    color: var(--body-text);
     text-decoration: none;
     font-size: 13px;
     margin-right: 16px;
     padding: 4px 0;
     transition: color 0.3s;
   }
-  .jump-nav a:hover { color: var(--teal-light); }
+  .jump-nav a:hover { color: var(--teal-dark); }
 
   /* WEEK SECTIONS (collapsible) */
   .archive-week {
     margin-bottom: 16px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--card-bg);
+    border: 1px solid var(--light-border);
     border-radius: 8px;
     overflow: hidden;
     scroll-margin-top: 180px;
     transition: border-color 0.3s;
   }
-  .archive-week.open { border-color: rgba(90,173,173,0.25); }
+  .archive-week.open { border-color: rgba(42,99,99,0.25); }
   .archive-week-toggle {
     width: 100%;
     background: transparent;
     border: none;
-    color: var(--white);
+    color: var(--dark-text);
     cursor: pointer;
     padding: 24px 32px;
     text-align: left;
@@ -176,7 +187,7 @@
     font-family: inherit;
     transition: background 0.3s;
   }
-  .archive-week-toggle:hover { background: rgba(90,173,173,0.05); }
+  .archive-week-toggle:hover { background: rgba(42,99,99,0.04); }
   .archive-week-toggle-left {
     display: flex;
     flex-direction: column;
@@ -185,21 +196,21 @@
     min-width: 0;
   }
   .archive-week-header {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 26px;
     font-weight: 400;
-    color: var(--white);
+    color: var(--dark-text);
     line-height: 1.2;
   }
   .archive-week-count {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(200,205,212,0.5);
+    color: var(--muted-text);
   }
   .archive-week-toggle-icon {
-    color: var(--teal-light);
+    color: var(--teal-dark);
     font-size: 22px;
     flex-shrink: 0;
     transition: transform 0.3s;
@@ -218,7 +229,7 @@
 
   .archive-article {
     padding: 22px 0;
-    border-top: 1px solid rgba(255,255,255,0.04);
+    border-top: 1px solid var(--light-border);
   }
   .archive-article:first-child { border-top: none; padding-top: 12px; }
   .archive-article-meta {
@@ -232,8 +243,8 @@
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--teal-light);
-    background: rgba(61,122,122,0.15);
+    color: var(--teal-dark);
+    background: rgba(42,99,99,0.1);
     padding: 3px 9px;
     border-radius: 3px;
   }
@@ -241,49 +252,49 @@
     font-size: 9px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--silver);
-    background: rgba(255,255,255,0.04);
+    color: var(--muted-text);
+    background: rgba(0,0,0,0.04);
     padding: 2px 7px;
     border-radius: 3px;
   }
   .archive-article-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 19px;
     font-weight: 400;
     line-height: 1.4;
     margin-bottom: 4px;
   }
   .archive-article-title a {
-    color: var(--white);
+    color: var(--dark-text);
     text-decoration: none;
     transition: color 0.3s;
   }
-  .archive-article-title a:hover { color: var(--teal-light); }
+  .archive-article-title a:hover { color: var(--teal-dark); }
   .archive-article-authors {
     font-size: 12px;
-    color: rgba(200,205,212,0.5);
+    color: var(--muted-text);
     margin-bottom: 6px;
   }
   .archive-article-blurb {
     font-size: 13px;
     line-height: 1.65;
-    color: var(--silver);
+    color: var(--body-text);
     margin-top: 8px;
   }
   .archive-article-blurb strong {
-    color: var(--accent);
+    color: var(--teal);
     font-weight: 400;
   }
 
   .empty-state {
     text-align: center;
     padding: 80px 24px;
-    color: var(--silver);
+    color: var(--muted-text);
   }
 
   /* FOOTER */
   footer {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--light-border);
     padding: 48px 64px 32px;
     max-width: 1100px;
     margin: 0 auto;
@@ -296,7 +307,7 @@
   }
   .footer-copy {
     font-size: 11px;
-    color: rgba(200,205,212,0.35);
+    color: var(--muted-text);
     letter-spacing: 0.08em;
   }
 

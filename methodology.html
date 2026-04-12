@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <title>Methodology: How the Reading List Works &middot; Black Swan Causal Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,13 +21,23 @@
     --teal:        #3d7a7a;
     --teal-light:  #5aadad;
     --accent:      #8bbfbf;
+
+    --light-bg:    #ffffff;
+    --grey-bg:     #f0f1f4;
+    --dark-text:   #1a1d24;
+    --body-text:   #3a3f4a;
+    --muted-text:  #6b7180;
+    --light-border: rgba(0,0,0,0.08);
+    --card-bg:     #ffffff;
+    --card-bg-alt: #f7f8fa;
+    --teal-dark:   #2a6363;
   }
 
   html { scroll-behavior: smooth; }
   body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Raleway', sans-serif;
+    background: var(--light-bg);
+    color: var(--body-text);
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
     min-height: 100vh;
@@ -42,28 +52,28 @@
     align-items: center;
     justify-content: space-between;
     padding: 30px 64px;
-    background: linear-gradient(to bottom, rgba(5,6,8,0.95) 0%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.98) 0%, transparent 100%);
   }
   .nav-logo {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     letter-spacing: 0.3em;
-    color: var(--silver);
+    color: var(--dark-text);
     text-decoration: none;
     text-transform: uppercase;
   }
-  .nav-logo span { color: var(--teal-light); }
+  .nav-logo span { color: var(--teal-dark); }
   .nav-back {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--body-text);
     text-decoration: none;
     transition: color 0.3s;
   }
-  .nav-back:hover { color: var(--teal-light); }
+  .nav-back:hover { color: var(--teal-dark); }
 
   /* FADE-IN ANIMATION */
   @keyframes fadeUp {
@@ -88,15 +98,15 @@
 
   /* HEADER */
   .page-eyebrow {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 14px;
     letter-spacing: 0.42em;
     text-transform: uppercase;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     margin-bottom: 18px;
   }
   .page-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: clamp(36px, 5.5vw, 52px);
     font-weight: 300;
     line-height: 1.15;
@@ -104,16 +114,16 @@
   }
   .page-title em { font-style: italic; }
   .page-deck {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 22px;
     font-weight: 300;
     font-style: italic;
     line-height: 1.5;
-    color: var(--accent);
+    color: var(--teal);
     max-width: 640px;
     margin-bottom: 56px;
     padding-bottom: 32px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--light-border);
   }
 
   /* CONTENT SECTIONS */
@@ -121,46 +131,46 @@
     margin-bottom: 56px;
   }
   .section-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 11px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     margin-bottom: 14px;
   }
   .section-heading {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 32px;
     font-weight: 300;
     line-height: 1.25;
     margin-bottom: 24px;
-    color: var(--white);
+    color: var(--dark-text);
   }
   .section p {
     font-size: 17px;
     line-height: 1.8;
-    color: var(--silver);
+    color: var(--body-text);
     margin-bottom: 18px;
   }
   .section p strong {
-    color: var(--accent);
+    color: var(--teal);
     font-weight: 400;
   }
   .section p em {
-    color: var(--white);
+    color: var(--dark-text);
   }
 
   /* PULL QUOTE */
   .pull-quote {
     margin: 40px 0;
     padding: 28px 36px;
-    border-left: 2px solid var(--teal-light);
-    background: rgba(90,173,173,0.04);
-    font-family: 'Cormorant Garamond', serif;
+    border-left: 2px solid var(--teal-dark);
+    background: rgba(42,99,99,0.05);
+    font-family: 'Syne', sans-serif;
     font-size: 22px;
     font-style: italic;
     line-height: 1.5;
-    color: var(--white);
+    color: var(--dark-text);
   }
 
   /* STEP CARDS */
@@ -171,8 +181,8 @@
     margin: 28px 0 32px;
   }
   .pipeline-step {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--card-bg);
+    border: 1px solid var(--light-border);
     border-radius: 8px;
     padding: 24px 28px;
     display: flex;
@@ -180,42 +190,42 @@
     align-items: flex-start;
   }
   .pipeline-num {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 22px;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     flex-shrink: 0;
     line-height: 1.2;
     min-width: 32px;
   }
   .pipeline-step-body h4 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 22px;
     font-weight: 400;
-    color: var(--white);
+    color: var(--dark-text);
     margin-bottom: 6px;
     letter-spacing: 0.01em;
   }
   .pipeline-step-body p {
     font-size: 14px;
     line-height: 1.65;
-    color: var(--silver);
+    color: var(--body-text);
     margin-bottom: 0;
   }
 
   /* SEARCH STRATEGY BLOCK */
   .strategy-block {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--card-bg);
+    border: 1px solid var(--light-border);
     border-radius: 8px;
     padding: 28px 32px;
     margin: 24px 0 32px;
   }
   .strategy-block h5 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 11px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--teal-light);
+    color: var(--teal-dark);
     margin-bottom: 14px;
     font-weight: 500;
   }
@@ -223,12 +233,12 @@
     display: block;
     font-family: 'Courier New', monospace;
     font-size: 13px;
-    color: var(--silver);
-    background: var(--black);
+    color: var(--body-text);
+    background: var(--grey-bg);
     padding: 14px 18px;
     border-radius: 4px;
     margin-bottom: 10px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--light-border);
     line-height: 1.6;
     word-break: break-word;
   }
@@ -238,20 +248,20 @@
   .cta {
     margin-top: 64px;
     padding: 40px 36px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--card-bg);
+    border: 1px solid var(--light-border);
     border-radius: 8px;
     text-align: center;
   }
   .cta h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 28px;
     font-weight: 300;
     margin-bottom: 12px;
   }
   .cta p {
     font-size: 15px;
-    color: var(--silver);
+    color: var(--muted-text);
     line-height: 1.6;
     margin-bottom: 24px;
   }
@@ -262,7 +272,7 @@
     border: 1px solid var(--teal);
     border-radius: 4px;
     color: var(--white);
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.18em;
@@ -277,7 +287,7 @@
 
   /* FOOTER */
   footer {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--light-border);
     padding: 48px 64px 32px;
     max-width: 1100px;
     margin: 0 auto;
@@ -290,7 +300,7 @@
   }
   .footer-copy {
     font-size: 11px;
-    color: rgba(200,205,212,0.35);
+    color: var(--muted-text);
     letter-spacing: 0.08em;
   }
 
@@ -365,7 +375,7 @@
         <div class="pipeline-num">05</div>
         <div class="pipeline-step-body">
           <h4>Deliver</h4>
-          <p>The push to GitHub triggers a small GitHub Actions workflow that reads the newsletter payload and posts it to the <a href="https://buttondown.com" target="_blank" rel="noopener" style="color: var(--teal-light); border-bottom: 1px solid rgba(90,173,173,0.35);">Buttondown</a> API using a separate scoped API key. Buttondown handles delivery, double opt-in confirmation for new subscribers, and unsubscribe management.</p>
+          <p>The push to GitHub triggers a small GitHub Actions workflow that reads the newsletter payload and posts it to the <a href="https://buttondown.com" target="_blank" rel="noopener" style="color: var(--teal-dark); border-bottom: 1px solid rgba(42,99,99,0.35);">Buttondown</a> API using a separate scoped API key. Buttondown handles delivery, double opt-in confirmation for new subscribers, and unsubscribe management.</p>
         </div>
       </div>
     </div>

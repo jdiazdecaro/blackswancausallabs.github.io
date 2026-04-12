@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <title>Black Swan Causal Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,13 +21,24 @@
     --teal:        #3d7a7a;
     --teal-light:  #5aadad;
     --accent:      #8bbfbf;
+
+    /* Light-mode palette */
+    --light-bg:    #ffffff;
+    --grey-bg:     #f0f1f4;
+    --dark-text:   #1a1d24;
+    --body-text:   #3a3f4a;
+    --muted-text:  #6b7180;
+    --light-border: rgba(0,0,0,0.08);
+    --card-bg:     #ffffff;
+    --card-bg-alt: #f7f8fa;
+    --teal-dark:   #2a6363;
   }
 
   html { scroll-behavior: smooth; }
   body {
     background: var(--black);
     color: var(--white);
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
   }
@@ -77,7 +88,7 @@
   }
 
   .nav-logo {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 14px;
     letter-spacing: 0.3em;
     color: var(--silver);
@@ -101,7 +112,7 @@
     list-style: none;
   }
   .nav-links a {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     font-size: 13px;
     letter-spacing: 0.22em;
@@ -117,7 +128,7 @@
     position: relative;
   }
   .nav-dropdown-toggle {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     font-size: 13px;
     letter-spacing: 0.22em;
@@ -166,7 +177,7 @@
   .nav-dropdown-menu a {
     display: block;
     padding: 10px 24px;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     font-size: 13px;
     letter-spacing: 0.18em;
@@ -244,7 +255,7 @@
     margin-bottom: 28px;
   }
   .mobile-menu-heading {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 400;
     font-size: 11px;
     letter-spacing: 0.25em;
@@ -254,7 +265,7 @@
   }
   .mobile-menu a {
     display: block;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     font-size: 14px;
     letter-spacing: 0.15em;
@@ -307,9 +318,9 @@
     inset: 0;
     background:
       radial-gradient(ellipse 75% 90% at 72% 48%, transparent 28%, rgba(5,6,8,0.55) 100%),
-      linear-gradient(to bottom, rgba(5,6,8,0.28) 0%, transparent 22%, transparent 40%, rgba(5,6,8,1) 100%),
+      linear-gradient(to bottom, rgba(5,6,8,0.28) 0%, transparent 22%, transparent 40%, rgba(5,6,8,0.85) 85%, rgba(255,255,255,1) 100%),
       linear-gradient(to right, rgba(5,6,8,0.78) 0%, rgba(5,6,8,0.3) 44%, transparent 62%),
-      radial-gradient(ellipse 40% 30% at 100% 100%, rgba(5,6,8,1) 0%, transparent 100%);
+      radial-gradient(ellipse 40% 30% at 100% 100%, rgba(5,6,8,0.7) 0%, transparent 100%);
     pointer-events: none;
   }
 
@@ -321,7 +332,7 @@
   }
 
   .hero-eyebrow {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 10px;
     letter-spacing: 0.42em;
     text-transform: uppercase;
@@ -331,7 +342,7 @@
   }
 
   .hero-brand-line {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: clamp(32px, 4.2vw, 56px);
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -347,7 +358,7 @@
   }
 
   .hero-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     font-size: clamp(24px, 3vw, 40px);
     line-height: 1.15;
@@ -369,7 +380,7 @@
   }
 
   .hero-subtitle {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 300;
     font-size: clamp(17px, 2vw, 23px);
     line-height: 1.6;
@@ -386,7 +397,7 @@
   }
 
   .btn-primary {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -402,7 +413,7 @@
   .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
 
   .btn-ghost {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -445,8 +456,7 @@
   /* ── ABOUT SECTION ── */
   .comparison-section {
     position: relative;
-    background: var(--black);
-    padding: 120px 64px 80px;
+    padding: 140px 64px 100px;
     overflow: hidden;
     margin-top: -1px;
   }
@@ -497,12 +507,12 @@
     text-align: center;
   }
   .story-headline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(34px, 4vw, 54px);
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(40px, 5vw, 68px);
     font-weight: 300;
     color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 28px;
+    line-height: 1.15;
+    margin-bottom: 32px;
   }
   .story-headline em { font-style: italic; color: var(--accent); }
   .definition-row {
@@ -513,20 +523,23 @@
     margin: 56px auto;
   }
   .narrative-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 14px;
-    letter-spacing: 0.3em;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.35em;
     text-transform: uppercase;
     color: var(--teal-light);
-    margin-bottom: 18px;
+    margin-bottom: 24px;
   }
   .narrative-text {
-    font-size: 16px;
-    line-height: 1.85;
+    font-size: 19px;
+    line-height: 1.8;
     color: var(--white);
     font-weight: 300;
     letter-spacing: 0.02em;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .narrative-text strong {
     color: var(--accent);
@@ -539,7 +552,7 @@
     margin: 32px auto;
   }
   .narrative-subtitle {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -575,7 +588,7 @@
     border-color: rgba(90,173,173,0.3);
   }
   .offering-card-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 13px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -584,7 +597,7 @@
     line-height: 1.4;
   }
   .offering-card-text {
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.75;
     color: var(--white);
     font-weight: 300;
@@ -601,7 +614,7 @@
     box-shadow: 0 12px 40px rgba(0,0,0,0.4);
   }
   .info-box-eyebrow {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 12px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -609,19 +622,19 @@
     margin-bottom: 12px;
   }
   .info-box-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
     font-weight: 300;
     color: var(--white);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     line-height: 1.2;
   }
   .info-box-text {
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.8;
     color: var(--white);
     font-weight: 300;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     letter-spacing: 0.02em;
   }
   .info-box-list {
@@ -650,13 +663,136 @@
     border: 1px solid var(--teal-light);
     border-radius: 50%;
   }
+  /* ── FLIP CARDS ── */
+  .flip-card {
+    perspective: 1200px;
+    height: 420px;
+    cursor: pointer;
+  }
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .flip-card-front {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .flip-card-front img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .flip-card:hover .flip-card-front img {
+    transform: scale(1.04);
+  }
+  .flip-card-front-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(5,6,8,0.88) 0%,
+      rgba(5,6,8,0.4) 50%,
+      rgba(5,6,8,0.15) 100%
+    );
+  }
+  .flip-card-front-content {
+    position: relative;
+    z-index: 1;
+    padding: 36px 32px;
+  }
+  .flip-card-front-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+  .flip-card-front-hint {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .flip-card-back {
+    transform: rotateY(180deg);
+    background: var(--card-bg);
+    border: 1px solid var(--light-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 36px;
+  }
+  .flip-card-back-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    margin-bottom: 16px;
+  }
+  .flip-card-back-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--dark-text);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+  .flip-card-back-text {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--body-text);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+  .flip-card-back-hint {
+    margin-top: 24px;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted-text);
+  }
+
+  @media (max-width: 900px) {
+    .flip-card { height: 380px; }
+  }
+  @media (max-width: 480px) {
+    .flip-card { height: 340px; }
+    .flip-card-front-title { font-size: 22px; }
+    .flip-card-back { padding: 28px 24px; }
+    .flip-card-back-title { font-size: 20px; }
+    .flip-card-back-text { font-size: 15px; }
+  }
+
   /* Mission line below slider */
   .thesis-mission {
     max-width: 1080px;
     margin: 40px auto 0;
     padding-top: 32px;
     border-top: 1px solid var(--border);
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: clamp(19px, 2.4vw, 28px);
     font-weight: 300;
     font-style: italic;
@@ -672,8 +808,7 @@
 
   /* ── TOOLS ── */
   .tools {
-    background: var(--black);
-    padding: 128px 64px;
+    padding: 140px 64px;
     border-top: none;
     position: relative;
   }
@@ -686,7 +821,7 @@
     border-bottom: 1px solid var(--border);
   }
   .section-tag {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 15px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -695,8 +830,8 @@
     display: block;
   }
   .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(34px, 3.8vw, 52px);
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(38px, 4.5vw, 64px);
     font-weight: 300;
     line-height: 1.15;
     color: var(--white);
@@ -726,7 +861,7 @@
   .tool-card:hover::after { height: 100%; }
   .tool-card:hover { background: #0f1620; }
   .tool-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 13px;
     letter-spacing: 0.28em;
     color: var(--teal);
@@ -734,25 +869,25 @@
     margin-bottom: 26px;
   }
   .tool-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
     font-weight: 400;
     color: var(--white);
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     line-height: 1.15;
   }
   .tool-desc {
-    font-size: 16px;
-    line-height: 1.85;
+    font-size: 18px;
+    line-height: 1.75;
     color: var(--white);
-    max-width: 400px;
+    max-width: 440px;
     font-weight: 300;
     letter-spacing: 0.025em;
   }
   .tool-pill {
     margin-top: 36px;
     display: inline-block;
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -776,7 +911,7 @@
   }
   .pillar:last-child { border-right: none; margin-right: 0; padding-right: 0; }
   .pillar-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 13px;
     letter-spacing: 0.28em;
     color: var(--teal);
@@ -784,7 +919,7 @@
     margin-bottom: 24px;
   }
   .pillar-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 28px;
     font-weight: 400;
     color: var(--white);
@@ -800,9 +935,8 @@
 
   /* ── BLOG ACCORDION ── */
   .blog-section {
-    background: var(--deep);
-    padding: 112px 64px;
-    border-top: 1px solid var(--border);
+    padding: 140px 64px;
+    border-top: 1px solid var(--light-border);
   }
   .blog-header { margin-bottom: 56px; }
 
@@ -854,7 +988,7 @@
     left: 50%;
     transform: translateX(-50%) translateY(50%) rotate(90deg);
     white-space: nowrap;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -883,7 +1017,7 @@
 
   .blog-panel-coming {
     display: inline-block;
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 10px;
     letter-spacing: 0.38em;
     text-transform: uppercase;
@@ -893,19 +1027,19 @@
     margin-bottom: 16px;
   }
   .blog-panel-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
+    font-family: 'Syne', sans-serif;
+    font-size: 34px;
     font-weight: 600;
     color: #ffffff;
     line-height: 1.25;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
   .blog-panel-teaser {
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 1.75;
     color: var(--white);
     font-weight: 300;
-    max-width: 300px;
+    max-width: 340px;
   }
 
   /* Mobile: vertical stack */
@@ -934,17 +1068,15 @@
 
   /* ── CONTACT ── */
   .contact {
-    background: var(--black);
-    padding: 144px 64px;
+    padding: 160px 64px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 96px;
     align-items: start;
-    border-top: 1px solid var(--border);
   }
   .contact-text h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(38px, 4.5vw, 64px);
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(42px, 5vw, 72px);
     font-weight: 300;
     line-height: 1.1;
     color: var(--white);
@@ -952,10 +1084,10 @@
   }
   .contact-text h2 em { font-style: italic; color: var(--accent); }
   .contact-text p {
-    font-size: 16px;
-    line-height: 1.85;
+    font-size: 18px;
+    line-height: 1.8;
     color: var(--white);
-    max-width: 420px;
+    max-width: 460px;
     font-weight: 300;
     letter-spacing: 0.025em;
     margin-bottom: 48px;
@@ -963,7 +1095,7 @@
   .contact-detail { display: flex; flex-direction: column; gap: 14px; }
   .contact-detail-item { display: flex; gap: 16px; align-items: center; }
   .contact-detail-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 11px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
@@ -984,7 +1116,7 @@
     background: var(--ink);
     border: 1px solid var(--border);
     color: var(--white);
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-size: 14px;
     font-weight: 300;
     padding: 15px 20px;
@@ -1004,7 +1136,7 @@
   }
   .contact-form textarea { resize: none; height: 110px; }
   .contact-form button {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 13px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -1032,7 +1164,7 @@
     padding-bottom: 56px;
   }
   .footer-col-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Syne', sans-serif;
     font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -1063,6 +1195,219 @@
     font-size: 12px;
     letter-spacing: 0.1em;
     color: rgba(200,205,212,0.55);
+  }
+
+  /* ── LIGHT / GREY SECTION OVERRIDES ── */
+  .light-section { background: var(--light-bg); }
+  .grey-section  { background: var(--grey-bg); }
+
+  .light-section,
+  .grey-section {
+    color: var(--body-text);
+  }
+
+  /* Headings in light sections */
+  .light-section .story-headline,
+  .grey-section .story-headline,
+  .light-section .section-title,
+  .grey-section .section-title,
+  .light-section .info-box-title,
+  .grey-section .info-box-title,
+  .light-section .tool-name,
+  .grey-section .tool-name,
+  .light-section .pillar-title,
+  .grey-section .pillar-title,
+  .light-section .contact-text h2,
+  .grey-section .contact-text h2 {
+    color: var(--dark-text);
+  }
+
+  /* Body text in light sections */
+  .light-section .narrative-text,
+  .grey-section .narrative-text,
+  .light-section .offering-card-text,
+  .grey-section .offering-card-text,
+  .light-section .info-box-text,
+  .grey-section .info-box-text,
+  .light-section .info-box-list li,
+  .grey-section .info-box-list li,
+  .light-section .tool-desc,
+  .grey-section .tool-desc,
+  .light-section .pillar-text,
+  .grey-section .pillar-text,
+  .light-section .contact-text p,
+  .grey-section .contact-text p,
+  .light-section .contact-detail-value,
+  .grey-section .contact-detail-value,
+  .light-section .blog-panel-teaser,
+  .grey-section .blog-panel-teaser {
+    color: var(--body-text);
+  }
+
+  /* Subdued text */
+  .light-section .hero-subtitle,
+  .grey-section .hero-subtitle {
+    color: var(--muted-text);
+  }
+
+  /* Eyebrows and tags stay teal but a bit darker for contrast */
+  .light-section .narrative-eyebrow,
+  .grey-section .narrative-eyebrow,
+  .light-section .narrative-subtitle,
+  .grey-section .narrative-subtitle,
+  .light-section .section-tag,
+  .grey-section .section-tag,
+  .light-section .offering-card-title,
+  .grey-section .offering-card-title,
+  .light-section .info-box-eyebrow,
+  .grey-section .info-box-eyebrow,
+  .light-section .tool-num,
+  .grey-section .tool-num,
+  .light-section .pillar-num,
+  .grey-section .pillar-num,
+  .light-section .contact-detail-label,
+  .grey-section .contact-detail-label {
+    color: var(--teal-dark);
+  }
+
+  /* Accented text */
+  .light-section .story-headline em,
+  .grey-section .story-headline em,
+  .light-section .narrative-text strong,
+  .grey-section .narrative-text strong,
+  .light-section .contact-text h2 em,
+  .grey-section .contact-text h2 em {
+    color: var(--teal);
+  }
+
+  /* Cards in light sections */
+  .light-section .offering-card,
+  .grey-section .offering-card {
+    background: var(--card-bg);
+    border-color: var(--light-border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .light-section .offering-card:hover,
+  .grey-section .offering-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    border-color: var(--teal);
+  }
+
+  /* Info boxes in light sections */
+  .light-section .info-box,
+  .grey-section .info-box {
+    border-color: var(--dark-text);
+  }
+  .light-section .info-box-list li::before,
+  .grey-section .info-box-list li::before {
+    border-color: var(--teal-dark);
+  }
+
+  /* Tool cards in light sections */
+  .light-section .tool-card,
+  .grey-section .tool-card {
+    background: var(--card-bg);
+    border-top-color: var(--light-border);
+  }
+  .light-section .tool-card:hover,
+  .grey-section .tool-card:hover {
+    background: var(--card-bg-alt);
+  }
+  .light-section .tool-pill,
+  .grey-section .tool-pill {
+    color: var(--teal-dark);
+    border-color: rgba(42,99,99,0.25);
+  }
+
+  /* Pillar borders */
+  .light-section .pillar,
+  .grey-section .pillar {
+    border-right-color: var(--light-border);
+  }
+
+  /* Section dividers */
+  .light-section .narrative-divider,
+  .grey-section .narrative-divider {
+    background: var(--teal);
+  }
+  .light-section .section-head,
+  .grey-section .section-head {
+    border-bottom-color: var(--light-border);
+  }
+  .light-section,
+  .grey-section {
+    border-top-color: var(--light-border);
+  }
+
+  /* Contact form in light sections */
+  .grey-section .contact-form input,
+  .grey-section .contact-form textarea {
+    background: var(--card-bg);
+    border: 1px solid var(--light-border);
+    color: var(--dark-text);
+  }
+  .grey-section .contact-form input:focus,
+  .grey-section .contact-form textarea:focus {
+    border-color: var(--teal);
+  }
+  .grey-section .contact-form input::placeholder,
+  .grey-section .contact-form textarea::placeholder {
+    color: var(--muted-text);
+    opacity: 0.6;
+  }
+  .grey-section .contact-form button {
+    color: #ffffff;
+    background: var(--teal-dark);
+  }
+  .grey-section .contact-form button:hover {
+    background: var(--teal);
+  }
+
+  /* Blog section on light bg */
+  .light-section .blog-panel {
+    border-color: var(--light-border);
+  }
+  .light-section .blog-panel.active {
+    border-color: rgba(42,99,99,0.3);
+  }
+  /* Blog panels have dark overlays — text must stay white */
+  .light-section .blog-panel-title,
+  .light-section .blog-panel-teaser,
+  .light-section .blog-panel-label,
+  .light-section .blog-panel-coming {
+    color: #ffffff;
+  }
+
+  /* Thesis mission in light */
+  .light-section .thesis-mission,
+  .grey-section .thesis-mission {
+    color: var(--dark-text);
+    border-top-color: var(--light-border);
+  }
+  .light-section .thesis-mission strong,
+  .grey-section .thesis-mission strong {
+    color: var(--teal);
+  }
+
+  /* "Coming soon" placeholder text in tools */
+  .grey-section [style*="color:rgba(200,205,212"] {
+    color: var(--muted-text) !important;
+  }
+  .grey-section [style*="color:var(--teal-light)"] {
+    color: var(--teal-dark) !important;
+  }
+
+  /* Ethereal bg tint for light sections */
+  .light-section .ethereal-color {
+    background-color: rgba(45, 120, 120, 0.15);
+  }
+  .light-section .ethereal-noise {
+    opacity: 0.03;
+  }
+
+  /* Smooth transition between hero and first light section */
+  .hero + .light-section {
+    margin-top: -1px;
   }
 
   /* grain overlay */
@@ -1235,7 +1580,7 @@
 </section>
 
 <!-- ABOUT -->
-<section class="comparison-section" id="mission">
+<section class="comparison-section light-section" id="mission">
   <!-- Ethereal liquid background -->
   <div class="ethereal-bg">
     <svg style="position:absolute; width:0; height:0;">
@@ -1259,35 +1604,52 @@
   <div class="story-block">
     <p class="narrative-eyebrow">Why the Black Swan</p>
     <h2 class="story-headline">Rare events <em>reshape</em> everything</h2>
-    <p class="narrative-text">In probability theory, a <strong>black swan</strong> is an event that is rare, carries extreme impact, and is only rationalized in hindsight. For centuries, it was assumed all swans were white until a single observation in Australia shattered that certainty. In medicine, the most consequential insights often follow the same pattern: hidden in messy, real-world data, invisible to conventional methods, and transformative once revealed.</p>
+    <p class="narrative-text">In probability theory, a <strong>black swan</strong> is an event that is rare, carries extreme and often unpredictable impact, and is only rationalized in hindsight.</p>
+    <p class="narrative-text">Moments like the public emergence of large language models show how quickly foundational assumptions can shift, accelerating change across science and medicine in ways few fully anticipated.</p>
+    <p class="narrative-text">It only takes a single observation, a single event, to shatter certainty.</p>
+    <p class="narrative-text">In science and medicine, the most consequential insights often follow this same pattern. They are hidden in messy, real-world data, invisible to conventional methods, and transformative once revealed.</p>
   </div>
 
-  <!-- BLOCK 2: RWD & RWE definitions side by side -->
+  <!-- BLOCK 2: Black Swan examples — flip cards -->
   <div class="definition-row">
-    <div class="info-box">
-      <p class="info-box-eyebrow">Real-World Data</p>
-      <h3 class="info-box-title">The raw material</h3>
-      <p class="info-box-text">Data collected outside of traditional clinical trials, drawn from the routine delivery of healthcare and patient experience.</p>
-      <ul class="info-box-list">
-        <li>Electronic health records (EHR)</li>
-        <li>Insurance claims &amp; billing data</li>
-        <li>Patient registries &amp; biobanks</li>
-        <li>Wearables &amp; digital health devices</li>
-        <li>Patient-reported outcomes</li>
-      </ul>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
+               alt="Large Language Models">
+          <div class="flip-card-front-overlay"></div>
+          <div class="flip-card-front-content">
+            <h3 class="flip-card-front-title">Large Language Models<br>as a Black Swan Event</h3>
+            <p class="flip-card-front-hint">Click to read more</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <p class="flip-card-back-eyebrow">Black Swan Event</p>
+          <h3 class="flip-card-back-title">Large Language Models</h3>
+          <p class="flip-card-back-text">The emergence of large language models overturned long-held assumptions about what machines could do with language, reasoning, and scientific data. Practically overnight, workflows across evidence generation, literature review, and data curation were forced to adapt to an entirely new reality.</p>
+          <p class="flip-card-back-hint">Click to flip back</p>
+        </div>
+      </div>
     </div>
 
-    <div class="info-box">
-      <p class="info-box-eyebrow">Real-World Evidence</p>
-      <h3 class="info-box-title">The insight derived</h3>
-      <p class="info-box-text">Clinical evidence about the use, benefits, and risks of medical products, generated from the analysis of real-world data through rigorous methodology.</p>
-      <ul class="info-box-list">
-        <li>Comparative effectiveness studies</li>
-        <li>Post-market safety surveillance</li>
-        <li>Treatment pattern analyses</li>
-        <li>Health technology assessments</li>
-        <li>Regulatory decision support</li>
-      </ul>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w=800&q=80"
+               alt="COVID-19 Pandemic">
+          <div class="flip-card-front-overlay"></div>
+          <div class="flip-card-front-content">
+            <h3 class="flip-card-front-title">COVID-19 Pandemic<br>as a Black Swan Event</h3>
+            <p class="flip-card-front-hint">Click to read more</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <p class="flip-card-back-eyebrow">Black Swan Event</p>
+          <h3 class="flip-card-back-title">COVID-19 Pandemic</h3>
+          <p class="flip-card-back-text">A novel pathogen reshaped global health systems in weeks, not years. The pandemic compressed decades of regulatory evolution into months, forcing real-world evidence and adaptive trial designs from the periphery to the center of decision-making.</p>
+          <p class="flip-card-back-hint">Click to flip back</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1330,7 +1692,7 @@
 </section>
 
 <!-- TOOLS -->
-<section class="tools" id="tools">
+<section class="tools grey-section" id="tools">
   <div class="section-head">
     <div>
       <span class="section-tag reveal reveal-d1" style="animation-play-state:paused">The Platform</span>
@@ -1338,16 +1700,16 @@
     </div>
   </div>
   <div style="text-align:center; padding: 80px 0;">
-    <p style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.3em; text-transform:uppercase; color:var(--teal); margin-bottom:16px;">Coming Soon</p>
-    <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:rgba(200,205,212,0.45); line-height:1.6; max-width:480px; margin:0 auto;">We're building purpose-driven tools for the RWE community. Check back for updates, or <a href="#contact" style="color:var(--teal-light); text-decoration:none;">get in touch</a> to be notified.</p>
+    <p style="font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.3em; text-transform:uppercase; color:var(--teal-dark); margin-bottom:16px;">Coming Soon</p>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--muted-text); line-height:1.6; max-width:480px; margin:0 auto;">We're building purpose-driven tools for the RWE community. Check back for updates, or <a href="#contact" style="color:var(--teal-dark); text-decoration:none;">get in touch</a> to be notified.</p>
   </div>
 </section>
 
 <!-- BLOG -->
-<section class="blog-section" id="blog">
+<section class="blog-section light-section" id="blog">
   <div class="blog-header">
     <span class="section-tag">From the Blog</span>
-    <h2 class="section-title" style="font-size: clamp(28px, 3vw, 42px);">Latest <em style="font-style:italic; color:var(--accent);">Thinking</em></h2>
+    <h2 class="section-title" style="font-size: clamp(28px, 3vw, 42px);">Latest <em style="font-style:italic; color:var(--teal);">Thinking</em></h2>
   </div>
 
   <div class="blog-accordion" id="blog-accordion">
@@ -1426,7 +1788,7 @@
 </section>
 
 <!-- CONTACT -->
-<section class="contact" id="contact">
+<section class="contact grey-section" id="contact">
   <div class="contact-text">
     <h2 class="reveal reveal-d1" style="animation-play-state:paused">Advance Real World Evidence<br><em>Together.</em></h2>
     <p>Whether you're exploring a consulting engagement, a research collaboration, or an industry partnership — we'd like to hear about your work.</p>
