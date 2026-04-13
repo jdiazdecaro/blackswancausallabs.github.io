@@ -689,6 +689,15 @@
     -webkit-backface-visibility: hidden;
     border-radius: 8px;
     overflow: hidden;
+    transition: visibility 0s linear 0.35s;
+  }
+  .flip-card.flipped .flip-card-front {
+    visibility: hidden;
+    transition-delay: 0s;
+  }
+  .flip-card:not(.flipped) .flip-card-back {
+    visibility: hidden;
+    transition-delay: 0s;
   }
   .flip-card-front {
     display: flex;
