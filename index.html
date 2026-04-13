@@ -531,13 +531,13 @@
     margin-bottom: 24px;
   }
   .narrative-text {
-    font-size: 19px;
-    line-height: 1.8;
+    font-size: clamp(20px, 2.2vw, 24px);
+    line-height: 1.75;
     color: var(--white);
     font-weight: 300;
     letter-spacing: 0.02em;
     margin-bottom: 32px;
-    max-width: 720px;
+    max-width: 780px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -553,11 +553,11 @@
   }
   .narrative-subtitle {
     font-family: 'Syne', sans-serif;
-    font-size: 12px;
+    font-size: 15px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--teal-light);
-    margin-bottom: 18px;
+    margin-bottom: 28px;
   }
   .offerings-grid {
     display: grid;
@@ -577,7 +577,7 @@
   .offering-card {
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 32px 28px;
+    padding: 40px 36px;
     background: var(--ink);
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -589,16 +589,16 @@
   }
   .offering-card-title {
     font-family: 'Syne', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.15em;
+    font-size: 18px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--teal-light);
-    margin-bottom: 14px;
-    line-height: 1.4;
+    margin-bottom: 16px;
+    line-height: 1.35;
   }
   .offering-card-text {
-    font-size: 17px;
-    line-height: 1.75;
+    font-size: 19px;
+    line-height: 1.7;
     color: var(--white);
     font-weight: 300;
     letter-spacing: 0.02em;
@@ -1197,6 +1197,32 @@
     color: rgba(200,205,212,0.55);
   }
 
+  /* ── TEAL WORD TYPEWRITER ANIMATION ── */
+  .teal-sweep {
+    color: transparent !important;
+    position: relative;
+    display: inline-block;
+    vertical-align: baseline;
+  }
+  .teal-sweep::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--teal);
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    padding-right: 0.05em;
+  }
+  .teal-sweep.typed::before {
+    width: calc(100% + 0.05em);
+  }
+  .light-section .teal-sweep::before,
+  .grey-section .teal-sweep::before {
+    color: var(--teal-dark);
+  }
+
   /* ── LIGHT / GREY SECTION OVERRIDES ── */
   .light-section { background: var(--light-bg); }
   .grey-section  { background: var(--grey-bg); }
@@ -1399,10 +1425,10 @@
 
   /* Ethereal bg tint for light sections */
   .light-section .ethereal-color {
-    background-color: rgba(45, 120, 120, 0.15);
+    background-color: rgba(45, 120, 120, 0.35);
   }
   .light-section .ethereal-noise {
-    opacity: 0.03;
+    opacity: 0.05;
   }
 
   /* Smooth transition between hero and first light section */
@@ -1603,8 +1629,8 @@
   <!-- BLOCK 1: Why the Black Swan -->
   <div class="story-block">
     <p class="narrative-eyebrow">Why the Black Swan</p>
-    <h2 class="story-headline">Rare events <em>reshape</em> everything</h2>
-    <p class="narrative-text">In probability theory, a <strong>black swan</strong> is an event that is rare, carries extreme and often unpredictable impact, and is only rationalized in hindsight.</p>
+    <h2 class="story-headline">Rare events <em class="teal-sweep" data-text="reshape">reshape</em> everything</h2>
+    <p class="narrative-text">In probability theory, a <strong class="teal-sweep" data-text="Black Swan" style="text-transform: uppercase; font-weight: 600;">Black Swan</strong> is an event that is rare, carries extreme and often unpredictable impact, and is only rationalized in hindsight.</p>
     <p class="narrative-text">Moments like the public emergence of large language models show how quickly foundational assumptions can shift, accelerating change across science and medicine in ways few fully anticipated.</p>
     <p class="narrative-text">It only takes a single observation, a single event, to shatter certainty.</p>
     <p class="narrative-text">In science and medicine, the most consequential insights often follow this same pattern. They are hidden in messy, real-world data, invisible to conventional methods, and transformative once revealed.</p>
@@ -1657,7 +1683,7 @@
   <div class="story-block">
     <div class="narrative-divider" style="margin: 0 auto 32px;"></div>
     <p class="narrative-eyebrow">Our Mission</p>
-    <h2 class="story-headline" style="font-size: clamp(24px, 2.8vw, 38px);">Black Swan Causal Labs exists to find<br>the signals that <em>change practice</em></h2>
+    <h2 class="story-headline">Black Swan Causal Labs exists to find<br>the signals that <em class="teal-sweep" data-text="change practice">change practice</em></h2>
     <p class="narrative-text">We apply AI and causal inference to surface evidence hidden in real-world data, so better decisions reach patients sooner. Our work spans strategy, tooling, and training across the full evidence lifecycle.</p>
 
     <div class="narrative-divider"></div>
@@ -1709,7 +1735,7 @@
 <section class="blog-section light-section" id="blog">
   <div class="blog-header">
     <span class="section-tag">From the Blog</span>
-    <h2 class="section-title" style="font-size: clamp(28px, 3vw, 42px);">Latest <em style="font-style:italic; color:var(--teal);">Thinking</em></h2>
+    <h2 class="section-title" style="font-size: clamp(28px, 3vw, 42px);">Latest <em class="teal-sweep" data-text="Thinking" style="font-style:italic;">Thinking</em></h2>
   </div>
 
   <div class="blog-accordion" id="blog-accordion">
@@ -1909,6 +1935,33 @@
     link.addEventListener('click', () => {
       if (mobileMenu.classList.contains('open')) toggleMobileMenu();
     });
+  });
+
+  // ── Teal word typewriter on scroll ──
+  // Inject a dynamic stylesheet for per-element ::before transitions
+  const sweepSheet = document.createElement('style');
+  document.head.appendChild(sweepSheet);
+  let sweepCounter = 0;
+
+  document.querySelectorAll('.teal-sweep').forEach(el => {
+    const id = 'sweep-' + (sweepCounter++);
+    el.setAttribute('data-sweep-id', id);
+
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        const chars = el.textContent.trim().length;
+        const duration = Math.max(0.4, chars * 0.08);
+        sweepSheet.sheet.insertRule(
+          '.teal-sweep[data-sweep-id="' + id + '"]::before { transition: width ' + duration + 's steps(' + chars + ', end); }',
+          sweepSheet.sheet.cssRules.length
+        );
+        // Force reflow then trigger
+        void el.offsetWidth;
+        el.classList.add('typed');
+        obs.unobserve(el);
+      }
+    }, { threshold: 0.3 });
+    obs.observe(el);
   });
 
   // ── Ethereal shadow animation ──

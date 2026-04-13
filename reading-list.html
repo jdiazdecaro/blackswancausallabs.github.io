@@ -56,7 +56,7 @@
   }
   .nav-logo {
     font-family: 'Syne', sans-serif;
-    font-size: 12px;
+    font-size: 16px;
     letter-spacing: 0.3em;
     color: var(--dark-text);
     text-decoration: none;
@@ -286,49 +286,104 @@
     transition: max-height 0.5s ease, padding 0.3s;
   }
   .how-it-works.open .how-it-works-body {
-    max-height: 1200px;
+    max-height: 600px;
     padding: 0 32px 32px;
   }
-  .how-it-works-body p {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--body-text);
-    margin-bottom: 14px;
+
+  /* Pipeline flow */
+  .pipeline-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 12px 0;
   }
-  .how-it-works-body p strong {
-    color: var(--teal-dark);
-    font-weight: 400;
+  .pipeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
   }
-  .how-it-works-body .step-list {
-    list-style: none;
-    margin: 18px 0 24px;
-    padding: 0;
-  }
-  .how-it-works-body .step-list li {
-    padding: 12px 0 12px 28px;
-    border-left: 1px solid rgba(42,99,99,0.2);
-    margin-left: 4px;
-    position: relative;
-    color: var(--body-text);
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .how-it-works-body .step-list li::before {
-    content: '';
-    position: absolute;
-    left: -4px;
-    top: 18px;
-    width: 7px;
-    height: 7px;
+  .pipeline-icon {
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background: var(--teal-dark);
+    background: rgba(42,99,99,0.08);
+    border: 1px solid rgba(42,99,99,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .how-it-works-body .step-list strong {
+  .pipeline-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--teal-dark);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .pipeline-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     color: var(--dark-text);
-    font-weight: 400;
-    display: block;
-    margin-bottom: 2px;
   }
+  .pipeline-desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--muted-text);
+    text-align: center;
+    max-width: 150px;
+  }
+  .pipeline-arrow {
+    flex-shrink: 0;
+    padding: 0 10px;
+    color: var(--muted-text);
+    font-size: 18px;
+    margin-bottom: 60px;
+  }
+  .pipeline-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--teal-dark);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(42,99,99,0.35);
+    text-align: center;
+  }
+  .pipeline-link:hover { border-bottom-color: var(--teal-dark); }
+
+  @media (max-width: 600px) {
+    .pipeline-flow {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pipeline-arrow {
+      padding: 0 6px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .pipeline-icon {
+      width: 40px;
+      height: 40px;
+    }
+    .pipeline-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+    .pipeline-label {
+      font-size: 10px;
+    }
+  }
+
   .how-it-works-body .read-more-link {
     display: inline-block;
     margin-top: 8px;
@@ -597,17 +652,50 @@
       <span class="toggle-icon">+</span>
     </button>
     <div class="how-it-works-body">
-      <p>Every Wednesday morning, an autonomous AI agent searches PubMed and bioRxiv for the most noteworthy recent papers at the intersection of real-world evidence, causal inference, and artificial intelligence. It selects five, writes a short opinionated take on each, updates this page, and sends a newsletter to subscribers. No human curator picks the papers from week to week unless there is a seminal or highly relevant paper that should be included.</p>
-      <p>This is intentional. Black Swan Causal Labs exists to help scientists use AI in evidence work responsibly, and that means being transparent about how we use it ourselves.</p>
-      <ul class="step-list">
-        <li><strong>Search</strong>The agent runs structured queries across PubMed and bioRxiv covering RWE, target trial emulation, causal inference, machine learning in pharmacoepidemiology, and large language models in RWE research.</li>
-        <li><strong>Curate</strong>It scans the candidate set, identifies the papers most relevant to practitioners, and narrows the field to five that span methods, applications, and tooling.</li>
-        <li><strong>Write</strong>For each paper the agent drafts a two or three sentence take, focused on what is interesting or new and what readers should pay attention to. Not summaries. Takes.</li>
-        <li><strong>Publish</strong>It commits the new week of articles to the website repository and writes the prepared newsletter payload to a file in the same repo.</li>
-        <li><strong>Send</strong>The push to the repository triggers a GitHub Actions workflow that delivers the newsletter to subscribers through <a href="https://buttondown.com" target="_blank" rel="noopener" style="color: var(--teal-dark); border-bottom: 1px solid rgba(42,99,99,0.35);">Buttondown</a>.</li>
-      </ul>
-      <p>Editorial oversight comes from John Diaz-Decaro, who designed the search strategy, defined the curation criteria, and reviews outputs over time to refine the system. The agent is the curator. The human is the editor and the accountable scientist.</p>
-      <a href="methodology.html" class="read-more-link">Read the full methodology &rarr;</a>
+      <div class="pipeline-flow">
+        <div class="pipeline-step">
+          <div class="pipeline-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <span class="pipeline-label">Search</span>
+          <span class="pipeline-desc">An AI agent queries PubMed and bioRxiv for recent papers across RWE, causal inference, and AI.</span>
+        </div>
+        <span class="pipeline-arrow">&rarr;</span>
+        <div class="pipeline-step">
+          <div class="pipeline-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+          </div>
+          <span class="pipeline-label">Curate</span>
+          <span class="pipeline-desc">It identifies the five most relevant papers spanning methods, applications, and tooling.</span>
+        </div>
+        <span class="pipeline-arrow">&rarr;</span>
+        <div class="pipeline-step">
+          <div class="pipeline-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+          <span class="pipeline-label">Write</span>
+          <span class="pipeline-desc">The agent drafts a short opinionated take on each paper, not a summary.</span>
+        </div>
+        <span class="pipeline-arrow">&rarr;</span>
+        <div class="pipeline-step">
+          <div class="pipeline-icon">
+            <svg viewBox="0 0 24 24"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+          </div>
+          <span class="pipeline-label">Publish</span>
+          <span class="pipeline-desc">It commits the new articles to the site repository via GitHub.</span>
+        </div>
+        <span class="pipeline-arrow">&rarr;</span>
+        <div class="pipeline-step">
+          <div class="pipeline-icon">
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </div>
+          <span class="pipeline-label">Send</span>
+          <span class="pipeline-desc">A GitHub Actions workflow delivers the newsletter to subscribers.</span>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <a href="methodology.html" class="pipeline-link">Read the full methodology &rarr;</a>
+      </div>
     </div>
   </div>
 
