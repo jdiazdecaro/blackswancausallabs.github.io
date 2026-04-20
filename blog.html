@@ -4,305 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>Blog — Black Swan Causal Labs</title>
+<title>AI Agents and Idiot Sandwiches — Black Swan Causal Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Raleway:wght@200;300;400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --black:       #050608;
-    --deep:        #090c10;
-    --surface:     #0d1117;
-    --ink:         #111620;
-    --border:      rgba(255,255,255,0.06);
-    --silver:      #c8cdd4;
-    --white:       #eef0f3;
-    --teal:        #3d7a7a;
-    --teal-light:  #5aadad;
-    --accent:      #8bbfbf;
-
-    --light-bg:    #ffffff;
-    --grey-bg:     #f0f1f4;
-    --dark-text:   #1a1d24;
-    --body-text:   #3a3f4a;
-    --muted-text:  #6b7180;
-    --light-border: rgba(0,0,0,0.08);
-    --card-bg:     #ffffff;
-    --card-bg-alt: #f7f8fa;
-    --teal-dark:   #2a6363;
-  }
-
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--light-bg);
-    color: var(--body-text);
-    font-family: 'Syne', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 30px 64px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.98) 0%, transparent 100%);
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 16px;
-    letter-spacing: 0.3em;
-    color: var(--dark-text);
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-  .nav-logo span { color: var(--teal-dark); }
-  .nav-back {
-    font-family: 'Syne', sans-serif;
-    font-weight: 300;
-    font-size: 13px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--body-text);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .nav-back:hover { color: var(--teal-dark); }
-
-  /* ── BLOG PAGE LAYOUT ── */
-  .blog-page-wrap {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 140px 32px 80px;
-  }
-
-  .blog-page-eyebrow {
-    display: inline-block;
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(28px, 3.5vw, 40px);
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #ffffff;
-    background: var(--teal-dark);
-    padding: 12px 28px;
-    margin-bottom: 32px;
-  }
-
-  .blog-page-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 700;
-    color: var(--dark-text);
-    line-height: 1.25;
-    margin-bottom: 8px;
-  }
-
-  .blog-meta {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-family: 'Syne', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    color: var(--muted-text);
-    margin-bottom: 48px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--light-border);
-  }
-  .blog-meta-separator {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--muted-text);
-    opacity: 0.5;
-  }
-
-  /* ── ARTICLE BODY ── */
-  .blog-body p {
-    font-family: 'Syne', sans-serif;
-    font-size: 17px;
-    font-weight: 300;
-    line-height: 1.85;
-    color: var(--body-text);
-    margin-bottom: 28px;
-  }
-
-  .blog-body .blog-lead {
-    font-size: 19px;
-    line-height: 1.8;
-    color: var(--dark-text);
-    margin-bottom: 36px;
-  }
-
-  .blog-body .blog-pullquote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
-    font-weight: 400;
-    font-style: italic;
-    line-height: 1.55;
-    color: var(--teal-dark);
-    border-left: 3px solid var(--teal);
-    padding: 8px 0 8px 28px;
-    margin: 48px 0;
-  }
-
-  .blog-body .blog-section-break {
-    display: block;
-    width: 40px;
-    height: 1px;
-    background: var(--light-border);
-    margin: 48px 0;
-  }
-
-  /* ── FEATURED IMAGE ── */
-  .blog-featured-img {
-    margin: 48px 0;
-    text-align: center;
-  }
-  .blog-featured-img img {
-    max-width: 100%;
-    border-radius: 4px;
-    border: 1px solid var(--light-border);
-  }
-  .blog-featured-img figcaption {
-    font-family: 'Syne', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    color: var(--muted-text);
-    margin-top: 14px;
-    font-style: italic;
-  }
-
-  /* ── REFERENCES ── */
-  .blog-references {
-    margin-top: 56px;
-    padding-top: 32px;
-    border-top: 1px solid var(--light-border);
-  }
-  .blog-references h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--teal-dark);
-    margin-bottom: 20px;
-  }
-  .blog-references ol {
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .blog-references li {
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.7;
-    color: var(--muted-text);
-  }
-
-  /* ── BACK TO BLOG NAV ── */
-  .blog-post-nav {
-    margin-top: 56px;
-    padding-top: 32px;
-    border-top: 1px solid var(--light-border);
-    text-align: center;
-  }
-  .blog-post-nav a {
-    font-family: 'Syne', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--teal-dark);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .blog-post-nav a:hover { color: var(--teal); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    nav { padding: 22px 28px; }
-    .blog-page-wrap { padding: 100px 24px 60px; }
-  }
-  @media (max-width: 480px) {
-    .blog-page-wrap { padding: 90px 16px 48px; }
-    .blog-body p { font-size: 16px; }
-    .blog-body .blog-lead { font-size: 17px; }
-    .blog-body .blog-pullquote { font-size: 20px; padding-left: 20px; }
-    .blog-meta { flex-wrap: wrap; gap: 8px; }
-  }
-
-  /* ── FULL FOOTER ── */
-  footer {
-    background: #050608;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 64px 64px 0;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 48px;
-    padding-bottom: 56px;
-  }
-  .footer-col-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #eef0f3;
-    margin-bottom: 20px;
-  }
-  .footer-col-links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .footer-col-links a {
-    font-size: 14px;
-    letter-spacing: 0.04em;
-    color: #eef0f3;
-    text-decoration: none;
-    transition: color 0.3s;
-    font-weight: 300;
-  }
-  .footer-col-links a:hover { color: #5aadad; }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 28px 0;
-    text-align: center;
-  }
-  .footer-copy {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    color: rgba(200,205,212,0.55);
-  }
-  @media (max-width: 900px) {
-    footer { padding: 48px 28px 0; }
-    .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 36px; }
-  }
-  @media (max-width: 480px) {
-    footer { padding: 36px 16px 0; }
-    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-  }
-
-  /* grain overlay */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: 0.022;
-    pointer-events: none;
-    z-index: 9999;
-  }
-</style>
+<link rel="stylesheet" href="blog-shared.css">
 </head>
 <body>
 
@@ -311,73 +16,157 @@
   <a href="index.html" class="nav-back">&larr; Back to Home</a>
 </nav>
 
-<div class="blog-page-wrap">
+<div class="blog-layout">
 
-  <p class="blog-page-eyebrow">From the Blog</p>
-  <h1 class="blog-page-title">Every Study Is on the Causal Ladder Whether It Knows It or Not</h1>
+  <main class="blog-main">
 
-  <div class="blog-meta">
-    <span>John D. Diaz-Decaro</span>
-    <span class="blog-meta-separator"></span>
-    <span>April 13, 2026</span>
-  </div>
+    <p class="blog-page-eyebrow">From the Blog</p>
+    <h1 class="blog-page-title">AI Agents and Idiot Sandwiches</h1>
+    <p class="blog-page-subtitle">A note on agent architecture for RWE teams</p>
 
-  <article class="blog-body">
-
-    <p class="blog-lead">In <em>The Book of Why</em>, Judea Pearl offers a deceptively simple idea: all scientific questions about causation can be sorted onto three rungs of a ladder.</p>
-
-    <p>The first rung is <strong>association</strong> (seeing). What co-occurs with what? In Pearl's notation, this is P(Y|X): the probability of Y given that we observe X. The second is <strong>intervention</strong> (doing). What happens if we actively change something? This is P(Y|do(X)): the probability of Y given that we force X to happen, severing it from everything that would otherwise influence it. The difference between those two expressions (a single word, <em>do</em>) is the difference between watching a patient take a drug and making them take it. The third rung is <strong>counterfactual</strong> (imagining). What would have happened if things had gone differently? Or for you Marvel fans out there, <em>What If?</em></p>
-
-    <p>Each rung requires more from us than the one below it. You cannot answer a Rung 2 question with Rung 1 data. And you cannot answer a Rung 3 question without a causal model that lets you reason about worlds that never happened.</p>
-
-    <figure class="blog-featured-img">
-      <img src="blog-causal-ladder.webp" alt="Pearl's Causal Ladder - three rungs of causal reasoning: association, intervention, and counterfactual">
-      <figcaption>Pearl's Causal Ladder. Source: Pearl &amp; Mackenzie, <em>The Book of Why</em>, 2018.</figcaption>
-    </figure>
-
-    <p>That is the ladder. Now here is the part that isn't directly obvious.</p>
-
-    <p class="blog-pullquote">If you are asking a research question of any form, by default you are somewhere on this ladder. Every study that asks a research question is implicitly positioned on one of these rungs the moment it asks that question.</p>
-
-    <p>The only choice a researcher has is whether to acknowledge that positioning, or to stumble past it unaware.</p>
-
-    <span class="blog-section-break"></span>
-
-    <p>Before getting there, though, it is worth pausing on a category of work that sits outside the ladder entirely, not below it, just prior to it. Pure descriptive studies: a case report documenting an unusual presentation, a prevalence survey estimating how common a condition is, a surveillance report tracking incidence over time. These are not asking about the relationship between two variables. They are asking what exists and how much of it there is. Descriptive studies are hypothesis-generating. They are the empirical jumping off point if you will from which the questions that climb the ladder eventually emerge. You cannot ask P(Y|X) until someone has established that X and Y exist and are worth measuring. Descriptive work is what makes Rung 1 a viable question in the first place. That said, the label "descriptive" gets applied loosely; any study conditioning on a second variable (say age) has already stepped onto Rung 1.</p>
-
-    <p>Observational studies (e.g., cohort studies, case-control studies) are designed on Rung 1: they measure what occurred, not what was made to occur. No one randomized the exposure. No one used the do-operator. What they estimate is P(Y|X), the association between cytomegalovirus and autism or GLP-1 on incidence of diabetes 2. Unfortunately, researchers routinely write conclusions as though they had estimated P(Y|do(X)), and reviewers and readers often let it pass. Pearl's ladder makes the slip legible. When a cohort study reports that X "leads to" Y, or that X "increases risk of" Y, ask: did the design actually support that claim? Usually the honest answer is that it estimated an association, and the causal interpretation is an inference that requires additional assumptions the research may or may not have defended.</p>
-
-    <span class="blog-section-break"></span>
-
-    <p>Clinical trials deserve more than the one-line treatment the RCT usually gets, because the trial pipeline is itself a journey up the ladder. A phase I trial is not really asking a Rung 2 question at all, it's asking "what do we see when we give patients this compound?" That is dose-response, tolerability, pharmacokinetics. It is sophisticated Rung 1 work. A phase II trial begins reaching toward Rung 2: does this intervention do something to the outcome we care about? But it is typically underpowered to answer that cleanly, and its controls are often loose enough that confounding remains a genuine concern. However, it should be noted that some phase II trials can be randomized, and it really just depends on the purpose of the trial. Even still, the phase III randomized controlled trial is where Rung 2 is finally, fully earned: a prespecified outcome, adequate power, true randomization, a control arm. Randomization is precisely what severs X from everything that would otherwise confound it; it is the do-operator in action and what the trial estimates is genuinely P(Y|do(X)). And then there is the question that follows every successful phase III trial, which is almost never asked explicitly but is always being asked implicitly: would this patient, had they not received the treatment, have had a worse outcome? That is a counterfactual (Rung 3) and it is the question animating every individual treatment decision a clinician makes at the bedside. The trial answers a population-level Rung 2 question. The doctor is standing on Rung 3 every time she applies it.</p>
-
-    <p>Systematic reviews and meta-analyses inherit the rung of their constituent studies. Pooling ten observational studies with a very precise confidence interval does not produce a Rung 2 answer. The precision is real; the causal claim is not. A meta-analysis of RCTs is Rung 2, it is pooling genuine P(Y|do(X)) estimates. A meta-analysis of cohort studies is Rung 1, regardless of how impressive the I&sup2; statistic looks.</p>
-
-    <span class="blog-section-break"></span>
-
-    <p>None of this is meant to suggest that work outside or low on the ladder is worthless. The ladder is not a hierarchy of importance. It is a hierarchy of questions. Descriptive work does what no other study can: it creates the conditions under which causal questions become worth asking. Rung 1 work answers Rung 1 questions. The problem is only ever when work from one level is used to answer questions from another, when P(Y|X) is reported as though it were P(Y|do(X)), or when a phase I safety signal gets treated as evidence of efficacy.</p>
-
-    <p class="blog-pullquote">Pearl's ladder gives us a way to read any paper with one question first, before the abstract, before the methods: which rung is this question on, and does the design have the equipment to answer it?</p>
-
-    <p>Everything else follows from there.</p>
-
-    <div class="blog-references">
-      <h3>References</h3>
-      <ol>
-        <li>Pearl J, Mackenzie D. <em>The Book of Why: The New Science of Cause and Effect.</em> New York: Basic Books; 2018.</li>
-        <li>Pearl J. <em>Causality: Models, Reasoning, and Inference.</em> 2nd ed. Cambridge: Cambridge University Press; 2009.</li>
-        <li>Bareinboim E, Correa JD, Ibeling D, Icard T. On Pearl's hierarchy and the foundations of causal inference. In: Geffner H, Dechter R, Halpern J, eds. <em>Probabilistic and Causal Inference: The Works of Judea Pearl.</em> New York: ACM; 2022:507-556.</li>
-        <li>Hern&aacute;n MA, Robins JM. <em>Causal Inference: What If.</em> Boca Raton: Chapman &amp; Hall/CRC; 2020.</li>
-        <li>Hu W, Zhou X, Wu P. A potential outcomes perspective on Pearl's causal hierarchy. arXiv preprint. 2026. arXiv:2601.20405.</li>
-        <li>Pearl J. The three-layer causal hierarchy. Technical note. University of California, Los Angeles; 2013.</li>
-      </ol>
+    <div class="blog-meta">
+      <span>John D. Diaz-Decaro</span>
+      <span class="blog-meta-separator"></span>
+      <span>April 19, 2026</span>
     </div>
 
-  </article>
+    <article class="blog-body">
 
-  <div class="blog-post-nav">
-    <a href="index.html">&larr; Back to Home</a>
-  </div>
+      <p class="blog-lead">Picture a home cook hosting a dinner party for eight. One person doing the prep, the mains, the plating, greeting guests at the door, pouring wine, checking the oven. Ambitious and stressful to say the least. Unless you've hosted several of these, there's bound to be some mishaps.</p>
+
+      <p>Now picture the same meal coming out of a real kitchen for a full dining room. Smoother. More consistent. Same food, different "architecture". I have been watching a lot of <em>Hell's Kitchen</em> lately, which is probably what got me thinking about this. But the same question applies to how we build AI agents for real-world evidence work.</p>
+
+      <figure class="blog-featured-img">
+        <img src="blog-brigade-sameMeal.png" alt="Same meal, two kitchens: a chaotic home kitchen on the left and an organized professional brigade on the right">
+        <figcaption>Same meal. Different architecture. (AI-generated image)</figcaption>
+      </figure>
+
+      <h2>The memory problem nobody warned you about</h2>
+
+      <p>Every large language model has a finite working memory, called a context window. As that memory fills up, something happens that researchers have started calling <em>context rot</em> (Figure 1). Retrieval gets weaker. Reasoning gets sloppier. The model starts inventing linkages between ideas that were never actually connected in the source material. This degradation starts well before the stated limit of the window, and it is measurable [1, 2].</p>
+
+      <figure class="blog-featured-img">
+        <img src="blog-brigade-contextRot.png" alt="Line chart showing performance on the Repeated Words task dropping sharply for four frontier LLMs as input length increases">
+        <figcaption>Figure 1. Adapted from Chroma Research [2]. Performance on the Repeated Words task across four frontier models. Scores (higher = better) drop sharply as input length grows, well before any of the models' stated context limits. Models shown reflect the July 2025 frontier tested by Chroma; they differ from those in Table 1, which lists current (April 2026) production model specifications.</figcaption>
+      </figure>
+
+      <p>It is worth pausing on how big those windows actually are now, because the numbers make the problem seem like it should have gone away. It has not.</p>
+
+      <div class="blog-table-wrap">
+        <p class="blog-table-caption">Table 1. Frontier LLM context windows, as of April 19, 2026.</p>
+        <table class="blog-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Standard context window</th>
+              <th>Extended / notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Claude Opus 4.7 (Anthropic)</td>
+              <td>1,000,000 tokens</td>
+              <td>128K max output; available at standard API pricing [3]</td>
+            </tr>
+            <tr>
+              <td>Claude Sonnet 4.6 (Anthropic)</td>
+              <td>1,000,000 tokens</td>
+              <td>Same 1M window as Opus 4.7 [3]</td>
+            </tr>
+            <tr>
+              <td>GPT-5.4 (OpenAI)</td>
+              <td>272,000 tokens</td>
+              <td>1,000,000 tokens available in Codex and via API configuration; prompts over 272K billed at a premium [4, 5]</td>
+            </tr>
+            <tr>
+              <td>Gemini 3 Pro (Google)</td>
+              <td>1,000,000 tokens</td>
+              <td>64K max output; multimodal including video [6, 7]</td>
+            </tr>
+            <tr>
+              <td>Gemini 3 Flash (Google)</td>
+              <td>200,000 tokens</td>
+              <td>Optimized for latency and cost [7]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>For reference, a one million token window can hold roughly 1,500 pages of text, or 50,000 lines of code, or transcripts from more than 200 podcast episodes [6]. In other words, it is not the size that is the problem. The problem is that model accuracy and recall degrade as the window fills, regardless of how large the window is [1, 2]. A one million token ceiling is not a license to fill one million tokens. It is a ceiling, not a target.</p>
+
+      <p>For anyone in RWE, the analogy is familiar. Imagine asking an analyst to hold three study protocols, a 200-variable codebook, and a regulatory guidance document in their head while also writing the statistical analysis plan. Something gives. It usually is not the thing you would have guessed.</p>
+
+      <h2>The MCP bloat problem</h2>
+
+      <p>The Model Context Protocol, or MCP, is the emerging standard for connecting AI systems to external tools and data sources [8]. Connect ClinicalTrials.gov, PubMed, an internal data catalog, and a statistics engine, and you have real capability. However, the moment you connect those tools, their full definitions load into the model's context before you have typed a single question or query. A handful of connectors can consume tens of thousands of tokens before any work begins. Basically, you are already at a disadvantage.</p>
+
+      <h2>The solo cook agent</h2>
+
+      <p>There is one important caveat to consider: short versus long term tasks. The above does not apply if you are using LLMs as a replacement for [insert your favorite browser here]. However, when you start wiring in web searches, PubMed searches, evidence synthesis, cohort creation, etc., the work breaks down and efficiency dips. Now, the agent does not crash. It just gets sloppier, and the sloppiness is hard to see until you audit the output carefully. That is the dangerous failure mode in regulated RWE work.</p>
+
+      <h2>The brigade</h2>
+
+      <p>Restaurants solved a version of this problem over a century ago. Auguste Escoffier created something called the <em>brigade de cuisine</em> in the late 1800s, and the basic structure has held up because it works [9]. Gordon Ramsay did not invent it but it's demonstrated in his <em>Hell's Kitchen</em> show every week (granted: in the most entertaining way possible; idiot sandwich anyone? Lol).</p>
+
+      <p>The head chef holds the vision of the dish. A sous chef runs a station. A prep cook has one knife and one job. The expeditor at the pass checks every plate against spec before it leaves the kitchen. Front of house talks to the guests. Nobody tries to know everything. And that's the point.</p>
+
+      <p class="blog-pullquote">Consider an agentic architecture. An orchestrator agent holds the plan and the vision. Specialist subagents get a narrow toolset and a fresh context window. Each one delivers a clean artifact that meets a defined contract, the way a plate either meets spec at the pass or goes back.</p>
+
+      <p>This pattern, variously called multi-agent orchestration or agent handoffs, is how the current generation of serious agent systems should be being built [10, 11].</p>
+
+      <h2>Why this fits RWE workflows and processes</h2>
+
+      <p>Our work is already multi-stage. Protocol development, feasibility, cohort construction, analysis, quality control, writeup, regulatory response. Different tools at every step. Different reference material. Different failure modes. Different "this is approved" or "this needs more work". Trying to cram all of that into one agent markdown file fights the shape of the work we already do.</p>
+
+      <p>The brigade model fits because we already think this way. We already have protocol writers, programmers, statisticians, medical writers, and QC reviewers. We already have a pass. We call it the QC review, or the sign-off. An agentic workflow for RWE work should mirror this workflow, not flatten it or silo it to one sole agent or chatbot.</p>
+
+      <h2>What comes next</h2>
+
+      <p>The interesting questions after you buy into the brigade model are operational. How do you define the contract between stations? What does a handoff schema look like in practice? When should a capability be a subagent versus a skill versus just a prompt?</p>
+
+      <p>For now, if your agent is trying to be the whole kitchen, it will cook like a home cook. Build the brigade, work the pass, and expect a "Yes, Chef" on every ticket.</p>
+
+      <div class="blog-references">
+        <h3>References</h3>
+        <ol>
+          <li>Liu NF, Lin K, Hewitt J, Paranjape A, Bevilacqua M, Petroni F, Liang P. Lost in the Middle: How Language Models Use Long Contexts. <em>Transactions of the Association for Computational Linguistics.</em> 2024;12:157-173. doi:10.1162/tacl_a_00638. <a href="https://aclanthology.org/2024.tacl-1.9/" target="_blank" rel="noopener">https://aclanthology.org/2024.tacl-1.9/</a></li>
+          <li>Hong K, Troynikov A, Huber J. Context Rot: How Increasing Input Tokens Impacts LLM Performance. Technical Report, Chroma, July 2025. <a href="https://research.trychroma.com/context-rot" target="_blank" rel="noopener">https://research.trychroma.com/context-rot</a></li>
+          <li>Anthropic. Context windows. Claude API Documentation. <a href="https://platform.claude.com/docs/en/build-with-claude/context-windows" target="_blank" rel="noopener">https://platform.claude.com/docs/en/build-with-claude/context-windows</a></li>
+          <li>OpenAI. GPT-5.4 Model. OpenAI API Documentation. <a href="https://developers.openai.com/api/docs/models/gpt-5.4" target="_blank" rel="noopener">https://developers.openai.com/api/docs/models/gpt-5.4</a></li>
+          <li>OpenAI. Introducing GPT-5.4. March 2026. <a href="https://openai.com/index/introducing-gpt-5-4/" target="_blank" rel="noopener">https://openai.com/index/introducing-gpt-5-4/</a></li>
+          <li>Google. Long context. Gemini API Documentation. <a href="https://ai.google.dev/gemini-api/docs/long-context" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs/long-context</a></li>
+          <li>Google. Gemini 3 Developer Guide. <a href="https://ai.google.dev/gemini-api/docs/gemini-3" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs/gemini-3</a></li>
+          <li>Anthropic. Introducing the Model Context Protocol. November 2024. <a href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener">https://www.anthropic.com/news/model-context-protocol</a></li>
+          <li>Escoffier A. <em>Le Guide Culinaire.</em> Paris: 1903.</li>
+          <li>Anthropic. How we built our multi-agent research system. <a href="https://www.anthropic.com/engineering/built-multi-agent-research-system" target="_blank" rel="noopener">https://www.anthropic.com/engineering/built-multi-agent-research-system</a></li>
+          <li>Anthropic. Building effective agents. <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">https://www.anthropic.com/engineering/building-effective-agents</a></li>
+        </ol>
+      </div>
+
+    </article>
+
+    <div class="blog-post-nav">
+      <a href="index.html">&larr; Back to Home</a>
+    </div>
+
+  </main>
+
+  <aside class="blog-archive" aria-label="Blog archive">
+    <h3 class="blog-archive-title">Archive</h3>
+    <ul class="blog-archive-list">
+      <li class="blog-archive-item current" aria-current="page">
+        <span class="blog-archive-flag">Latest</span>
+        <span class="blog-archive-date">April 19, 2026</span>
+        <span class="blog-archive-headline">AI Agents and Idiot Sandwiches</span>
+      </li>
+      <li class="blog-archive-item">
+        <a href="blog-causal-ladder.html" class="blog-archive-link">
+          <span class="blog-archive-date">April 13, 2026</span>
+          <span class="blog-archive-headline">Every Study Is on the Causal Ladder</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
 
 </div>
 
