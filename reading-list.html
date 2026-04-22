@@ -760,7 +760,7 @@
 <script>
 (async function() {
   try {
-    const res = await fetch('articles.json');
+    const res = await fetch('articles.json?v=' + Date.now());
     const data = await res.json();
     const container = document.getElementById('articles-container');
     const dateEl = document.getElementById('updated-date');
