@@ -1,6 +1,82 @@
 {
-  "lastUpdated": "2026-04-22",
+  "lastUpdated": "2026-04-29",
   "weeks": [
+    {
+      "weekOf": "2026-04-29",
+      "articles": [
+        {
+          "title": "Using Regression Discontinuity in Time to Strengthen Real-World Evidence: A Case Study in Lung Cancer",
+          "authors": "Chen et al.",
+          "source": "PubMed",
+          "url": "https://doi.org/10.1177/0272989X261431776",
+          "tags": [
+            "RWE",
+            "Causal Inference",
+            "Quasi-experimental",
+            "Oncology",
+            "RDiT"
+          ],
+          "blurb": "Propensity score methods in oncology RWE have a well-documented tendency to overestimate treatment benefits, and Chen et al. demonstrate exactly how much: ts-IPTW yields HR 0.52 for pembrolizumab versus docetaxel, while the long-run trial benchmark is HR 0.70 — a 35% overestimation. Regression discontinuity in time, exploiting pembrolizumab's 2016 US approval as a natural threshold in 1,975 Flatiron Health patients, recovers HR 0.65 — 55% closer to the trial. <strong>Whenever a regulatory approval or guideline change creates a sharp discontinuity in treatment allocation, RDiT is the right causal tool and IPTW is the wrong one; this paper is the benchmark case study to cite.</strong>"
+        },
+        {
+          "title": "Validation of an AI-Assisted Framework for Systematic Bias Assessment in Observational Studies",
+          "authors": "Etminan et al.",
+          "source": "medRxiv",
+          "url": "https://doi.org/10.64898/2026.04.26.26351778",
+          "tags": [
+            "AI/ML",
+            "Pharmacoepidemiology",
+            "Bias Assessment",
+            "Methods",
+            "RWE"
+          ],
+          "blurb": "The failure mode of peer review for observational studies is well-known: reviewers rarely have the time or domain expertise to systematically identify immortal time bias, confounding by indication, or selection bias across the full methodological landscape of a paper. EpiVise, Etminan and colleagues' AI-assisted rule-based framework, achieves weighted kappa=0.75 against expert pharmacoepidemiologists on published studies and 0.77 on synthetic scenarios — substantial agreement by any standard. <strong>The real use case is scalable screening: EpiVise can process the volume of observational RWE submissions that regulators, HTA bodies, and journals face, flagging methodological red flags before they become published misconceptions.</strong>"
+        },
+        {
+          "title": "Applications of Natural Language Processing and Large Language Models for Social Determinants of Health: Systematic Review",
+          "authors": "Rajwal et al.",
+          "source": "PubMed",
+          "url": "https://doi.org/10.2196/83793",
+          "tags": [
+            "LLM",
+            "NLP",
+            "SDOH",
+            "EHR",
+            "RWD",
+            "Systematic Review"
+          ],
+          "blurb": "Social determinants of health are among the largest unmeasured confounders in pharmacoepidemiology, and this systematic review of 142 NLP/LLM studies documents both the rapid progress and the striking gaps. LLMs appear in only 19.7% of studies despite demonstrating strong performance (median F1 0.75–0.85), and structural SDOH factors like immigration status are almost completely absent (3.5% of studies). <strong>The reproducibility finding is the one that should anchor every RWE research agenda: only 49 studies shared code, fewer than half described model interpretability — meaning most of the literature on extracting key confounders from clinical text cannot be verified or replicated.</strong>"
+        },
+        {
+          "title": "An Assessment of the Real-World Data Platform TriNetX for Measuring the Association Between Group A Streptococcus and Neuropsychiatric Diagnoses",
+          "authors": "Gao et al.",
+          "source": "medRxiv",
+          "url": "https://doi.org/10.64898/2026.04.24.26351687",
+          "tags": [
+            "RWD",
+            "TriNetX",
+            "Pharmacoepidemiology",
+            "Platform Validation",
+            "Propensity Score"
+          ],
+          "blurb": "Federated data networks like TriNetX are being deployed for increasingly consequential questions, yet their limitations in detecting specific epidemiological signals are rarely stress-tested against known ground truth. Gao and Frankovich et al. run exactly that test: 178,301 propensity-score-matched patients in TriNetX, asking whether the platform can recover known GAS post-infectious associations (ARF, PSRA, PSGN). It largely cannot — not because the design is wrong, but because these conditions are too rare, heterogeneous, and diagnostically undercoded in administrative data. <strong>This is the honest platform-limitation paper that every team planning to study rare post-infectious or post-treatment phenotypes in federated EHR data should read before interpreting null results.</strong>"
+        },
+        {
+          "title": "AgentClinic: a multimodal benchmark for tool-using clinical AI agents",
+          "authors": "Schmidgall et al.",
+          "source": "PubMed",
+          "url": "https://doi.org/10.1038/s41746-026-02674-7",
+          "tags": [
+            "AI/ML",
+            "LLM",
+            "EHR",
+            "Clinical Decision Making",
+            "Benchmark"
+          ],
+          "blurb": "Every LLM clinical benchmark that uses multiple-choice QA is measuring a different capability than what clinical AI systems actually need. AgentClinic makes this concrete: when MedQA problems are reframed as sequential decision-making with patient interactions, tool use, and incomplete information, diagnostic accuracy drops to below a tenth of original scores for some models. <strong>Claude-3.5 leads overall in nine specialties and seven languages, but the methodologically important finding is the 92% relative improvement Llama-3 achieves with a persistent notebook tool — tool architecture matters as much as base model capability for real-world clinical deployment.</strong>"
+        }
+      ]
+    },
     {
       "weekOf": "2026-04-22",
       "articles": [
